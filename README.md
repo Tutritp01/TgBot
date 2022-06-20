@@ -14,3 +14,11 @@ Here the list of environment tools we'll use for study on course\
 # No environment quickstart
 You start study without complicated environment installation if you use [IntelliJ IDEA](https://www.jetbrains.com/idea/) \
 Video instruction could be found here [JDK - no environment installation quickstart](https://youtu.be/lc1q_BAGAzw)
+
+START:
+1) Create 
+tg-bot/src/main/resources/application.properties
+2) Enter value:
+
+bot.username={bot.username}
+bot.token={bot.token}
