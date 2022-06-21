@@ -26,7 +26,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private SendMessage createResponse(final Update update) {
         SendMessage sendMessage = new SendMessage();
-        sendMessage.setText("got your message: " + update.getMessage().getText());
+        sendMessage.setText("СТО в Минске «Влайдер-Шнайдер» оказывает широкий комплекс услуг по диагностике, обслуживанию и ремонту автомобилей. Ниже мы подобрали наиболее популярные услуги СТО. Выбирайте необходимый Вашему автомобилю вид услуги и приезжайте в наш автосервис.");
         sendMessage.setChatId(update.getMessage().getChatId().toString());
         return sendMessage;
     }
