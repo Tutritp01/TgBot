@@ -21,4 +21,5 @@ tg-bot/src/main/resources/application.properties
 2) Enter value:
 
 bot.username={bot.username}
+
 bot.token={bot.token}
