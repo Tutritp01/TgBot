@@ -9,6 +9,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.File;
+import java.io.IOException;
+
 @Service
 public class TelegramBot extends TelegramLongPollingBot {
     @Value("${bot.username}")
@@ -19,6 +22,12 @@ public class TelegramBot extends TelegramLongPollingBot {
     ObjectMapper objectMapper;
     @Override
     public void onUpdateReceived(Update update) {
+        try {
+            objectMapper.writeValue(new File("scr/test/resources/update.json"), update);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         try {
             var sendMessage = createResponse(update);
             execute(sendMessage);
