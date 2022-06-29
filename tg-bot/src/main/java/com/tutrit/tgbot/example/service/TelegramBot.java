@@ -1,5 +1,7 @@
 package com.tutrit.tgbot.example.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -13,7 +15,8 @@ public class TelegramBot extends TelegramLongPollingBot {
     private String botUsername;
     @Value("${bot.token}")
     private String botToken;
-
+    @Autowired
+    ObjectMapper objectMapper;
     @Override
     public void onUpdateReceived(Update update) {
         try {
