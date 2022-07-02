@@ -19,10 +19,13 @@ public class TelegramBot extends TelegramLongPollingBot {
     ObjectMapper objectMapper;
     @Autowired
     MessageService messageService;
+    @Autowired
+    LogConsole logConsole;
     @Override
     public void onUpdateReceived(Update update) {
         SendMessage sendMessage = messageService.onUpdateReceived(update);
         try {
+            logConsole.logConsol(update);
             execute(sendMessage);
             execute(createResponse(update));
         } catch (TelegramApiException e) {
