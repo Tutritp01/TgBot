@@ -1,26 +1,32 @@
 package com.tutrit.tgbot.example.service;
 
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Service
 public class MessageService {
-    public String onUpdateReceived(Update update) {
+    public SendMessage onUpdateReceived(Update update) {
+        SendMessage sendMessage = new SendMessage();
         if(update != null) {
             Message message = update.getMessage();
+            sendMessage.setChatId(message.getChatId());
             if (message != null && message.hasText()) {
                 String msgText = message.getText();
                 if (msgText.equals("/start")) {
-                    return "Hello";
+                    sendMessage.setText("Hello");
+                    return sendMessage;
                 } else if (msgText.equals("/help")) {
-                    return "Help";
+                    sendMessage.setText("Help");
+                    return sendMessage;
                 } else if (msgText.equals("/settings")){
-                    return "Settings";
+                    sendMessage.setText("Settings");
+                    return sendMessage;
                 }
             }
         }
-        return "Do no";
-
+        sendMessage.setText("Do no");
+        return sendMessage;
     }
 }

@@ -17,23 +17,34 @@ public class TelegramBot extends TelegramLongPollingBot {
     private String botToken;
     @Autowired
     ObjectMapper objectMapper;
+    @Autowired
+    MessageService messageService;
     @Override
     public void onUpdateReceived(Update update) {
+        SendMessage sendMessage = messageService.onUpdateReceived(update);
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+
+        //try {
+        //    var sendMessage = createResponse(update);
+        //    execute(sendMessage);
+        //} catch (TelegramApiException e) {
+        //    e.printStackTrace();
+        //}
+    }
+
+    private void saveJson(Update update) {
         try {
             objectMapper.writeValue(new File("src/test/resources/update.json"), update);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        try {
-            var sendMessage = createResponse(update);
-            execute(sendMessage);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
     }
 
-    private SendMessage createResponse(final Update update) {
+    private SendMessage createResponse(Update update) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("got your message: " + update.getMessage().getText());
         sendMessage.setChatId(update.getMessage().getChatId().toString());
