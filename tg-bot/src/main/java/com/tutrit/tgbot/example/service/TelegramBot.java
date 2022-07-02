@@ -24,6 +24,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         SendMessage sendMessage = messageService.onUpdateReceived(update);
         try {
             execute(sendMessage);
+            execute(createResponse(update));
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }

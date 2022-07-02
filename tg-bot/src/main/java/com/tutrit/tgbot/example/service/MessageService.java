@@ -9,10 +9,10 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class MessageService {
     public SendMessage onUpdateReceived(Update update) {
         SendMessage sendMessage = new SendMessage();
-        if(update != null) {
+        if (update != null) {
             Message message = update.getMessage();
             sendMessage.setChatId(message.getChatId());
-            if (message != null && message.hasText()) {
+            if (message.hasText()) {
                 String msgText = message.getText();
                 if (msgText.equals("/start")) {
                     sendMessage.setText("Hello");
@@ -20,7 +20,7 @@ public class MessageService {
                 } else if (msgText.equals("/help")) {
                     sendMessage.setText("Help");
                     return sendMessage;
-                } else if (msgText.equals("/settings")){
+                } else if (msgText.equals("/settings")) {
                     sendMessage.setText("Settings");
                     return sendMessage;
                 }
