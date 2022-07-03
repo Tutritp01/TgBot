@@ -12,7 +12,7 @@ public class MessageService {
 		SendMessage sendMessage = new SendMessage();
 		if(update != null) {
 			Message message = update.getMessage();
-			sendMessage.setChatId(String.valueOf(message.getChatId()));
+			sendMessage.setChatId(message.getChatId());
 			if(message != null && message.hasText()) {
 				String magText = message.getText();
 				if(magText.equals("/start")) {
