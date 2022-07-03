@@ -1,0 +1,26 @@
+{
+  "update_id": 170363145,
+  "message": {
+    "message_id": 85,
+    "from": {
+      "id": 453309853,
+      "first_name": "Юрий",
+      "is_bot": false,
+      "language_code": "ru"
+    },
+    "date": 1656504822,
+    "chat": {
+      "id": 453309853,
+      "type": "private",
+      "first_name": "Юрий"
+    },
+    "text": "/help",
+    "entities": [
+      {
+        "type": "bot_command",
+        "offset": 0,
+        "length": 6
+      }
+    ]
+  }
+}
