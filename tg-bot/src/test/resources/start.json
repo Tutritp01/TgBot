@@ -1,0 +1,20 @@
+{
+  "update_id": 148633985,
+  "message": {
+    "message_id": 151,
+    "from": {
+      "id": 1035881400,
+      "first_name": "Влад",
+      "is_bot": false,
+      "language_code": "be"
+    },
+    "date": 1656751865,
+    "chat": {
+      "id": 1035881400,
+      "type": "private",
+      "first_name": "Влад"
+    },
+    "text": "/start"
+
+  }
+}

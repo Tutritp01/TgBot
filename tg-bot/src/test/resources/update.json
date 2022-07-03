@@ -1,0 +1,19 @@
+{
+  "update_id": 148634001,
+  "message": {
+    "message_id": 185,
+    "from": {
+      "id": 1035881400,
+      "first_name": "Влад",
+      "is_bot": false,
+      "language_code": "be"
+    },
+    "date": 1656853970,
+    "chat": {
+      "id": 1035881400,
+      "type": "private",
+      "first_name": "Влад"
+    },
+    "text": "Попробуй еще раз!"
+  }
+}
