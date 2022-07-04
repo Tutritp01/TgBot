@@ -3,6 +3,9 @@ package com.tutrit.tgbot.example.bean;
 import java.util.Objects;
 
 public class UserDataTg {
+    public UserDataTg() {
+    }
+
     private String name;
     private long userId;
     private long chatId;
@@ -42,4 +45,5 @@ public class UserDataTg {
     public int hashCode() {
         return Objects.hash(name, userId, chatId);
     }
+
 }

@@ -1,5 +1,6 @@
 package com.tutrit.tgbot.example.service;
 
+import com.tutrit.tgbot.example.bean.UserDataTg;
 import com.tutrit.tgbot.example.util.CreateUserTg;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -8,6 +9,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Service
 public class MessageService {
+    CreateUserTg createUserTg = new CreateUserTg();
+    public UserDataTg userDataTg = new UserDataTg();
+
     public SendMessage onUpdateReceived(Update update) {
         SendMessage sendMessage = new SendMessage();
         if (update != null) {
@@ -16,8 +20,7 @@ public class MessageService {
             if (message.hasText()) {
                 String msgText = message.getText();
                 if (msgText.equals("/start")) {
-                    CreateUserTg createUserTg = new CreateUserTg();
-                    createUserTg.createUserTg(update);
+                    userDataTg = createUserTg.createUserTg(update);
                     sendMessage.setText("Hello");
                     return sendMessage;
                 } else if (msgText.equals("/help")) {
