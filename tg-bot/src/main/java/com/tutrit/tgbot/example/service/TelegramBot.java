@@ -18,12 +18,12 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Autowired
     ObjectMapper objectMapper;
     @Autowired
-    MessageService messageService;
+    CommandDispatcher dispatcher;
     @Autowired
     LogConsole logConsole;
     @Override
     public void onUpdateReceived(Update update) {
-        SendMessage sendMessage = messageService.onUpdateReceived(update);
+        SendMessage sendMessage = dispatcher.processUpdate(update);
         try {
             logConsole.logConsol(update);
             execute(sendMessage);
@@ -31,13 +31,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
-
-        //try {
-        //    var sendMessage = createResponse(update);
-        //    execute(sendMessage);
-        //} catch (TelegramApiException e) {
-        //    e.printStackTrace();
-        //}
     }
 
     private void saveJson(Update update) {
