@@ -1,5 +1,7 @@
 package com.tutrit.tgbot.example.bean;
 
+import java.util.Objects;
+
 public class Car {
     private String brand;
     private String model;
@@ -63,5 +65,18 @@ public class Car {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
+        Car car = (Car) o;
+        return year == car.year && Objects.equals(brand, car.brand) && Objects.equals(model, car.model) && Objects.equals(generation, car.generation) && Objects.equals(modification, car.modification) && Objects.equals(engine, car.engine) && Objects.equals(note, car.note);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, generation, modification, engine, year, note);
     }
 }

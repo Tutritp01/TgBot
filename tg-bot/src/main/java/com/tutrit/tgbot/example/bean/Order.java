@@ -47,4 +47,17 @@ public class Order {
     public void setCar(Car car) {
         this.car = car;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return id == order.id && Objects.equals(user, order.user) && Objects.equals(car, order.car) && orderStatus == order.orderStatus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, car, orderStatus);
+    }
 }
