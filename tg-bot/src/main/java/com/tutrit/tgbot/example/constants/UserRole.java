@@ -1,7 +1,7 @@
 package com.tutrit.tgbot.example.constants;
 
-public enum Role {
+public enum UserRole {
     CUSTOMER,
-    ENGINEER,
-    ADMIN
+    REPAIRER,
+    HEADMEN
 }

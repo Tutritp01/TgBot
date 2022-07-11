@@ -1,17 +1,17 @@
 package com.tutrit.tgbot.example.bean;
 
-import com.tutrit.tgbot.example.constants.Role;
+import com.tutrit.tgbot.example.constants.UserRole;
 
 import java.util.Objects;
 
 public class User {
-    private Role userRole;
+    private UserRole userRole;
     private Long tgId;
     private String tgFirstName;
     private String tgLastName;
     private String tgUserName;
 
-    public User(Role userRole, Long tgId, String tgFirstName, String tgLastName, String tgUserName) {
+    public User(UserRole userRole, Long tgId, String tgFirstName, String tgLastName, String tgUserName) {
         this.userRole = userRole;
         this.tgId = tgId;
         this.tgFirstName = tgFirstName;
@@ -22,7 +22,7 @@ public class User {
     public User() {
     }
 
-    public Role getUserRole() {
+    public UserRole getUserRole() {
         return userRole;
     }
 
@@ -42,7 +42,7 @@ public class User {
         return tgUserName;
     }
 
-    public void setUserRole(Role userRole) {
+    public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
 
