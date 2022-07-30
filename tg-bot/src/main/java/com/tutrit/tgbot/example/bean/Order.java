@@ -60,4 +60,14 @@ public class Order {
     public int hashCode() {
         return Objects.hash(id, user, car, orderStatus);
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user=" + user +
+                ", car=" + car +
+                ", orderStatus=" + orderStatus +
+                '}';
+    }
 }
