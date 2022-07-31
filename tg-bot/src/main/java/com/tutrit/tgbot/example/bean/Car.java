@@ -11,26 +11,6 @@ public class Car {
     private long year;
     private String note;
 
-    public Car() {
-        this.brand = "";
-        this.model = "";
-        this.generation = "";
-        this.modification = "";
-        this.engine = "";
-        this.year = 0L;
-        this.note = "";
-    }
-
-    public Car(String brand, String model, String generation, String modification, String engine, long year, String note) {
-        this.brand = brand;
-        this.model = model;
-        this.generation = generation;
-        this.modification = modification;
-        this.engine = engine;
-        this.year = year;
-        this.note = note;
-    }
-
     public String getBrand() {
         return brand;
     }
@@ -98,18 +78,5 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(brand, model, generation, modification, engine, year, note);
-    }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", generation='" + generation + '\'' +
-                ", modification='" + modification + '\'' +
-                ", engine='" + engine + '\'' +
-                ", year=" + year +
-                ", note='" + note + '\'' +
-                '}';
     }
 }
