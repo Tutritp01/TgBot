@@ -55,13 +55,13 @@ class EngineerRepositoryTest {
     @Test
     void createEngineerOne() {
         engineerRepository.createEngineer(engineer1);
-        assertEquals(engineerRepository.engineers[0], engineer1);
+        assertEquals(engineer1, engineerRepository.engineers[0]);
     }
 
     @Test
     void createEngineerOneI() {
         engineerRepository.createEngineer(engineer1i);
-        assertEquals(engineerRepository.engineers[0], engineer1);
+        assertEquals(engineer1, engineerRepository.engineers[0]);
     }
 
     @Test
@@ -69,8 +69,8 @@ class EngineerRepositoryTest {
         EngineerRepository engineerRepository = new EngineerRepository();
         engineerRepository.createEngineer(engineer1);
         engineerRepository.createEngineer(engineer2);
-        assertEquals(engineerRepository.engineers[0], engineer1);
-        assertEquals(engineerRepository.engineers[1], engineer2);
+        assertEquals(engineer1, engineerRepository.engineers[0]);
+        assertEquals(engineer2, engineerRepository.engineers[1]);
     }
 
     @Test
@@ -78,18 +78,18 @@ class EngineerRepositoryTest {
         EngineerRepository engineerRepository = new EngineerRepository();
         engineerRepository.createEngineer(engineer1i);
         engineerRepository.createEngineer(engineer2i);
-        assertEquals(engineerRepository.engineers[0], engineer1);
-        assertEquals(engineerRepository.engineers[1], engineer2);
+        assertEquals(engineer1, engineerRepository.engineers[0]);
+        assertEquals(engineer2, engineerRepository.engineers[1]);
     }
 
     @Test
     void readEngineer() {
         createFive();
-        assertEquals(engineerRepository.readEngineer(1), engineer1);
-        assertEquals(engineerRepository.readEngineer(2), engineer2);
-        assertEquals(engineerRepository.readEngineer(3), engineer3);
-        assertEquals(engineerRepository.readEngineer(4), engineer4);
-        assertEquals(engineerRepository.readEngineer(5), engineer5);
+        assertEquals(engineer1, engineerRepository.readEngineer(1));
+        assertEquals(engineer2, engineerRepository.readEngineer(2));
+        assertEquals(engineer3, engineerRepository.readEngineer(3));
+        assertEquals(engineer4, engineerRepository.readEngineer(4));
+        assertEquals(engineer5, engineerRepository.readEngineer(5));
     }
 
     @Test
@@ -99,20 +99,20 @@ class EngineerRepositoryTest {
         engineerRepository.updateEngineer(engineer4i, 2);
         engineerRepository.updateEngineer(engineer2i, 4);
         engineerRepository.updateEngineer(engineer1i, 5);
-        assertEquals(engineerRepository.engineers[0], engineer1o);
-        assertEquals(engineerRepository.engineers[1], engineer2o);
-        assertEquals(engineerRepository.engineers[2], engineer3o);
-        assertEquals(engineerRepository.engineers[3], engineer4o);
-        assertEquals(engineerRepository.engineers[4], engineer5o);
-        assertNotEquals(engineerRepository.engineers[0], engineer1);
-        assertNotEquals(engineerRepository.engineers[0], engineer1i);
-        assertNotEquals(engineerRepository.engineers[1], engineer2);
-        assertNotEquals(engineerRepository.engineers[1], engineer2i);
-        assertEquals(engineerRepository.engineers[2], engineer3);
-        assertNotEquals(engineerRepository.engineers[3], engineer4);
-        assertNotEquals(engineerRepository.engineers[3], engineer4i);
-        assertNotEquals(engineerRepository.engineers[4], engineer5);
-        assertNotEquals(engineerRepository.engineers[4], engineer5i);
+        assertEquals(engineer1o, engineerRepository.engineers[0]);
+        assertEquals(engineer2o, engineerRepository.engineers[1]);
+        assertEquals(engineer3o, engineerRepository.engineers[2]);
+        assertEquals(engineer4o, engineerRepository.engineers[3]);
+        assertEquals(engineer5o, engineerRepository.engineers[4]);
+        assertNotEquals(engineer1, engineerRepository.engineers[0]);
+        assertNotEquals(engineer1i, engineerRepository.engineers[0]);
+        assertNotEquals(engineer2, engineerRepository.engineers[1]);
+        assertNotEquals(engineer2i, engineerRepository.engineers[1]);
+        assertEquals(engineer3, engineerRepository.engineers[2]);
+        assertNotEquals(engineer4, engineerRepository.engineers[3]);
+        assertNotEquals(engineer4i, engineerRepository.engineers[3]);
+        assertNotEquals(engineer5, engineerRepository.engineers[4]);
+        assertNotEquals(engineer5i, engineerRepository.engineers[4]);
     }
 
     @Test

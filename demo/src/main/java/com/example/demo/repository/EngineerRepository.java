@@ -37,7 +37,7 @@ public class EngineerRepository {
         for (int j = (i - 1); j < engineers.length - 1; j++) {
             if (engineers[j + 1] != null) {
                 engineers[j] = engineers[j + 1];
-                engineers[j].setIdEngineer(String.valueOf((j + 1)));
+                engineers[j].setIdEngineer(count(j));
             } else {
                 engineers[j] = null;
             }
