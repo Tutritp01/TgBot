@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class EngineerRepositoryTest {
 
-    private static final EngineerRepository engineerRepository = new EngineerRepository();
+    private final EngineerRepository engineerRepository = new EngineerRepository();
     private Engineer engineer1;
     private Engineer engineer2;
     private Engineer engineer3;
