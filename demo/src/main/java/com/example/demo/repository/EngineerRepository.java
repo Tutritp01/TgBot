@@ -1,14 +1,19 @@
 package com.example.demo.repository;
 
 import com.example.demo.bean.Engineer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
 public class EngineerRepository {
-    public static Engineer[] engineers = new Engineer[3];
+    Engineer ext;
+    Engineer extFind;
+    Engineer err;
+    Engineer[] engineers = new Engineer[3];
+    Logger log = LoggerFactory.getLogger(EngineerRepository.class);
 
     public Engineer[] createEngineer(Engineer engineer) {
-
         for (int i = 0; i < engineers.length; i++) {
             if (engineers[i] == null) {
                 engineer.setIdEngineer(count(i));
@@ -23,8 +28,29 @@ public class EngineerRepository {
         return engineers;
     }
 
-    public Engineer readEngineer(int i) {
+    public Engineer findEngineer(int i) {
+        if (i > (engineers.length - 1)) {
+            log.info("Array out of bounds");
+            return new Engineer();
+        }
         return engineers[i - 1];
+    }
+
+    public Engineer findEngineer(String a) {
+        int i = Integer.parseInt(a);
+        return findEngineer(i);
+    }
+
+    public Engineer findEngineer(Engineer engineer) {
+        Engineer find = extract(engineer);
+        for (Engineer e : engineers) {
+            extFind = extract(e);
+            if (find.equals(extFind)) {
+                return e;
+            }
+        }
+        log.info("Not found");
+        return new Engineer();
     }
 
     public Engineer[] updateEngineer(Engineer engineer, int i) {
@@ -45,9 +71,32 @@ public class EngineerRepository {
         return engineers;
     }
 
+    public Engineer[] deleteEngineer(String a) {
+        int i = Integer.parseInt(a);
+        return deleteEngineer(i);
+    }
+
+    public Engineer[] deleteEngineer(Engineer engineer) {
+        Engineer find = extract(engineer);
+        int i = Integer.parseInt(findEngineer(find).getIdEngineer());
+        deleteEngineer(i);
+        return engineers;
+    }
+
     public String count(int i) {
         i = i + 1;
-        String count = String.valueOf(i);
-        return count;
+        return String.valueOf(i);
+    }
+
+    public Engineer extract(Engineer engineer) {
+        ext = new Engineer();
+        ext.setFirstName(engineer.getFirstName());
+        ext.setLastName(engineer.getLastName());
+        ext.setExperience(engineer.getExperience());
+        ext.setFunction(engineer.getFunction());
+        ext.setCategory(engineer.getCategory());
+        ext.setEducation(engineer.getEducation());
+        ext.setGeneralExperience(engineer.getGeneralExperience());
+        return ext;
     }
 }
