@@ -9,16 +9,19 @@ public class Customer {
     private String phoneNumber;
     private String email;
 
-    public Customer(String id) {
-        this.id = id;
-    }
-
     public Customer(String id, String name, String city, String phoneNumber, String email) {
         this.id = id;
         this.name = name;
         this.city = city;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    public Customer() {
+    }
+
+    public Customer(String id) {
+        this.id = id;
     }
 
     public String getId() {
@@ -85,4 +88,5 @@ public class Customer {
                 '}';
     }
 }
+
 

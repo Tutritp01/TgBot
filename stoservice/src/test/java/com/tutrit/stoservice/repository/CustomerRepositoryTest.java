@@ -29,10 +29,21 @@ class CustomerRepositoryTest {
 
     @Test
     void createCustomer() {
+        customerRepository.createCustomer(new Customer("7", "customer7", "city7", "phoneNumber7", "email7"));
+        assertEquals(7, CustomerRepository.customers.size());
+
+        customerRepository.createCustomer(new Customer("8", "customer8", "city8", "phoneNumber8", "email8"));
+        assertEquals(8, CustomerRepository.customers.size());
     }
+
 
     @Test
     void findCustomer() {
+        Customer customer = new Customer("7", "customer7", "city7", "phoneNumber7", "email7");
+        customerRepository.findCustomer(customer);
+        assertEquals(true, CustomerRepository.customers.contains(customer));
+
+
     }
 
     @Test
@@ -41,11 +52,17 @@ class CustomerRepositoryTest {
 
     @Test
     void updateCustomer() {
+        Customer customer = new Customer("7", "customer7", "city7", "phoneNumber8", "email7");
+        customerRepository.updateCustomer(customer);
+        assertEquals(new Customer("7", "customer7", "city7", "phoneNumber8", "email7"), customer);
+
     }
 
     @Test
     void deleteCustomer() {
+
     }
+
 
     @Test
     void testDeleteCustomer() {
