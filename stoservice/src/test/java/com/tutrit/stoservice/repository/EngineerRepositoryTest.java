@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.tutrit.stoservice.repository;
 
-import com.example.demo.bean.Engineer;
+import com.tutrit.stoservice.bean.Engineer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

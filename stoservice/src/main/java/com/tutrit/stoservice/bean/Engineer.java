@@ -1,4 +1,4 @@
-package com.example.demo.bean;
+package com.tutrit.stoservice.bean;
 
 import java.util.Objects;
 
