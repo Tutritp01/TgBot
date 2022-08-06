@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 
 public class CustomerRepository {
@@ -13,36 +14,37 @@ public class CustomerRepository {
     public static Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     public static HashSet<Customer> customers = new HashSet<>();
 
+    Iterator<Customer> iterationId = customers.iterator();
+
     public Customer createCustomer(Customer customer) {
-        if (customers.isEmpty() != true)
-            if (customers.contains(customer) == false) {
-                customers.add(new Customer());
-            } else {
-                logger.info("Customers already exists");
-
-            }
-
+        if (customers.contains(customer) == false) {
+            customers.add(customer);
+        } else {
+            logger.info("Customers already exists");
+        }
         return customer;
     }
 
     public Customer findCustomer(Customer customer) {
         if (customers.contains(customer) == true) {
             return customer;
-        } else {
-            logger.warn("Customer does not exist");
-        }
+        } else
+            logger.info("Customer does not exist, create customer");
+        createCustomer(customer);
         return customer;
     }
 
-    public Customer findCustomerById(String id) {
-        return null;
+    public Customer findCustomerById(Customer id) {
+
+        return id;
     }
 
     public Customer updateCustomer(Customer customer) {
-        if (customers.contains(customer) == true)
-            logger.info("This customers exists");
-        else
-            createCustomer(customer);
+        if (customers.contains(customer) == true) {
+            return customer;
+        } else {
+            deleteCustomer(customer);
+        }
         return customer;
     }
 
@@ -54,7 +56,6 @@ public class CustomerRepository {
     }
 
     public boolean deleteCustomer(String id) {
-
         return false;
     }
 

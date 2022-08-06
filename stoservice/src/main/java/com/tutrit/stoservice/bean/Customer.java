@@ -20,10 +20,6 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String id) {
-        this.id = id;
-    }
-
     public String getId() {
         return id;
     }

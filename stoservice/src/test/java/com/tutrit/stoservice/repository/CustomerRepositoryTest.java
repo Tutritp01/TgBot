@@ -29,7 +29,7 @@ class CustomerRepositoryTest {
 
     @Test
     void createCustomer() {
-        customerRepository.createCustomer(new Customer("7", "customer7", "city7", "phoneNumber7", "email7"));
+        customerRepository.createCustomer(new Customer("3", "customer3", "city3", "phoneNumber3", "email3"));
         assertEquals(7, CustomerRepository.customers.size());
 
         customerRepository.createCustomer(new Customer("8", "customer8", "city8", "phoneNumber8", "email8"));
@@ -39,33 +39,38 @@ class CustomerRepositoryTest {
 
     @Test
     void findCustomer() {
-        Customer customer = new Customer("7", "customer7", "city7", "phoneNumber7", "email7");
+        Customer customer = new Customer("6", "customer6", "city6", "phoneNumber6", "email6");
         customerRepository.findCustomer(customer);
-        assertEquals(true, CustomerRepository.customers.contains(customer));
+        assertEquals(7, CustomerRepository.customers.size());
 
 
     }
 
     @Test
     void findCustomerById() {
+
     }
 
     @Test
     void updateCustomer() {
-        Customer customer = new Customer("7", "customer7", "city7", "phoneNumber8", "email7");
+        Customer customer = new Customer("7", "customer7", "city7", "phoneNumber7", "email7");
         customerRepository.updateCustomer(customer);
-        assertEquals(new Customer("7", "customer7", "city7", "phoneNumber8", "email7"), customer);
+        assertEquals(true,CustomerRepository.customers.contains(customer));
 
     }
 
     @Test
     void deleteCustomer() {
-
+        Customer customer = new Customer("5", "customer5", "city5", "phoneNumber5", "email5");
+        customerRepository.deleteCustomer(customer);
+        assertEquals(6, CustomerRepository.customers.size());
     }
 
 
     @Test
     void testDeleteCustomer() {
+
+
     }
 
     @Test
