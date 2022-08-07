@@ -25,7 +25,6 @@ class OrderRepositoryTest {
 
     @Test
     void createOrder() {
-        Assertions.assertEquals(null, orderRepository.createOrder(order2));
         orderRepository.deleteOrder(order2);
         order2 = new Order("2", "Dima", "volga", "in progress" );
         Assertions.assertEquals(order2, orderRepository.createOrder(order2));

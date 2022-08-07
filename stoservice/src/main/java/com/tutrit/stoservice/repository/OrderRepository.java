@@ -14,35 +14,35 @@ public class OrderRepository {
     private static final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
     private static final Map<String, Order> orders = new HashMap();
 
-    public Order createOrder(Order order){
-        if (validateOrder(order, orders)) {
+    public Order createOrder(Order order) {
+        if (orders.containsKey(order.getId())) {
             return orders.put(order.getId(), order);
         }
         return null;
     }
 
-    public Order findOrder(Order order){
+    public Order findOrder(Order order) {
         String id = order.getId();
         for (String key : orders.keySet()) {
-            if (key.equals(id)){
+            if (key.equals(id)) {
                 return orders.get(id);
             }
         }
         return null;
     }
 
-    public Order findOrderById(String id){
+    public Order findOrderById(String id) {
         for (String key : orders.keySet()) {
-            if (key.equals(id)){
+            if (key.equals(id)) {
                 return orders.get(id);
             }
         }
         return null;
     }
 
-    public Order updateOrder(Order order){
+    public Order updateOrder(Order order) {
         for (String key : orders.keySet()) {
-            if (key.equals(order.getId())){
+            if (key.equals(order.getId())) {
                 return orders.put(order.getId(), order);
             }
         }
@@ -50,13 +50,13 @@ public class OrderRepository {
         return null;
     }
 
-    public boolean deleteOrder(Order order){
+    public boolean deleteOrder(Order order) {
         return Objects.nonNull(orders.remove(order.getId()));
     }
 
-    public boolean deleteOrderById(String id){
+    public boolean deleteOrderById(String id) {
         for (String key : orders.keySet()) {
-            if (key.equals(id)){
+            if (key.equals(id)) {
                 return Objects.nonNull(orders.remove(id));
             }
         }
@@ -64,23 +64,7 @@ public class OrderRepository {
         return false;
     }
 
-    public int count(){
+    public int count() {
         return orders.size();
-    }
-
-    public boolean validateOrder(Order order, Map<String, Order> orders){
-        boolean result;
-        if (Objects.nonNull(order) && Objects.nonNull(order.getId()) && !order.getId().isEmpty()) {
-            for (String key : orders.keySet()) {
-                result = order.getId().equals(key);
-                if (result){
-                    logger.info("object cannot be created because of id duplication");
-                    return false;
-                }
-            }
-            return true;
-        }
-        logger.info("id is null or empty");
-        return true;
     }
 }
