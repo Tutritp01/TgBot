@@ -4,17 +4,15 @@ import com.tutrit.stoservice.bean.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.List;
 
 
 public class CustomerRepository {
 
     public static Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     public static HashSet<Customer> customers = new HashSet<>();
-
-    Iterator<Customer> iterationId = customers.iterator();
 
     public Customer createCustomer(Customer customer) {
         if (customers.contains(customer) == false) {
@@ -26,17 +24,21 @@ public class CustomerRepository {
     }
 
     public Customer findCustomer(Customer customer) {
-        if (customers.contains(customer) == true) {
-            return customer;
-        } else
-            logger.info("Customer does not exist, create customer");
-        createCustomer(customer);
-        return customer;
+        for (final Customer cus : customers) {
+            if (cus.equals(customer)) {
+                return cus;
+            }
+        }
+        return null;
     }
 
-    public Customer findCustomerById(Customer id) {
-
-        return id;
+    public Customer findCustomerById(String id) {
+        for (final Customer customer : customers) {
+            if (customer.getId().equals(id)) {
+                return customer;
+            }
+        }
+        return null;
     }
 
     public Customer updateCustomer(Customer customer) {
@@ -56,6 +58,12 @@ public class CustomerRepository {
     }
 
     public boolean deleteCustomer(String id) {
+        for (final Customer customer : customers) {
+            if (customer.getId().equals(id)) {
+                customers.remove(customer);
+                return true;
+            }
+        }
         return false;
     }
 
