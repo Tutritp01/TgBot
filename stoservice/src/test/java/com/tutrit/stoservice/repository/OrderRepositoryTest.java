@@ -24,10 +24,13 @@ class OrderRepositoryTest {
     }
 
     @Test
-    void createOrder() {
-        orderRepository.deleteOrder(order2);
-        order2 = new Order("2", "Dima", "volga", "in progress" );
-        Assertions.assertEquals(order2, orderRepository.createOrder(order2));
+    void testCreateOrder() {
+        Order order4 = new Order("4", "Petya", "patriot", "closed" );
+        orderRepository.createOrder(order4);
+        assertEquals(order2, orderRepository.orders.get("2"));
+        assertEquals(order4, orderRepository.orders.get("4"));
+        assertNotEquals(order4, orderRepository.orders.get("2"));
+        assertNotEquals(orderRepository.orders.get("2"), orderRepository.orders.get("4"));
     }
 
     @Test

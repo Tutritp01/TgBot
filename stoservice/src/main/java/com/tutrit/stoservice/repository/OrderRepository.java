@@ -12,13 +12,13 @@ import java.util.Objects;
 public class OrderRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
-    private static final Map<String, Order> orders = new HashMap<>();
+    Map<String, Order> orders = new HashMap<>();
 
     public Order createOrder(Order order) {
         if (!orders.containsKey(order.getId())) {
             return orders.put(order.getId(), order);
         }
-        logger.info("there is already an order with this key");
+        logger.info("There is already an order with this key");
         return null;
     }
 
