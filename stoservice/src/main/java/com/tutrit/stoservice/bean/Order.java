@@ -59,7 +59,7 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return id == order.id && user.equals(order.user) && car.equals(order.car) && orderStatus.equals(order.orderStatus);
+        return Objects.equals(id, order.id) && Objects.equals(user, order.user) && Objects.equals(car, order.car) && Objects.equals(orderStatus, order.orderStatus);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", user='" + user + '\'' +
                 ", car='" + car + '\'' +
                 ", orderStatus='" + orderStatus + '\'' +
