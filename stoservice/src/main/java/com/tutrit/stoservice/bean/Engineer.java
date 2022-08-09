@@ -95,7 +95,7 @@ public class Engineer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Engineer engineer = (Engineer) o;
-        return experience == engineer.experience && generalExperience == engineer.generalExperience && Objects.equals(idEngineer, engineer.idEngineer) && Objects.equals(firstName, engineer.firstName) && Objects.equals(lastName, engineer.lastName) && Objects.equals(function, engineer.function) && Objects.equals(category, engineer.category) && Objects.equals(education, engineer.education);
+        return experience == engineer.experience && generalExperience == engineer.generalExperience && idEngineer.equals(engineer.idEngineer) && firstName.equals(engineer.firstName) && lastName.equals(engineer.lastName) && function.equals(engineer.function) && category.equals(engineer.category) && education.equals(engineer.education);
     }
 
     @Override
