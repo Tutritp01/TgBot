@@ -10,12 +10,12 @@ public class Car {
     private String generation;
     private String modification;
     private String engine;
-    private int year;
+    private String year;
 
     public Car() {
     }
 
-    public Car(String id, String brand, String model, String generation, String modification, String engine, int year) {
+    public Car(String id, String brand, String model, String generation, String modification, String engine, String year) {
         this.id = id;
         this.brand = brand;
         this.model = model;
@@ -73,11 +73,11 @@ public class Car {
         this.engine = engine;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -86,7 +86,7 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return year == car.year && Objects.equals(id, car.id) && Objects.equals(brand, car.brand) && Objects.equals(model, car.model) && Objects.equals(generation, car.generation) && Objects.equals(modification, car.modification) && Objects.equals(engine, car.engine);
+        return Objects.equals(id, car.id) && Objects.equals(brand, car.brand) && Objects.equals(model, car.model) && Objects.equals(generation, car.generation) && Objects.equals(modification, car.modification) && Objects.equals(engine, car.engine) && Objects.equals(year, car.year);
     }
 
     @Override

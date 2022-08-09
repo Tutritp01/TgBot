@@ -46,6 +46,7 @@ public class CarRepository {
     }
 
     public boolean deleteCar(Car car) {
+
         return cars.remove(findCarById(car.getId()));
     }
 
