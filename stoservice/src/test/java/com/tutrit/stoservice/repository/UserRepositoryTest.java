@@ -20,6 +20,7 @@ class UserRepositoryTest {
     void createUser() {
         userRepository.createUser("5", new User("5", "Boba", "141235"));
         assertEquals(1, UserRepository.userMap.size());
+
     }
 
 }
