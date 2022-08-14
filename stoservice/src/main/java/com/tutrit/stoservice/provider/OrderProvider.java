@@ -21,7 +21,8 @@ public class OrderProvider {
     static Map<Object, Object> getOrders(int amount) {
         Map<Object, Object> initialOrders = new HashMap<>();
         for (int i = 0; i < amount; i++) {
-            initialOrders.put(getInstance(i).getId(), getInstance(i));
+            Order order = getInstance(i);
+            initialOrders.put(order.getId(), order);
         }
         return initialOrders;
     }
