@@ -7,7 +7,8 @@ import java.util.Map;
 
 public class OrderProvider {
     private OrderProvider(){
-            }
+        throw new AssertionError("Suppress default constructor for noninstantiability");
+    }
 
     static Map<Object, Object> getOrders() {
         Map<Object, Object> initialOrders = new HashMap<>();
