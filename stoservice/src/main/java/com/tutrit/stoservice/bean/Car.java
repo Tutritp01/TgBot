@@ -25,8 +25,6 @@ public class Car {
         this.year = year;
     }
 
-    public Car(String id, String brand, String model, String generation, String modification, String engine, String year) {
-    }
 
     public String getId() {
         return id;
