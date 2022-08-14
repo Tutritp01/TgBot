@@ -18,6 +18,14 @@ public class OrderProvider {
         return initialOrders;
     }
 
+    static Map<Object, Object> getOrders(int amount) {
+        Map<Object, Object> initialOrders = new HashMap<>();
+        for (int i = 0; i < amount; i++) {
+            initialOrders.put(getInstance(i).getId(), getInstance(i));
+        }
+        return initialOrders;
+    }
+
     static Order getInstance(int i) {
         return new Order("Id" + i, "User" + i, "Car" + i, "Open" + i);
     }

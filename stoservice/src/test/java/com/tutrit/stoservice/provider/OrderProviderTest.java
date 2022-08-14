@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OrderProviderTest {
     Map<String, Order> testMap = new HashMap<>();
+    Map<String, Order> testMap2 = new HashMap<>();
     Order order0 = new Order("Id", "User", "Car", "Open");
     Order order1 = new Order("Id0", "User0", "Car0", "Open0");
     Order order2 = new Order("Id1", "User1", "Car1", "Open1");
@@ -23,7 +24,7 @@ class OrderProviderTest {
     Order order9 = new Order("Id8", "User8", "Car8", "Open8");
     Order order10 = new Order("Id9", "User9", "Car9", "Open9");
 
-    public void setTestMap() {
+    public void setTestMap10() {
         testMap.put(order1.getId(), order1);
         testMap.put(order2.getId(), order2);
         testMap.put(order3.getId(), order3);
@@ -36,12 +37,25 @@ class OrderProviderTest {
         testMap.put(order10.getId(), order10);
     }
 
+    public void setTestMap3() {
+        testMap2.put(order1.getId(), order1);
+        testMap2.put(order2.getId(), order2);
+        testMap2.put(order3.getId(), order3);
+    }
+
     @Test
     void testGetOrders() {
-        setTestMap();
+        setTestMap10();
         assertArrayEquals(testMap.keySet().toArray(), OrderProvider.getOrders().keySet().toArray());
         assertArrayEquals(testMap.values().toArray(), OrderProvider.getOrders().values().toArray());
     }
+
+    @Test
+    void testGetOrdersI() {
+        setTestMap3();
+        assertArrayEquals(testMap2.keySet().toArray(), OrderProvider.getOrders(3).keySet().toArray());
+        assertArrayEquals(testMap2.values().toArray(), OrderProvider.getOrders(3).values().toArray());
+        }
 
     @Test
     void testGetInstanceI() {
