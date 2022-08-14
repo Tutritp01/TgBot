@@ -14,7 +14,7 @@ public class CustomerRepository {
     public static Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     public static HashSet<Customer> customers = new HashSet<>();
 
-    public Customer createCustomer(Customer customer) {
+    public Customer createCustomer(Customer customer) {//rename and boolean or void
         if (customers.contains(customer) == false) {
             customers.add(customer);
         } else {
@@ -41,8 +41,8 @@ public class CustomerRepository {
         return null;
     }
 
-    public Customer updateCustomer(Customer customer) {
-        if (customers.contains(customer) == true) {
+    public Customer updateCustomer(Customer customer) { //rename and void or boolean
+        if (customers.contains(customer)) {
             return customer;
         } else {
             deleteCustomer(customer);
@@ -51,8 +51,9 @@ public class CustomerRepository {
     }
 
     public boolean deleteCustomer(Customer customer) {
-        if (customers.contains(customer) == true) {
+        if (customers.contains(customer)) {
             customers.remove(customer);
+            //return true;
         }
         return false;
     }

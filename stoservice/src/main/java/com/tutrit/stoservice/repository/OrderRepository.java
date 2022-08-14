@@ -14,7 +14,7 @@ public class OrderRepository {
     private static final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
     private static final Map<String, Order> orders = new HashMap();
 
-    public Order createOrder(Order order) {
+    public Order createOrder(Order order) {//rename
         if (orders.containsKey(order.getId())) {
             return orders.put(order.getId(), order);
         }

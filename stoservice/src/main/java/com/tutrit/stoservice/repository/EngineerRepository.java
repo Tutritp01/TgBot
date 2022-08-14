@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 
 public class EngineerRepository {
-    Engineer ext;
+    Engineer ext; //encapsulation
     Engineer extFind;
     Engineer[] engineers = new Engineer[3];
     Logger log = LoggerFactory.getLogger(EngineerRepository.class);

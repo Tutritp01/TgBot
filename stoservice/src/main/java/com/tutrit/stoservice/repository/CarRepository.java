@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class CarRepository {
     public static final Logger logger = Logger.getLogger(CarRepository.class.getName());
-    public static List<Car> cars = new ArrayList<>();
+    public static List<Car> cars = new ArrayList<>(); //private
 
     public Car createCar(Car car) {
         if (isContains(car.getId())) {
