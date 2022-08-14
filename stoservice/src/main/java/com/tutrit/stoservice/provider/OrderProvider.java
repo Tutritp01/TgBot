@@ -1,24 +1,21 @@
 package com.tutrit.stoservice.provider;
 
 import com.tutrit.stoservice.bean.Order;
-import com.tutrit.stoservice.repository.OrderRepository;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class OrderProvider {
-    OrderRepository orderRepository;
-
-    Order getOrder(Order order, int i) {
-        order.setId("id" + i);
-        order.setUser("UserName");
-        order.setCar("UserCar");
-        order.setOrderStatus("Open");
-        return order;
+    private final Map<Object, Object> initialOrders = new HashMap<>();
+    Map<Object, Object> getOrders() {
+        for (int i = 0; i < 10; i++) {
+            getInstance(i);
+            initialOrders.put(getInstance(i).getId(), getInstance(i));
+        }
+        return initialOrders;
     }
 
-    void createTenOrder() {
-        for (int i = 1; i < 11; i++) {
-            Order order = new Order();
-            order = getOrder(order, i);
-            orderRepository.createOrder(order);
-        }
+    Order getInstance(int i) {
+       return new Order("Id" + i, "User" + i, "Car" + i, "Open" + i);
     }
 }
