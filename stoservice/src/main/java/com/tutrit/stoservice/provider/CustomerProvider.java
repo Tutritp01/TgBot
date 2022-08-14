@@ -7,21 +7,15 @@ import java.util.Set;
 
 public class CustomerProvider {
 
-    public Set<Customer> getCustomers() {
+    public Set<Customer> getCustomers(int i) {
         Set<Customer> result = new HashSet<>();
-        Customer initial = getInstance();
-
-        for (int i = 1; i <= 5; i++) {
-            result.add(new Customer(initial.getId().concat(String.valueOf(i)),
-                    initial.getName().concat(String.valueOf(i)),
-                    initial.getCity().concat(String.valueOf(i)),
-                    initial.getPhoneNumber().concat(String.valueOf(i)),
-                    initial.getEmail().concat(String.valueOf(i))));
+        for (int k = 0; k < i; k++) {
+            result.add(getInstance(k));
         }
         return result;
     }
 
-    public Customer getInstance() {
-        return new Customer("id", "name", "city", "phoneNumber", "email");
+    private Customer getInstance(int i) {
+        return new Customer("id" + i, "name" + i, "city" + i, "phoneNumber" + i, "email" + i);
     }
 }
