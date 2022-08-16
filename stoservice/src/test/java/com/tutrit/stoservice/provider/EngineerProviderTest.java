@@ -16,14 +16,12 @@ class EngineerProviderTest {
 
     @Test
     void getEngineers() {
-        Engineer[] engineersActual = engineerProvider.getEngineers();
+        Engineer[] engineersActual = engineerProvider.getEngineers(3);
         Engineer[] engineersExpected = new Engineer[engineersActual.length];
-        engineersExpected[0] = new Engineer("1","1","1","1","1","1",1,1);
-        engineersExpected[1] = new Engineer("2","2","2","2","2","2",2,2);
-        engineersExpected[2] = new Engineer("3","3","3","3","3","3",3,3);
+        engineersExpected[0] = new Engineer("id0","firstName0","lastName0","function0","category0","education0",0,0);
+        engineersExpected[1] = new Engineer("id1","firstName1","lastName1","function1","category1","education1",1,1);
+        engineersExpected[2] = new Engineer("id2","firstName2","lastName2","function2","category2","education2",2,2);
 
-        for (int i =0; i < engineersActual.length; i++) {
-            assertEquals(engineersExpected[i], engineersActual[i]);
-        }
+        assertArrayEquals(engineersExpected, engineersActual);
     }
 }
