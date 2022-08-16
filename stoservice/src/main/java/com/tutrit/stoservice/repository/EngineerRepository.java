@@ -27,9 +27,6 @@ public class EngineerRepository {
         }
         return engineers[ret];
     }
-    public Engineer[] getEngineers() {
-        return engineers;
-    }
 
     public Engineer findEngineer(int i) {
         if (i > (engineers.length - 1)) {
