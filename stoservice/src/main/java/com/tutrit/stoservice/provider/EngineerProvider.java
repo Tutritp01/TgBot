@@ -1,19 +1,15 @@
 package com.tutrit.stoservice.provider;
 
 import com.tutrit.stoservice.bean.Engineer;
-import com.tutrit.stoservice.repository.EngineerRepository;
+
 
 public class EngineerProvider {
-    Engineer engineer;
-    EngineerRepository engineerRepository;
 
-    public Engineer[] getEngineers() {
-        engineerRepository = new EngineerRepository();
-
-        for (int i = 1; i <= 3; i++) {
-            engineer = new Engineer("" + i, "" + i, "" + i,"" + i,"" + i,"" + i, i, i);
-            engineerRepository.createEngineer(engineer);
+    public Engineer[] getEngineers(int k) {
+        Engineer[] engineers = new Engineer[k];
+        for (int i = 0; i < k; i++) {
+            engineers[i] = new Engineer("id" + i, "firstName" + i, "lastName" + i, "function" + i, "category" + i, "education" + i, i, i);
         }
-        return engineerRepository.getEngineers();
+        return engineers;
     }
 }
