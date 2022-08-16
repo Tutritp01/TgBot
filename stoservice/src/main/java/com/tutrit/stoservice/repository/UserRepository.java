@@ -10,11 +10,15 @@ public class UserRepository {
 
     public static Map<String, User> userMap = new HashMap<>();
 
-    public void createUser(String id, User user) {
-        userMap.put(id, user);
+    public User createUser(String id, User user) {
+        return userMap.put(id, user);
     }
 
-    public User findUser(String id) {
+    public User findUser(User user) {
+        return null;
+    }
+
+    public User findUserById(String id) {
         return userMap.get(id);
     }
 
@@ -22,7 +26,15 @@ public class UserRepository {
         return userMap.replace(id, user);
     }
 
-    public User deleteUser(String id) {
+    public User deleteUserById(String id) {
         return userMap.remove(id);
+    }
+
+    public boolean deleteUser(User user, String id) {
+        return userMap.remove(id, user);
+    }
+
+    public int count() {
+        return userMap.size();
     }
 }
