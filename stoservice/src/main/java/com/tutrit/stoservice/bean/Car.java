@@ -25,7 +25,6 @@ public class Car {
         this.year = year;
     }
 
-
     public String getId() {
         return id;
     }
