@@ -20,8 +20,7 @@ public class EngineerRepository {
                 ret = i;
                 engineers[i] = engineer;
                 if ((i * 2) >= engineers.length) {
-                    Engineer[] engineersTemp = Arrays.copyOf(engineers, (engineers.length + 5));
-                    engineers = engineersTemp;
+                    engineers = Arrays.copyOf(engineers, engineers.length +5);
                 }
                 break;
             }
