@@ -29,14 +29,21 @@ class UserRepositoryTest {
 
     @Test
     void createUser() {
-        userRepository.createUser("5", new User("5", "user5", "phone5"));
+        userRepository.createUser(new User("5", "user5", "phone5"));
         assertEquals(5, UserRepository.userMap.size());
         assertTrue(UserRepository.userMap.containsKey("5"));
     }
 
     @Test
+    void findUser() {
+        User user = userRepository.createUser(new User("6", "user6", "phone6"));
+        userRepository.findUser(user);
+        assertEquals(5, UserRepository.userMap.size());
+    }
+
+    @Test
     void findUserById() {
-        User expected = userRepository.createUser("7", new User("7", "user7", "phone 7"));
+        User expected = userRepository.createUser(new User("7", "user7", "phone 7"));
         User actual = userRepository.findUserById("7");
         assertEquals(expected, actual);
     }
@@ -56,7 +63,7 @@ class UserRepositoryTest {
 
     @Test
     void deleteUser() {
-        User user = userRepository.createUser("9", new User("9", "user9", "phone9"));
+        User user = userRepository.createUser(new User("9", "user9", "phone9"));
         userRepository.deleteUser(user, "9");
         assertEquals(4, UserRepository.userMap.size());
         assertFalse(UserRepository.userMap.containsKey("9"));

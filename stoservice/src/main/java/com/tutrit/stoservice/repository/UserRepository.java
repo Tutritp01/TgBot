@@ -10,12 +10,13 @@ public class UserRepository {
 
     public static Map<String, User> userMap = new HashMap<>();
 
-    public User createUser(String id, User user) {
-        return userMap.put(id, user);
+    public User createUser(User user) {
+        userMap.put(user.getId(), user);
+        return user;
     }
 
-    public User findUser(User user) {
-        return null;
+    public String findUser(User user) {
+        return user.getId();
     }
 
     public User findUserById(String id) {
