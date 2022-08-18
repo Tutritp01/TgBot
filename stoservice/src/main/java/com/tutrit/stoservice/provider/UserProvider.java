@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class UserProvider {
 
-    static Map<String, Object> getOrders() {
+    static Map<String, Object> getUsers() {
         Map<String, Object> initialUsers = new HashMap<>();
         for (int i = 0; i < 10; i++) {
             User user = getInstance(i);
