@@ -33,7 +33,7 @@ public class StoserviceApplication {
         }
 
         OrderRepository orderRepository = new OrderRepository();
-        Map<Object, Object> orders = OrderProvider.getOrders(5);
+        Map<Object, Object> orders = OrderProvider.getOrders();
         for (Object order : orders.values()) {
             orderRepository.createOrder((Order) order);
         }
@@ -59,14 +59,24 @@ public class StoserviceApplication {
                 break;
             case 0:
                 break;
-            default: log.info("Wrong command");
+            default:
+                log.info("Wrong command");
                 break;
         }
     }
 
-    private static void printLoadData(EngineerRepository engineerRepository) {
+    private static void printLoadData(EngineerRepository engineerRepo) {
         CarRepository.cars.forEach(car -> log.info(car.toString()));
         CustomerRepository.customers.forEach(customer -> log.info(customer.toString()));
-        engineerRepository.engineers.forEach
+        try {
+            for (Engineer engineer : engineerRepo.engineers) {
+                String message = engineer.toString();
+                 log.info(message);
+            }
+        } catch (Exception err) {
+            //not print Exception
+        }
+        OrderRepository.orders.forEach((orderK, orderV) -> log.info("Key: {}. Value: {}", orderK, orderV));
+        UserRepository.userMap.forEach((userK, userV) -> log.info("Key: {}. Value: {}", userK, userV));
     }
 }
