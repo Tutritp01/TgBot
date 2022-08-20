@@ -19,7 +19,7 @@ public class OrderProvider {
         return initialOrders;
     }
 
-    static Map<Object, Object> getOrders(int amount) {
+    public static Map<Object, Object> getOrders(int amount) {
         Map<Object, Object> initialOrders = new HashMap<>();
         for (int i = 0; i < amount; i++) {
             Order order = getInstance(i);

@@ -16,7 +16,7 @@ public class UserProvider {
         return initialUsers;
     }
 
-    static Map<String, Object> getUsers(int amount) {
+    public static Map<String, Object> getUsers(int amount) {
         Map<String, Object> initialUsers = new HashMap<>();
         for (int i = 0; i < amount; i++) {
             User user = getInstance(i);
