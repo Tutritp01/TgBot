@@ -5,13 +5,17 @@ import com.tutrit.stoservice.bean.Order;
 import com.tutrit.stoservice.bean.User;
 import com.tutrit.stoservice.provider.*;
 import com.tutrit.stoservice.repository.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Map;
+import java.util.Scanner;
 
 @SpringBootApplication
 public class StoserviceApplication {
+    private static final Logger log = LoggerFactory.getLogger("main");
 
     public static void main(String[] args) {
         SpringApplication.run(StoserviceApplication.class, args);
@@ -39,5 +43,30 @@ public class StoserviceApplication {
         for (Object user : userMap.values()) {
             userRepository.createUser((User) user);
         }
+
+        log.info("""
+                Command List:
+                1 - Show data
+                0 - Exit
+                """);
+
+        Scanner scanner = new Scanner(System.in);
+
+        int i = scanner.nextInt();
+        switch (i) {
+            case 1:
+                printLoadData(engineerRepository);
+                break;
+            case 0:
+                break;
+            default: log.info("Wrong command");
+                break;
+        }
+    }
+
+    private static void printLoadData(EngineerRepository engineerRepository) {
+        CarRepository.cars.forEach(car -> log.info(car.toString()));
+        CustomerRepository.customers.forEach(customer -> log.info(customer.toString()));
+        engineerRepository.engineers.forEach
     }
 }
