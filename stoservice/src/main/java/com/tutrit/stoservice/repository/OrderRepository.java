@@ -12,10 +12,10 @@ import java.util.Objects;
 public class OrderRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
-    private static final Map<String, Order> orders = new HashMap();
+    public static Map<String, Order> orders = new HashMap<>();
 
     public Order createOrder(Order order) {
-        if (orders.containsKey(order.getId())) {
+        if (!orders.containsKey(order.getId())) {
             return orders.put(order.getId(), order);
         }
         return null;
