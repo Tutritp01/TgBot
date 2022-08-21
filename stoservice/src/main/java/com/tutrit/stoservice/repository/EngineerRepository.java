@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class EngineerRepository {
     Engineer ext;
     Engineer extFind;
-    Engineer[] engineers = new Engineer[3];
+    public Engineer[] engineers = new Engineer[3];
     Logger log = LoggerFactory.getLogger(EngineerRepository.class);
 
     public Engineer createEngineer(Engineer engineer) {
@@ -20,7 +20,7 @@ public class EngineerRepository {
                 ret = i;
                 engineers[i] = engineer;
                 if ((i * 2) >= engineers.length) {
-                    engineers = Arrays.copyOf(engineers, engineers.length +5);
+                    engineers = Arrays.copyOf(engineers, engineers.length + 5);
                 }
                 break;
             }

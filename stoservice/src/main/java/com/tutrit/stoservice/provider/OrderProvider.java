@@ -10,7 +10,7 @@ public class OrderProvider {
         throw new AssertionError("Suppress default constructor for noninstantiability");
     }
 
-    static Map<Object, Object> getOrders() {
+    public static Map<Object, Object> getOrders() {
         Map<Object, Object> initialOrders = new HashMap<>();
         for (int i = 0; i < 10; i++) {
             Order order = getInstance(i);
