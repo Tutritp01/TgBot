@@ -97,4 +97,23 @@ public class EngineerRepository {
         ext.setGeneralExperience(engineer.getGeneralExperience());
         return ext;
     }
+
+    public Engineer[] findAll() {
+        int counter = 0;
+        for (Engineer engineer : engineers) {
+            if (engineer != null) {
+                counter++;
+            }
+        }
+        Engineer[] engineersToReturn = new Engineer[counter];
+
+        counter = 0;
+        for (Engineer engineer : engineers) {
+            if (engineer != null) {
+                engineersToReturn[counter] = engineer;
+                counter++;
+            }
+        }
+        return engineersToReturn;
+    }
 }

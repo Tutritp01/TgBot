@@ -23,3 +23,7 @@ tg-bot/src/main/resources/application.properties
 bot.username={bot.username}
 
 bot.token={bot.token}
+
+
+Print JVM flags:
+-XX:+PrintFlagsFinal
