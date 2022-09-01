@@ -1,6 +1,6 @@
 package com.tutrit.stoservice.controller;
 
-public enum Command {
+public  enum Command {
 
     SHOW_DATA("show data"),
     EXIT("exit"),
