@@ -9,10 +9,10 @@ import java.util.Arrays;
 public class EngineerRepository {
     Engineer ext;
     Engineer extFind;
-    public Engineer[] engineers = new Engineer[3];
+    public static Engineer[] engineers = new Engineer[3];
     Logger log = LoggerFactory.getLogger(EngineerRepository.class);
 
-    public Engineer createEngineer(Engineer engineer) {
+    public static Engineer createEngineer(Engineer engineer) {
         int ret = 0;
         for (int i = 0; i < engineers.length; i++) {
             if (engineers[i] == null) {
@@ -81,7 +81,7 @@ public class EngineerRepository {
         deleteEngineer(i);
     }
 
-    public String count(int i) {
+    public static String count(int i) {
         i = i + 1;
         return String.valueOf(i);
     }
