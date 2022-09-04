@@ -10,6 +10,7 @@ public class EngineerRepository {
     Engineer ext;
     Engineer extFind;
     public Engineer[] engineers = new Engineer[3];
+    public static Engineer[] engineersm = new Engineer[3];
     Logger log = LoggerFactory.getLogger(EngineerRepository.class);
 
     public Engineer createEngineer(Engineer engineer) {

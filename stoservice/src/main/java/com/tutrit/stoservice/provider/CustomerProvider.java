@@ -2,10 +2,12 @@ package com.tutrit.stoservice.provider;
 
 import com.tutrit.stoservice.bean.Customer;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class CustomerProvider {
+public class CustomerProvider implements DemoDataProvider{
 
     public Set<Customer> getCustomers(int i) {
         Set<Customer> result = new HashSet<>();
@@ -13,6 +15,11 @@ public class CustomerProvider {
             result.add(getInstance(k));
         }
         return result;
+    }
+
+    @Override
+    public List<Object> getInstances() {
+        return new ArrayList<>(getCustomers(5));
     }
 
     private Customer getInstance(int i) {

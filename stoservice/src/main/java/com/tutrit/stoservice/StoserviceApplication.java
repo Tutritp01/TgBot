@@ -13,12 +13,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Map;
 import java.util.Scanner;
 
+//StoserviceApplication --> UserProviderI <-- UserProviderImpl --> User
 @SpringBootApplication
 public class StoserviceApplication {
     private static final Logger log = LoggerFactory.getLogger("main");
 
     public static void main(String[] args) {
         SpringApplication.run(StoserviceApplication.class, args);
+
+        new AppInitialization(
+                new CarProvider(),
+                new CustomerProvider(),
+                new EngineerProvider(),
+                new UserProvider());
 
         CarProvider carProvider = new CarProvider();
         CarRepository.cars.addAll(carProvider.getCar());

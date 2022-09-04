@@ -1,29 +1,49 @@
 package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Car;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class CarRepository {
+public class CarRepository implements Repository<Car, String> {
     public static final Logger logger = Logger.getLogger(CarRepository.class.getName());
     public static List<Car> cars = new ArrayList<>();
 
-    public Car createCar(Car car) {
+    @Override
+    public Car save(final Car car) {
         if (isContains(car.getId())) {
-            return updateCar(car);
+            return update(car);
         } else {
             cars.add(car);
         }
         return car;
     }
 
-    public Car findCar(Car car) {
-        return findCarById(car.getId());
+    @Override
+    public void saveAll(Iterable<Car> cars) {
+
     }
 
-    public Car findCarById(String id) {
+    @Override
+    public void saveAll(Car[] cars) throws ExecutionControl.NotImplementedException {
+        throw new ExecutionControl.NotImplementedException("We don't wont work with arrays");
+    }
+
+    @Override
+    public Car find(final Car car) {
+        return findById(car.getId());
+    }
+
+    @Override
+    public List<Car> findAll() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public Car findById(final String id) {
         Car car = new Car();
         try {
             if(!isContains(id)) {
@@ -40,19 +60,23 @@ public class CarRepository {
         return car;
     }
 
-    public Car updateCar(Car car) {
-        cars.set((cars.indexOf(findCar(car))), car);
+    @Override
+    public Car update(final Car car) {
+        cars.set((cars.indexOf(find(car))), car);
         return car;
     }
 
-    public boolean deleteCar(Car car) {
-        return cars.remove(findCarById(car.getId()));
+    @Override
+    public boolean delete(final Car car) {
+        return cars.remove(findById(car.getId()));
     }
 
-    public boolean deleteCar(String id) {
-        return cars.remove(findCarById(id));
+    @Override
+    public boolean deleteById(final String id) {
+        return cars.remove(findById(id));
     }
 
+    @Override
     public int count() {
         return cars.size();
     }
