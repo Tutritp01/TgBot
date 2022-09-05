@@ -1,7 +1,5 @@
 package com.tutrit.stoservice.service;
 
-import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
-
 import java.util.Scanner;
 
 public class MenuService {
