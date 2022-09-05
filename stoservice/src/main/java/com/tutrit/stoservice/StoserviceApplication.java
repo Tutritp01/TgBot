@@ -19,10 +19,10 @@ public class StoserviceApplication {
     private static final Logger log = LoggerFactory.getLogger("main");
 
     public static void main(String[] args) {
-        SpringApplication.run(StoserviceApplication.class, args);
-
-        while (true) {
-            new MenuService().run();
-        }
-    }
+      SpringApplication.run(StoserviceApplication.class, args);
+      new DemoDataLoader().run();
+      while (true) {
+        new MenuService().run();
+      }
+   }
 }
