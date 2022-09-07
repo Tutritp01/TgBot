@@ -3,35 +3,49 @@ package com.tutrit.stoservice.repository;
 import com.tutrit.stoservice.bean.Car;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class CarRepository {
+public class CarRepository implements Repository<Car, String> {
     public static final Logger logger = Logger.getLogger(CarRepository.class.getName());
     public static List<Car> cars = new ArrayList<>();
 
-    public Car createCar(Car car) {
+    @Override
+    public Car save(Car car) {
         if (isContains(car.getId())) {
-            return updateCar(car);
+            return update(car);
         } else {
             cars.add(car);
         }
         return car;
     }
 
-    public Car findCar(Car car) {
-        return findCarById(car.getId());
+    @Override
+    public void saveAll(Iterable<Car> cars) {
+        CarRepository.cars.addAll((Collection<? extends Car>) cars);
     }
 
-    public Car findCarById(String id) {
+    @Override
+    public Car find(Car car) {
+        return findById(car.getId());
+    }
+
+    @Override
+    public Iterable<Car> findAll() {
+        return cars;
+    }
+
+    @Override
+    public Car findById(String id) {
         Car car = new Car();
         try {
-            if(!isContains(id)) {
+            if (!isContains(id)) {
                 throw new CarNotFoundException("Car not found!");
             }
-            for (int i = 0; i < cars.size(); i++) {
-                if (id.equals(cars.get(i).getId())) {
-                    car = cars.get(i);
+            for (Car value : cars) {
+                if (id.equals(value.getId())) {
+                    car = value;
                 }
             }
         } catch (CarNotFoundException e) {
@@ -40,17 +54,20 @@ public class CarRepository {
         return car;
     }
 
-    public Car updateCar(Car car) {
-        cars.set((cars.indexOf(findCar(car))), car);
+    @Override
+    public Car update(Car car) {
+        cars.set((cars.indexOf(find(car))), car);
         return car;
     }
 
-    public boolean deleteCar(Car car) {
-        return cars.remove(findCarById(car.getId()));
+    @Override
+    public boolean delete(Car car) {
+        return cars.remove(findById(car.getId()));
     }
 
-    public boolean deleteCar(String id) {
-        return cars.remove(findCarById(id));
+    @Override
+    public boolean deleteById(String id) {
+        return cars.remove(findById(id));
     }
 
     public int count() {
@@ -59,9 +76,9 @@ public class CarRepository {
 
     public boolean isContains(String id) {
         Car car = null;
-        for (int i = 0; i < cars.size(); i++) {
-            if (id.equals(cars.get(i).getId())) {
-                car = cars.get(i);
+        for (Car value : cars) {
+            if (id.equals(value.getId())) {
+                car = value;
             }
         }
         return car != null;
