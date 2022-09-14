@@ -31,7 +31,7 @@ public class DemoDataLoader {
         UserRepository userRepository = new UserRepository();
         Map<String, Object> userMap = UserProvider.getUsers(5);
         for (Object user : userMap.values()) {
-            userRepository.createUser((User) user);
+            userRepository.save((User) user);
         }
     }
 }
