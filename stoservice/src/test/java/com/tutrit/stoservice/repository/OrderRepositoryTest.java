@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.*;
+
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrderRepositoryTest {
@@ -18,66 +21,91 @@ class OrderRepositoryTest {
         order2 = new Order("2", "Dima", "volga", "in progress" );
         order3 = new Order("3", "Petya", "patriot", "closed" );
         orderRepository = new OrderRepository();
-        orderRepository.createOrder(order1);
-        orderRepository.createOrder(order2);
-        orderRepository.createOrder(order3);
+        orderRepository.save(order1);
+        orderRepository.save(order2);
+        orderRepository.save(order3);
     }
 
     @Test
-    void createOrder() {
-        orderRepository.deleteOrder(order2);
+    void save() {
+        orderRepository.delete(order2);
         order2 = new Order("2", "Dima", "volga", "in progress" );
-        Assertions.assertEquals(order2, orderRepository.createOrder(order2));
+        orderRepository.save(order2);
+        assertEquals(order2, orderRepository.findById("2"));
     }
 
     @Test
-    void findOrder() {
-        Order actual = orderRepository.findOrder(order2);
+    void saveAll() {
+        Order order1 = new Order("1", "Vasil", "lada", "to do" );
+        Order order2 = new Order("2", "Dima", "volga", "in progress" );
+        Order order3 = new Order("3", "Petya", "patriot", "closed" );
+        Order order4 = new Order("4", "Vika", "kadet", "to do" );
+        List<Order> ordersList = new ArrayList<>();
+        ordersList.add(order1);
+        ordersList.add(order2);
+        ordersList.add(order3);
+        ordersList.add(order4);
+        orderRepository.saveAll(ordersList);
+        assertEquals(4, orderRepository.count());
+    }
+
+    @Test
+    void find() {
+        Order actual = orderRepository.find(order2);
         Assertions.assertEquals(order2, actual);
-
     }
 
     @Test
-    void findOrderById() {
-        Order actual = orderRepository.findOrderById(order2.getId());
-        Assertions.assertEquals(order2, actual);
+    void findAll() {
+        Order order1 = new Order("1", "Vasil", "lada", "to do" );
+        Order order2 = new Order("2", "Dima", "volga", "in progress" );
+        Order order3 = new Order("3", "Petya", "patriot", "closed" );
+
+        Map<String, Order> orderMap = new HashMap<>();
+        orderMap.put(order1.getId(), order1);
+        orderMap.put(order2.getId(), order2);
+        orderMap.put(order3.getId(), order3);
+
+        assertEquals(OrderRepository.orders.values(),  orderRepository.findAll());
     }
 
     @Test
-    void updateOrder() {
+    void findById() {
+        Order actual1 = orderRepository.findById(order1.getId());
+        Order actual2 = orderRepository.findById(order2.getId());
+        Order actual3 = orderRepository.findById("3");
+        Assertions.assertEquals(order1, actual1);
+        Assertions.assertEquals(order2, actual2);
+        Assertions.assertEquals(order3, actual3);
+    }
+
+    @Test
+    void delete() {
+        Order order4 = new Order("4", "sas", "sss", "OrderStatus.CLOSED" );
+        Assertions.assertFalse(orderRepository.delete(order4));
+        Assertions.assertTrue(orderRepository.delete(order2));
+    }
+
+    @Test
+    void deleteById() {
+        Order order4 = new Order("4", "sas", "sss", "OrderStatus.CLOSED" );
+        Assertions.assertFalse(orderRepository.deleteById(order4.getId()));
+        Assertions.assertTrue(orderRepository.deleteById(order2.getId()));
+    }
+    @Test
+    void update() {
         order2 = new Order("2", "sas", "sss", "OrderStatus.CLOSED" );
-        orderRepository.updateOrder(order2);
-        Order actual = orderRepository.findOrderById(order2.getId());
+        orderRepository.update(order2);
+        Order actual = orderRepository.findById(order2.getId());
         Assertions.assertEquals(order2, actual);
+        order2 = new Order("2", "Dima", "volga", "in progress" );
+        orderRepository.update(order2);
     }
-
-    @Test
-    void deleteOrder() {
-        Order order4 = new Order("4", "sas", "sss", "OrderStatus.CLOSED" );
-        Assertions.assertFalse(orderRepository.deleteOrder(order4));
-        Assertions.assertTrue(orderRepository.deleteOrder(order2));
-    }
-
-    @Test
-    void deleteOrderById() {
-        Order order4 = new Order("4", "sas", "sss", "OrderStatus.CLOSED" );
-        Assertions.assertFalse(orderRepository.deleteOrderById(order4.getId()));
-        Assertions.assertTrue(orderRepository.deleteOrderById(order2.getId()));
-    }
-
     @Test
     void count() {
         Assertions.assertEquals(3, orderRepository.count());
         Assertions.assertTrue(4>orderRepository.count());
-        orderRepository.deleteOrder(order2);
+        orderRepository.delete(order2);
         Assertions.assertEquals(2, orderRepository.count());
-    }
-
-    @Test
-    void validateOrder() {
-        order2 = new Order("2", "sas", "sss", "OrderStatus.CLOSED" );
-        orderRepository.updateOrder(order2);
-        Order actual = orderRepository.findOrderById(order2.getId());
-        Assertions.assertEquals(order2, actual);
     }
 }
