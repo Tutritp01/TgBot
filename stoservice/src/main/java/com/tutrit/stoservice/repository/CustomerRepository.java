@@ -1,11 +1,12 @@
 package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Customer;
+import com.tutrit.stoservice.controller.Command;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.HashSet;
-
 
 public class CustomerRepository implements Repository<Customer, String> {
 
@@ -24,7 +25,7 @@ public class CustomerRepository implements Repository<Customer, String> {
 
     @Override
     public void saveAll(Iterable<Customer> obj) {
-        customers.addAll(customers);
+       customers.addAll(new HashSet<>());
 
     }
 
@@ -40,7 +41,7 @@ public class CustomerRepository implements Repository<Customer, String> {
 
     @Override
     public Iterable<Customer> findAll() {
-        return null;
+        return customers;
 
     }
 
