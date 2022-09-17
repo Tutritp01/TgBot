@@ -29,42 +29,42 @@ class UserRepositoryTest {
 
     @Test
     void createUser() {
-        userRepository.createUser(new User("5", "user5", "phone5"));
+        userRepository.save(new User("5", "user5", "phone5"));
         assertEquals(5, UserRepository.userMap.size());
         assertTrue(UserRepository.userMap.containsKey("5"));
     }
 
     @Test
     void findUser() {
-        User user = userRepository.createUser(new User("6", "user6", "phone6"));
-        userRepository.findUser(user);
+        User user = userRepository.save(new User("6", "user6", "phone6"));
+        userRepository.find(user);
         assertEquals(5, UserRepository.userMap.size());
     }
 
     @Test
     void findUserById() {
-        User expected = userRepository.createUser(new User("7", "user7", "phone 7"));
-        User actual = userRepository.findUserById("7");
+        User expected = userRepository.save(new User("7", "user7", "phone 7"));
+        User actual = userRepository.findById("7");
         assertEquals(expected, actual);
     }
 
     @Test
     void updateUser() {
-        userRepository.updateUser("2", new User("2", "name6", "phone6"));
+        userRepository.update(new User("2", "name6", "phone6"));
         assertTrue(UserRepository.userMap.containsKey("2"));
     }
 
     @Test
     void deleteUserById() {
-        userRepository.deleteUserById("3");
+        userRepository.deleteById("3");
         assertEquals(3, UserRepository.userMap.size());
         assertFalse(UserRepository.userMap.containsKey("3"));
     }
 
     @Test
     void deleteUser() {
-        User user = userRepository.createUser(new User("9", "user9", "phone9"));
-        userRepository.deleteUser(user, "9");
+        User user = userRepository.save(new User("9", "user9", "phone9"));
+        userRepository.delete(user);
         assertEquals(4, UserRepository.userMap.size());
         assertFalse(UserRepository.userMap.containsKey("9"));
     }

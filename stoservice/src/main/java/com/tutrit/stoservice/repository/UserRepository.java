@@ -5,34 +5,52 @@ import com.tutrit.stoservice.bean.User;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserRepository {
-
+public class UserRepository implements Repository<User, String> {
 
     public static Map<String, User> userMap = new HashMap<>();
 
-    public User createUser(User user) {
+    @Override
+    public User save(User user) {
         userMap.put(user.getId(), user);
         return user;
     }
 
-    public String findUser(User user) {
-        return user.getId();
+    @Override
+    public void saveAll(Iterable<User> users) {
+        for (User user : users) {
+            userMap.put(user.getId(), user);
+        }
     }
 
-    public User findUserById(String id) {
+    @Override
+    public User find(User user) {
+        return userMap.get(user.getId());
+    }
+
+    @Override
+    public Iterable<User> findAll() {
+        return userMap.values();
+    }
+
+    @Override
+    public User findById(String id) {
         return userMap.get(id);
     }
 
-    public User updateUser(String id, User user) {
-        return userMap.replace(id, user);
+    @Override
+    public User update(User user) {
+        userMap.replace(user.getId(), user);
+        return user;
     }
 
-    public User deleteUserById(String id) {
-        return userMap.remove(id);
+    @Override
+    public boolean delete(User user) {
+        return userMap.remove(user.getId(), user);
     }
 
-    public boolean deleteUser(User user, String id) {
-        return userMap.remove(id, user);
+    @Override
+    public boolean deleteById(String id) {
+        return userMap.remove(id, userMap.get(id));
     }
 
     public int count() {
