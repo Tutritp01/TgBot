@@ -4,17 +4,16 @@ import com.tutrit.stoservice.bean.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 
-public class CustomerRepository {
+public class CustomerRepository implements Repository<Customer, String> {
 
     public static Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     public static HashSet<Customer> customers = new HashSet<>();
 
-    public Customer createCustomer(Customer customer) {
+    @Override
+    public Customer save(Customer customer) {
         if (customers.contains(customer) == false) {
             customers.add(customer);
         } else {
@@ -23,7 +22,14 @@ public class CustomerRepository {
         return customer;
     }
 
-    public Customer findCustomer(Customer customer) {
+    @Override
+    public void saveAll(Iterable<Customer> obj) {
+        customers.addAll(customers);
+
+    }
+
+    @Override
+    public Customer find(Customer customer) {
         for (final Customer cus : customers) {
             if (cus.equals(customer)) {
                 return cus;
@@ -32,7 +38,14 @@ public class CustomerRepository {
         return null;
     }
 
-    public Customer findCustomerById(String id) {
+    @Override
+    public Iterable<Customer> findAll() {
+        return null;
+
+    }
+
+    @Override
+    public Customer findById(String id) {
         for (final Customer customer : customers) {
             if (customer.getId().equals(id)) {
                 return customer;
@@ -41,23 +54,26 @@ public class CustomerRepository {
         return null;
     }
 
-    public Customer updateCustomer(Customer customer) {
+    @Override
+    public Customer update(Customer customer) {
         if (customers.contains(customer) == true) {
             return customer;
         } else {
-            deleteCustomer(customer);
+            delete(customer);
         }
         return customer;
     }
 
-    public boolean deleteCustomer(Customer customer) {
+    @Override
+    public boolean delete(Customer customer) {
         if (customers.contains(customer) == true) {
             customers.remove(customer);
         }
         return false;
     }
 
-    public boolean deleteCustomer(String id) {
+    @Override
+    public boolean deleteById(String id) {
         for (final Customer customer : customers) {
             if (customer.getId().equals(id)) {
                 customers.remove(customer);
@@ -70,7 +86,6 @@ public class CustomerRepository {
     public int count() {
         return customers.size();
     }
-
-
 }
+
 
