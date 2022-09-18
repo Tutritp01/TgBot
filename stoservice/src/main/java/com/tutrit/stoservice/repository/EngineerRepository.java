@@ -1,23 +1,21 @@
 package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Engineer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
-public class EngineerRepository {
-    Engineer ext;
-    Engineer extFind;
-    public static Engineer[] engineers = new Engineer[3];
-    Logger log = LoggerFactory.getLogger(EngineerRepository.class);
+public class EngineerRepository implements Repository<Engineer, String> {
 
-    public static Engineer createEngineer(Engineer engineer) {
-        int ret = 0;
+    public static Engineer[] engineers = new Engineer[3];
+    public static int counted =0;
+
+    @Override
+    public Engineer save(Engineer engineer) {
+        int returnIndex = 0;
         for (int i = 0; i < engineers.length; i++) {
             if (engineers[i] == null) {
-                engineer.setIdEngineer(count(i));
-                ret = i;
+                engineer.setIdEngineer(Integer.toString(count()));
+                returnIndex = i;
                 engineers[i] = engineer;
                 if ((i * 2) >= engineers.length) {
                     engineers = Arrays.copyOf(engineers, engineers.length + 5);
@@ -25,95 +23,76 @@ public class EngineerRepository {
                 break;
             }
         }
-        return engineers[ret];
+        return engineers[returnIndex];
     }
 
-    public Engineer findEngineer(int i) {
-        if (i > (engineers.length - 1)) {
-            log.info("Array out of bounds");
-            return new Engineer();
+    @Override
+    public void saveAll(Iterable<Engineer> engineersInput) {
+        for (Engineer engineer : engineersInput) {
+            save(engineer);
         }
-        return engineers[i - 1];
     }
 
-    public Engineer findEngineer(String a) {
-        int i = Integer.parseInt(a);
-        return findEngineer(i);
-    }
-
-    public Engineer findEngineer(Engineer engineer) {
-        Engineer find = extract(engineer);
-        for (Engineer e : engineers) {
-            extFind = extract(e);
-            if (find.equals(extFind)) {
-                return e;
+    @Override
+    public Engineer find(Engineer engineer) {
+        for (Engineer engineerRepository : engineers) {
+            if (engineerRepository.getIdEngineer().equals(engineer.getIdEngineer())) {
+                return engineerRepository;
             }
         }
-        log.info("Not found");
-        return new Engineer();
+        return null;
     }
 
-    public Engineer updateEngineer(Engineer engineer, int i) {
-        engineers[i - 1] = engineer;
-        engineers[i - 1].setIdEngineer(String.valueOf(i));
-        return engineers[i - 1];
+    @Override
+    public Iterable<Engineer> findAll() {
+        return Arrays.asList(engineers);
     }
 
-    public void deleteEngineer(int i) {
-        for (int j = (i - 1); j < engineers.length - 1; j++) {
-            if (engineers[j + 1] != null) {
-                engineers[j] = engineers[j + 1];
-                engineers[j].setIdEngineer(count(j));
-            } else {
-                engineers[j] = null;
+    @Override
+    public Engineer findById(String id) {
+        for (Engineer engineerRepository : engineers) {
+            if (engineerRepository.getIdEngineer().equals(id)) {
+                return engineerRepository;
             }
         }
+        return null;
     }
 
-    public void deleteEngineer(String a) {
-        int i = Integer.parseInt(a);
-        deleteEngineer(i);
+    @Override
+    public Engineer update(Engineer engineer) {
+        if (find(engineer) != null) {
+            int i = Integer.parseInt(find(engineer).getIdEngineer()) - 1;
+            engineers[i] = engineer;
+            return engineers[i];
+        }
+        return null;
     }
 
-    public void deleteEngineer(Engineer engineer) {
-        Engineer find = extract(engineer);
-        int i = Integer.parseInt(findEngineer(find).getIdEngineer());
-        deleteEngineer(i);
-    }
-
-    public static String count(int i) {
-        i = i + 1;
-        return String.valueOf(i);
-    }
-
-    public Engineer extract(Engineer engineer) {
-        ext = new Engineer();
-        ext.setFirstName(engineer.getFirstName());
-        ext.setLastName(engineer.getLastName());
-        ext.setExperience(engineer.getExperience());
-        ext.setFunction(engineer.getFunction());
-        ext.setCategory(engineer.getCategory());
-        ext.setEducation(engineer.getEducation());
-        ext.setGeneralExperience(engineer.getGeneralExperience());
-        return ext;
-    }
-    
-     public Engineer[] findAll() {
-        int counter = 0;
-        for (Engineer engineer : engineers) {
-            if (engineer != null) {
-                counter++;
+    @Override
+    public boolean delete(Engineer engineer) {
+        for (int i = 0; i < engineers.length; i++) {
+            if (engineers[i] != null && engineers[i].getIdEngineer().equals(engineer.getIdEngineer())) {
+                engineers[i] = null;
+                return true;
             }
         }
-        Engineer[] engineersToReturn = new Engineer[counter];
+        return false;
+    }
 
-        counter = 0;
-        for (Engineer engineer : engineers) {
-            if (engineer != null) {
-                engineersToReturn[counter] = engineer;
-                counter++;
+    @Override
+    public boolean deleteById(String id) {
+        for (int i = 0; i < engineers.length; i++) {
+            if (engineers[i].getIdEngineer().equals(id)) {
+                engineers[i] = null;
+                return true;
             }
         }
-        return engineersToReturn;
+        return false;
+    }
+
+    @Override
+    public int count() {
+        counted++;
+        return counted;
     }
 }
