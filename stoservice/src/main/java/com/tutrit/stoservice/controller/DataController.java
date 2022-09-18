@@ -19,8 +19,8 @@ public class DataController {
 
         carRepository.findAll().forEach(car -> rs.append(car.toString()));
         customerRepository.findAll().forEach(customer -> rs.append(customer.toString()));
-        orderRepository.findAll().forEach((order) -> rs.append(order.toString()));
-        userRepository.findAll().forEach((user) -> rs.append(user.toString()));
+        orderRepository.findAll().forEach(order -> rs.append(order.toString()));
+        userRepository.findAll().forEach(user -> rs.append(user.toString()));
         engineerRepository.findAll().forEach(engineer -> rs.append(engineer.toString()));
 
         return rs.toString();
