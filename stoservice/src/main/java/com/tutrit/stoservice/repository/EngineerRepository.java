@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class EngineerRepository implements Repository<Engineer, String> {
 
     public static Engineer[] engineers = new Engineer[3];
-    public static int counted =0;
+    public static int counted = 0;
 
     @Override
     public Engineer save(Engineer engineer) {
