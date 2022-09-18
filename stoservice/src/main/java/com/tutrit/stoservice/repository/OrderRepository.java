@@ -1,27 +1,36 @@
 package com.tutrit.stoservice.repository;
 
-
 import com.tutrit.stoservice.bean.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class OrderRepository {
+public class OrderRepository implements Repository<Order, String> {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
     public static Map<String, Order> orders = new HashMap<>();
 
-    public Order createOrder(Order order) {
+
+
+    @Override
+    public Order save(Order order) {
         if (!orders.containsKey(order.getId())) {
             return orders.put(order.getId(), order);
         }
         return null;
     }
 
-    public Order findOrder(Order order) {
+    @Override
+    public void saveAll(Iterable<Order> ordersMap) {
+        for (Order order : ordersMap) {
+            orders.put(order.getId(), order);
+        }
+    }
+
+    @Override
+    public Order find(Order order) {
         String id = order.getId();
         for (String key : orders.keySet()) {
             if (key.equals(id)) {
@@ -31,7 +40,13 @@ public class OrderRepository {
         return null;
     }
 
-    public Order findOrderById(String id) {
+    @Override
+    public Iterable<Order> findAll() {
+        return orders.values();
+    }
+
+    @Override
+    public Order findById(String id) {
         for (String key : orders.keySet()) {
             if (key.equals(id)) {
                 return orders.get(id);
@@ -40,7 +55,8 @@ public class OrderRepository {
         return null;
     }
 
-    public Order updateOrder(Order order) {
+    @Override
+    public Order update(Order order) {
         for (String key : orders.keySet()) {
             if (key.equals(order.getId())) {
                 return orders.put(order.getId(), order);
@@ -50,11 +66,13 @@ public class OrderRepository {
         return null;
     }
 
-    public boolean deleteOrder(Order order) {
+    @Override
+    public boolean delete(Order order) {
         return Objects.nonNull(orders.remove(order.getId()));
     }
 
-    public boolean deleteOrderById(String id) {
+    @Override
+    public boolean deleteById(String id) {
         for (String key : orders.keySet()) {
             if (key.equals(id)) {
                 return Objects.nonNull(orders.remove(id));
@@ -64,6 +82,7 @@ public class OrderRepository {
         return false;
     }
 
+    @Override
     public int count() {
         return orders.size();
     }
