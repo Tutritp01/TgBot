@@ -19,7 +19,7 @@ public class DemoDataLoader {
         EngineerRepository engineerRepository = new EngineerRepository();
         Engineer[] engineers = EngineerProvider.getEngineers(5);
         for (int i = 0; i < 5; i++) {
-            engineerRepository.createEngineer(engineers[i]);
+            engineerRepository.save(engineers[i]);
         }
 
         OrderRepository orderRepository = new OrderRepository();
