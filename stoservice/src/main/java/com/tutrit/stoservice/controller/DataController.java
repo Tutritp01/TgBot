@@ -1,6 +1,5 @@
 package com.tutrit.stoservice.controller;
 
-import com.tutrit.stoservice.bean.Engineer;
 import com.tutrit.stoservice.repository.*;
 
 public class DataController {
@@ -12,16 +11,18 @@ public class DataController {
 
     private String loadedDataAsString() {
         StringBuilder rs = new StringBuilder();
-        CarRepository.cars.forEach(car -> rs.append(car.toString()));
-        CustomerRepository.customers.forEach(customer -> rs.append(customer.toString()));
-        OrderRepository.orders.forEach((orderK, orderV) -> rs.append(String.format("Key: %s. Value: %s", orderK, orderV)));
-        UserRepository.userMap.forEach((userK, userV) -> rs.append(String.format("Key: %s. Value: %s", userK, userV)));
+        CarRepository carRepository = new CarRepository();
+        CustomerRepository customerRepository = new CustomerRepository();
+        OrderRepository orderRepository = new OrderRepository();
+        UserRepository userRepository = new UserRepository();
         EngineerRepository engineerRepository = new EngineerRepository();
-        for (Engineer engineer : engineerRepository.findAll()) {
-            if(engineer != null) {
-                rs.append(engineer.toString());
-            }
-        }
+
+        carRepository.findAll().forEach(car -> rs.append(car.toString()));
+        customerRepository.findAll().forEach(customer -> rs.append(customer.toString()));
+        orderRepository.findAll().forEach(order -> rs.append(order.toString()));
+        userRepository.findAll().forEach(user -> rs.append(user.toString()));
+        engineerRepository.findAll().forEach(engineer -> rs.append(engineer.toString()));
+
         return rs.toString();
     }
 }
