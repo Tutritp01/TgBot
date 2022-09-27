@@ -2,7 +2,7 @@ package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.repository.*;
 
-public class DataController implements CommandContgroller {
+public class DataController implements CommandController {
 
     public void doCommand(Request request, Response response) {
         request.getCommand();
