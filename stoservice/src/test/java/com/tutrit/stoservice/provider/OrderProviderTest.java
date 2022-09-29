@@ -1,17 +1,16 @@
 package com.tutrit.stoservice.provider;
 
 import com.tutrit.stoservice.bean.Order;
-
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OrderProviderTest {
-    Map<String, Order> testMap = new HashMap<>();
-    Map<String, Order> testMap2 = new HashMap<>();
+    List<Order> testList = new ArrayList<>();
+    List<Order> testList2 = new ArrayList<>();
     Order order0 = new Order("Id", "User", "Car", "Open");
     Order order1 = new Order("Id0", "User0", "Car0", "Open0");
     Order order2 = new Order("Id1", "User1", "Car1", "Open1");
@@ -25,37 +24,35 @@ class OrderProviderTest {
     Order order10 = new Order("Id9", "User9", "Car9", "Open9");
 
     public void setTestMap10() {
-        testMap.put(order1.getId(), order1);
-        testMap.put(order2.getId(), order2);
-        testMap.put(order3.getId(), order3);
-        testMap.put(order4.getId(), order4);
-        testMap.put(order5.getId(), order5);
-        testMap.put(order6.getId(), order6);
-        testMap.put(order7.getId(), order7);
-        testMap.put(order8.getId(), order8);
-        testMap.put(order9.getId(), order9);
-        testMap.put(order10.getId(), order10);
+        testList.add(order1);
+        testList.add(order2);
+        testList.add(order3);
+        testList.add(order4);
+        testList.add(order5);
+        testList.add(order6);
+        testList.add(order7);
+        testList.add(order8);
+        testList.add(order9);
+        testList.add(order10);
     }
 
     public void setTestMap3() {
-        testMap2.put(order1.getId(), order1);
-        testMap2.put(order2.getId(), order2);
-        testMap2.put(order3.getId(), order3);
+        testList2.add(order1);
+        testList2.add(order2);
+        testList2.add(order3);
     }
 
     @Test
     void testGetOrders() {
         setTestMap10();
-        assertArrayEquals(testMap.keySet().toArray(), OrderProvider.getOrders().keySet().toArray());
-        assertArrayEquals(testMap.values().toArray(), OrderProvider.getOrders().values().toArray());
+        assertEquals(testList, OrderProvider.getOrders());
     }
 
     @Test
     void testGetOrdersI() {
         setTestMap3();
-        assertArrayEquals(testMap2.keySet().toArray(), OrderProvider.getOrders(3).keySet().toArray());
-        assertArrayEquals(testMap2.values().toArray(), OrderProvider.getOrders(3).values().toArray());
-        }
+        assertEquals(testList2, OrderProvider.getOrders(3));
+    }
 
     @Test
     void testGetInstanceI() {

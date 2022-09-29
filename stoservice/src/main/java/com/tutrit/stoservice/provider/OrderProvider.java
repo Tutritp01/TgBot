@@ -2,7 +2,9 @@ package com.tutrit.stoservice.provider;
 
 import com.tutrit.stoservice.bean.Order;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class OrderProvider {
@@ -10,20 +12,20 @@ public class OrderProvider {
         throw new AssertionError("Suppress default constructor for noninstantiability");
     }
 
-    public static Map<Object, Object> getOrders() {
-        Map<Object, Object> initialOrders = new HashMap<>();
+    public static List<Order> getOrders() {
+        List<Order> initialOrders = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Order order = getInstance(i);
-            initialOrders.put(order.getId(), order);
+            initialOrders.add(order);
         }
         return initialOrders;
     }
 
-    public static Map<Object, Object> getOrders(int amount) {
-        Map<Object, Object> initialOrders = new HashMap<>();
+    public static List<Order> getOrders(int amount) {
+        List<Order> initialOrders = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             Order order = getInstance(i);
-            initialOrders.put(order.getId(), order);
+            initialOrders.add(order);
         }
         return initialOrders;
     }
