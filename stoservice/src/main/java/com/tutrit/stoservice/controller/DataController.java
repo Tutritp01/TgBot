@@ -2,7 +2,8 @@ package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.repository.*;
 
-public class DataController {
+public class DataController implements CommandController {
+    private static final Command command = Command.SHOW_DATA;
 
     public void doCommand(Request request, Response response) {
         request.getCommand();
@@ -24,5 +25,10 @@ public class DataController {
         engineerRepository.findAll().forEach(engineer -> rs.append(engineer.toString()));
 
         return rs.toString();
+    }
+
+    @Override
+    public Command getCommand() {
+        return command;
     }
 }

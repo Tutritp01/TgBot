@@ -2,25 +2,29 @@ package com.tutrit.stoservice.provider;
 
 import com.tutrit.stoservice.bean.User;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserProvider {
 
-    static Map<String, Object> getUsers() {
-        Map<String, Object> initialUsers = new HashMap<>();
+    private UserProvider() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    public static List<User> getUsers() {
+        List<User> initialUsers = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             User user = getInstance(i);
-            initialUsers.put(user.getId(), user);
+            initialUsers.add(user);
         }
         return initialUsers;
     }
 
-    public static Map<String, Object> getUsers(int amount) {
-        Map<String, Object> initialUsers = new HashMap<>();
+    public static List<User> getUsers(int amount) {
+        List<User> initialUsers = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             User user = getInstance(i);
-            initialUsers.put(user.getId(), user);
+            initialUsers.add(user);
         }
         return initialUsers;
     }
