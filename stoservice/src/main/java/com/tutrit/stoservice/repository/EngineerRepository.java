@@ -45,7 +45,21 @@ public class EngineerRepository implements Repository<Engineer, String> {
 
     @Override
     public Iterable<Engineer> findAll() {
-        return Arrays.asList(engineers);
+        int countExport = 0;
+        for (Engineer eng : engineers) {
+            if (eng != null) {
+                countExport++;
+            }
+        }
+        Engineer[] engineersExport = new Engineer[countExport];
+        countExport = 0;
+        for (Engineer eng : engineers) {
+            if (eng != null) {
+                engineersExport[countExport] = eng;
+                countExport++;
+            }
+        }
+        return Arrays.asList(engineersExport);
     }
 
     @Override

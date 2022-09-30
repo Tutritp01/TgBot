@@ -138,6 +138,14 @@ class EngineerRepositoryTest {
         assertEquals("6", EngineerRepository.engineers[3].getIdEngineer());
     }
 
+    @Test
+    void testFindAll() {
+        createFiveO();
+        Iterable testIterable = engineerRepository.findAll();
+        List testList = (List) testIterable;
+        assertEquals(5, testList.size());
+    }
+
     void createFiveF() {
         engineerRepository.save(engineer1);
         engineerRepository.save(engineer2);
