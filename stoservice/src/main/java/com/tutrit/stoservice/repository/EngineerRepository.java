@@ -36,7 +36,7 @@ public class EngineerRepository implements Repository<Engineer, String> {
     @Override
     public Engineer find(Engineer engineer) {
         for (Engineer engineerRepository : engineers) {
-            if (engineerRepository.getIdEngineer().equals(engineer.getIdEngineer())) {
+            if (engineerRepository != null && engineerRepository.getIdEngineer().equals(engineer.getIdEngineer())) {
                 return engineerRepository;
             }
         }

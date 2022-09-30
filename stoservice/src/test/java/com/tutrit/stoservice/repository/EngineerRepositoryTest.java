@@ -95,6 +95,14 @@ class EngineerRepositoryTest {
     }
 
     @Test
+    void testFindNull() {
+        createFiveO();
+        Engineer engineerF = new Engineer("10", "Тесто", "Майко", "Инжинер по гарантии", "высшая", "высшее", 5, 10);
+        engineerRepository.find(engineerF);
+        assertNull(engineerRepository.find(engineerF));
+    }
+
+    @Test
     void testFindById() {
         createFiveF();
         assertEquals(engineer1, engineerRepository.findById("1"));
