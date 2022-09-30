@@ -113,6 +113,12 @@ class EngineerRepositoryTest {
     }
 
     @Test
+    void testFindByIdNull() {
+        createFiveF();
+        assertNull(engineerRepository.findById("10"));
+    }
+
+    @Test
     void testUpdateEngineer() {
         createFiveF();
         var engineerU = new Engineer("1", "Нестор", "Майко", "Инжинер по гарантии", "высшая", "высшее", 8, 13);
