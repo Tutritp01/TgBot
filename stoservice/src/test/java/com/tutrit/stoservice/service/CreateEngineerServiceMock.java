@@ -3,12 +3,10 @@ package com.tutrit.stoservice.service;
 import com.tutrit.stoservice.bean.Engineer;
 import org.junit.jupiter.api.*;
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 
 class CreateEngineerServiceMock {
 

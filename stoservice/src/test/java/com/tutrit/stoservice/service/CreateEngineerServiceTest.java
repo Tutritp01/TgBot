@@ -23,6 +23,6 @@ class CreateEngineerServiceTest {
     }
 
     private Engineer createEngineer() {
-            return new Engineer("0", "FName", "LName", "Func", "Cat", "Edu", 0, 0);
-        }
+        return new Engineer("0", "FName", "LName", "Func", "Cat", "Edu", 0, 0);
+    }
 }
