@@ -6,7 +6,7 @@ import com.tutrit.stoservice.service.UserService;
 public class UserController implements CommandController {
 
     private static final Command command = Command.REGISTER_NEW_USER;
-    final UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
