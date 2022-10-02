@@ -1,10 +1,7 @@
 package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.bean.Car;
-import com.tutrit.stoservice.bean.Engineer;
-import com.tutrit.stoservice.context.ApplicationContext;
-import com.tutrit.stoservice.repository.*;
-import org.springframework.context.annotation.Bean;
+import com.tutrit.stoservice.repository.CarRepository;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,12 +19,12 @@ public class RepositoryCarController {
         response.setResponse("car saved");
     }
 
-    private void saveCarToRep(Request request) {
+    protected void saveCarToRep(Request request) {
         List<String> carInformation = request.getInformation();
         Car car = new Car();
         car.setId(UUID.randomUUID().toString());
-        for (int i = 0; i < carInformation.size(); i++){
-            switch (i){
+        for (int i = 0; i < carInformation.size(); i++) {
+            switch (i) {
                 case 0 -> car.setBrand(carInformation.get(i));
                 case 1 -> car.setModel(carInformation.get(i));
                 case 2 -> car.setGeneration(carInformation.get(i));
