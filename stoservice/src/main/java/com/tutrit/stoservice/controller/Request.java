@@ -1,26 +1,21 @@
 package com.tutrit.stoservice.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.tutrit.stoservice.utils.UtilsInput.parseFlags;
 
 public class Request {
     private String command;
-    private List<String> information = new ArrayList<>();
+    private final String information;
 
-    public Request(String inputString) {
-        String[] inputData = inputString.split(" ");
-        command = inputData[0];
-        for (int i = 1; i < inputData.length; i++) {
-            information.add(inputData[i]);
-        }
+    public Request(String userInput) {
+        List<String> parsUserInput = parseFlags(userInput);
+        this.command = parsUserInput.get(0);
+        information = parsUserInput.get(1);
     }
 
-    public List<String> getInformation() {
+    public String getInformation() {
         return information;
-    }
-
-    public void setInformation(List<String> information) {
-        this.information = information;
     }
 
     public String getCommand() {
