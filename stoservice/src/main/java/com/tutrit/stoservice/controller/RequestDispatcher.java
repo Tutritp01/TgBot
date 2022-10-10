@@ -18,7 +18,7 @@ public class RequestDispatcher {
             case EXIT -> new ExitController().doCommand(request, response);
             case NOT_A_COMMAND -> new NotACommandController().doCommand(request, response);
             case HELP -> new HelpController().doCommand(request, response);
-            case SAVE_CAR -> new RepositoryCarController(new CarRepository()).doCommand(request,response);
+            case SAVE_CAR -> new RepositoryCarController().doCommand(request,response);
         }
         logger.info(response.getResponse());
     }
