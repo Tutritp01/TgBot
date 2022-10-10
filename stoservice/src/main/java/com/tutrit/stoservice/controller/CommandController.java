@@ -1,6 +1,8 @@
 package com.tutrit.stoservice.controller;
 
+import java.util.Map;
+
 public interface CommandController {
     Command getCommand();
-    void doCommand(Request request, Response response);
+    void doCommand(Map requestMap, Response response);
 }

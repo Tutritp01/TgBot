@@ -2,11 +2,13 @@ package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.repository.*;
 
+import java.util.Map;
+
 public class DataController implements CommandController {
     private static final Command command = Command.SHOW_DATA;
 
-    public void doCommand(Request request, Response response) {
-        request.getCommand();
+    public void doCommand(Map request, Response response) {
+        request.get("command");
         response.setResponse(String.format(this.loadedDataAsString()));
     }
 
