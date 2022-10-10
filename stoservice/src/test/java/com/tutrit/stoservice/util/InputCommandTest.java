@@ -26,7 +26,7 @@ class InputCommandTest {
 
     @Test
     void NewEngineer() {
-        Map<String, String> map = InputCommand.inputMsg("new engineer -m -d {LN:One FN:Two Fun:Three Cat:Four Edu:Five Exp:Six GExp:Seven}");
-        assertEquals("LN:One FN:Two Fun:Three Cat:Four Edu:Five Exp:Six GExp:Seven", map.get("object"));
+        Map<String, String> map = InputCommand.inputMsg("new engineer -m -d {LN:One FN:Two Fun:Three Cat:Four Edu:Five Exp:6 GExp:7}");
+        assertEquals("LN:One FN:Two Fun:Three Cat:Four Edu:Five Exp:6 GExp:7", map.get("object"));
     }
 }

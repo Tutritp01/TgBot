@@ -3,6 +3,7 @@ package com.tutrit.stoservice.controller;
 import com.tutrit.stoservice.bean.Engineer;
 import com.tutrit.stoservice.service.EngineerService;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class EngineerController implements CommandController{
@@ -20,7 +21,25 @@ public class EngineerController implements CommandController{
 
     @Override
     public void doCommand(Map request, Response response) {
-        Engineer engineer = new Engineer("1"    , "Нестор", "Майко", "Инжинер по гарантии", "высшая", "высшее", 5, 10);
+        String object = request.get("object").toString();
+        Map<String, String> map = new HashMap<>();
+
+        String[] flagAndArgs = object.split(" ");
+        for (String block : flagAndArgs) {
+            String[] temp = block.split(":");
+            map.put(temp[0], temp[1]);
+        }
+        Engineer engineer = new Engineer(
+                "temp",
+                map.get("LN"),
+                map.get("FN"),
+                map.get("Fun"),
+                map.get("Cat"),
+                map.get("Edu"),
+                Integer.parseInt(map.get("Exp")),
+                Integer.parseInt(map.get("GExp"))
+        );
+
         engineerService.save(engineer);
         response.setResponse("Engineer " + engineer.getIdEngineer() + " is created");
     }
