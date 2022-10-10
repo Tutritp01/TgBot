@@ -4,10 +4,11 @@ import com.tutrit.stoservice.controller.*;
 import com.tutrit.stoservice.provider.CarProvider;
 import com.tutrit.stoservice.provider.CustomerProvider;
 import com.tutrit.stoservice.repository.*;
+import com.tutrit.stoservice.service.CarService;
 
 import static com.tutrit.stoservice.context.ApplicationContext.put;
 
-public class ApplicationContextLoader {
+public class ApplicationContextLoader{
 
     private ApplicationContextLoader() {
         throw new IllegalStateException("Utility class");
@@ -19,6 +20,8 @@ public class ApplicationContextLoader {
         put(EngineerRepository.class, new EngineerRepository());
         put(OrderRepository.class, new OrderRepository());
         put(UserRepository.class, new UserRepository());
+
+        put(CarService.class, new CarService(ApplicationContext.get(CarRepository.class)));
 
         put(DataController.class, new DataController());
         put(ExitController.class, new ExitController());
