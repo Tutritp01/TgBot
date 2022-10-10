@@ -8,12 +8,11 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputCommandTest {
-    InputCommand inputCommand = new InputCommand();
+
 
     @Test
     void inputMsg() {
-        Map<String, String> map = new HashMap<>();
-        map = inputCommand.inputMsg("Show data -m -d {id:12 name:Viktor}");
+        Map<String, String> map = InputCommand.inputMsg("Show data -m -d {id:12 name:Viktor}");
         assertEquals("Show data", map.get("command"));
         assertEquals("m", map.get("format"));
         assertEquals("id:12 name:Viktor", map.get("object"));
@@ -21,8 +20,7 @@ class InputCommandTest {
 
     @Test
     void inputCommandOnly(){
-        Map<String, String> map = new HashMap<>();
-        map = inputCommand.inputMsg("help");
+        Map<String, String> map = InputCommand.inputMsg("help");
         assertEquals("help", map.get("command"));
     }
 }
