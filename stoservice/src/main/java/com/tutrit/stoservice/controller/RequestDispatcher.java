@@ -1,9 +1,7 @@
 package com.tutrit.stoservice.controller;
 
 
-import com.tutrit.stoservice.repository.EngineerRepository;
-import com.tutrit.stoservice.service.EngineerService;
-import com.tutrit.stoservice.util.InputCommand;
+import com.tutrit.stoservice.context.ApplicationContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +24,7 @@ public class RequestDispatcher {
             case EXIT -> new ExitController().doCommand(map, response);
             case NOT_A_COMMAND -> new NotACommandController().doCommand(map, response);
             case HELP -> new HelpController().doCommand(map, response);
-            case NEW_ENGINEER -> new EngineerController(new EngineerService(new EngineerRepository())).doCommand(map, response);
+            case NEW_ENGINEER -> ApplicationContext.get(EngineerController.class).doCommand(map, response);
         }
         logger.info(response.getResponse());
     }

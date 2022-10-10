@@ -1,6 +1,7 @@
 package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.bean.Engineer;
+import com.tutrit.stoservice.repository.EngineerRepository;
 import com.tutrit.stoservice.service.EngineerService;
 
 import java.util.HashMap;
@@ -10,7 +11,7 @@ public class EngineerController implements CommandController {
     EngineerService engineerService;
     public static final Command command = Command.NEW_ENGINEER;
 
-    EngineerController(EngineerService engineerService) {
+    public EngineerController(EngineerService engineerService) {
         this.engineerService = engineerService;
     }
 
