@@ -12,8 +12,10 @@ class InputCommandTest {
 
     @Test
     void inputMsg() {
-        Map<String, String> map =new HashMap<>();
-        map = inputCommand.inputMsg("Show data -m");
+        Map<String, String> map = new HashMap<>();
+        map = inputCommand.inputMsg("Show data -m -d {id:12 name:Viktor}");
         assertEquals("Show data", map.get("command"));
+        assertEquals("m", map.get("format"));
+        assertEquals("id:12 name:Viktor", map.get("object"));
     }
 }

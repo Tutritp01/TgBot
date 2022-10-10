@@ -8,10 +8,11 @@ public class InputCommand {
 
     static Map<String, String> inputMsg(String inputMsg) {
         Map<String, String> map = new HashMap<>();
-        int indexCommand = inputMsg.indexOf('-');
-        String command1 = inputMsg.substring(0, indexCommand).trim();
-        map.put("command", command1);
+        map.put("command", inputMsg.substring(0, inputMsg.indexOf('-')).trim());
+        map.put("format", inputMsg.substring(inputMsg.indexOf('-') + 1, inputMsg.indexOf('-') + 2));
+        String object = inputMsg.substring(inputMsg.indexOf("-d"));
+        object = object.substring(object.indexOf('{') + 1, object.indexOf('}'));
+        map.put("object", object);
         return map;
-
     }
 }
