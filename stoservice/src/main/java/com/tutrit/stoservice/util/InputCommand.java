@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class InputCommand {
 
-
     public static Map<String, String> inputMsg(String inputMsg) {
         Map<String, String> map = new HashMap<>();
         if (inputMsg.indexOf('-') > 0) {
