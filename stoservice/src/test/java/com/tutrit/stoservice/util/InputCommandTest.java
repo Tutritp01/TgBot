@@ -18,4 +18,11 @@ class InputCommandTest {
         assertEquals("m", map.get("format"));
         assertEquals("id:12 name:Viktor", map.get("object"));
     }
+
+    @Test
+    void inputCommandOnly(){
+        Map<String, String> map = new HashMap<>();
+        map = inputCommand.inputMsg("help");
+        assertEquals("help", map.get("command"));
+    }
 }
