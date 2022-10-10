@@ -8,13 +8,13 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CreateEngineerServiceMock {
+class EngineerServiceMock {
 
-    CreateEngineerService createEngineerService;
+    EngineerService engineerService;
     ByteArrayOutputStream output;
 
-    CreateEngineerServiceMock() {
-        createEngineerService = new CreateEngineerService(new EngineerRepoMockTest());
+    EngineerServiceMock() {
+        engineerService = new EngineerService(new EngineerRepoMockTest());
         output = new ByteArrayOutputStream();
     }
 
@@ -26,7 +26,7 @@ class CreateEngineerServiceMock {
 
     @Test
     void createTest() {
-        createEngineerService.create(createEngineer());
+        engineerService.save(createEngineer());
         assertEquals("Done!\r\n", output.toString());
     }
 

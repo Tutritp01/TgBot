@@ -6,19 +6,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CreateEngineerServiceTest {
-    CreateEngineerService createEngineerService;
+class EngineerServiceTest {
+    EngineerService engineerService;
 
-    CreateEngineerServiceTest() {
-        createEngineerService = new CreateEngineerService(new EngineerRepository());
+    EngineerServiceTest() {
+        engineerService = new EngineerService(new EngineerRepository());
     }
 
     @Test
     void createTest() {
-        createEngineerService.create(createEngineer());
-        createEngineerService.create(createEngineer());
-        createEngineerService.create(createEngineer());
-        createEngineerService.create(createEngineer());
+        engineerService.save(createEngineer());
+        engineerService.save(createEngineer());
+        engineerService.save(createEngineer());
+        engineerService.save(createEngineer());
         assertEquals(EngineerRepository.engineers.length, 8);
     }
 
