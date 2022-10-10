@@ -6,11 +6,11 @@ import com.tutrit.stoservice.service.EngineerService;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EngineerController implements CommandController{
+public class EngineerController implements CommandController {
     EngineerService engineerService;
     public static final Command command = Command.NEW_ENGINEER;
 
-    EngineerController(EngineerService engineerService){
+    EngineerController(EngineerService engineerService) {
         this.engineerService = engineerService;
     }
 
