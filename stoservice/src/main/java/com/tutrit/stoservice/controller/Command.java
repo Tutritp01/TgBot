@@ -1,15 +1,14 @@
 package com.tutrit.stoservice.controller;
 
-import java.util.*;
 
 public enum Command {
 
-    SHOW_DATA("showData"),
-    SAVE_CAR("saveCar"),
+    SHOW_DATA("show data"),
+    SAVE_CAR("save car"),
     EXIT("exit"),
     HELP("help"),
     NOT_A_COMMAND(null);
-    String command;
+    final String command;
 
     Command(String command) {
         this.command = command;
@@ -18,10 +17,10 @@ public enum Command {
 
     public static Command fromString(String command) {
         return switch (command) {
-            case "showData" -> SHOW_DATA;
+            case "show data" -> SHOW_DATA;
             case "exit" -> EXIT;
             case "help" -> HELP;
-            case "saveCar" -> SAVE_CAR;
+            case "save car" -> SAVE_CAR;
             default -> NOT_A_COMMAND;
         };
     }
