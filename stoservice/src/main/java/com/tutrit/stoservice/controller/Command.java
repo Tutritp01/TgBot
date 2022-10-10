@@ -7,7 +7,8 @@ public enum Command {
     SHOW_DATA("show data"),
     EXIT("exit"),
     HELP("help"),
-    NOT_A_COMMAND(null);
+    NOT_A_COMMAND(null),
+    REGISTER_NEW_ORDER("new order");
     String command;
 
     Command(String command) {
@@ -20,6 +21,7 @@ public enum Command {
             case "show data" -> SHOW_DATA;
             case "exit" -> EXIT;
             case "help" -> HELP;
+            case "new order" -> REGISTER_NEW_ORDER;
             default -> NOT_A_COMMAND;
         };
     }
