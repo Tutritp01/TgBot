@@ -19,7 +19,7 @@ public enum Command {
             case "show data" -> SHOW_DATA;
             case "exit" -> EXIT;
             case "help" -> HELP;
-            case "save customer" -> SAVE_NEW_CUSTOMER;
+            case "new customer" -> SAVE_NEW_CUSTOMER;
             default -> NOT_A_COMMAND;
         };
     }
