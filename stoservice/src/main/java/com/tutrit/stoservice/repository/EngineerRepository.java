@@ -36,7 +36,7 @@ public class EngineerRepository implements Repository<Engineer, String> {
     @Override
     public Engineer find(Engineer engineer) {
         for (Engineer engineerRepository : engineers) {
-            if (engineerRepository.getIdEngineer().equals(engineer.getIdEngineer())) {
+            if (engineerRepository != null && engineerRepository.getIdEngineer().equals(engineer.getIdEngineer())) {
                 return engineerRepository;
             }
         }
@@ -45,13 +45,27 @@ public class EngineerRepository implements Repository<Engineer, String> {
 
     @Override
     public Iterable<Engineer> findAll() {
-        return Arrays.asList(engineers);
+        int countExport = 0;
+        for (Engineer eng : engineers) {
+            if (eng != null) {
+                countExport++;
+            }
+        }
+        Engineer[] engineersExport = new Engineer[countExport];
+        countExport = 0;
+        for (Engineer eng : engineers) {
+            if (eng != null) {
+                engineersExport[countExport] = eng;
+                countExport++;
+            }
+        }
+        return Arrays.asList(engineersExport);
     }
 
     @Override
     public Engineer findById(String id) {
         for (Engineer engineerRepository : engineers) {
-            if (engineerRepository.getIdEngineer().equals(id)) {
+            if (engineerRepository != null && engineerRepository.getIdEngineer().equals(id)) {
                 return engineerRepository;
             }
         }
