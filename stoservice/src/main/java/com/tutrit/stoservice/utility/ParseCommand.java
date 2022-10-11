@@ -23,15 +23,14 @@ public class ParseCommand {
         return parseFlags;
     }
 
-    public String GetCommand(String userInput) {
+    public String getCommand(String userInput) {
         List<String> parsUserInput = parseCommand(userInput);
         this.command = parsUserInput.get(0);
+        this.body = parsUserInput.get(1);
         return command;
     }
 
-    public String GetBody(String userInput) {
-        List<String> parsUserInput = parseCommand(userInput);
-        this.body = parsUserInput.get(1);
+    public String getBody() {
         return body;
     }
 }
