@@ -10,15 +10,16 @@ public class RequestMap extends Request {
         super(command);
     }
 
-    public RequestMap(Map<> commandMap) {
-        this(commandMap);
-    }
-
-    public void setCommandMap(Map<> commandMap) {
+    public RequestMap(Map<String, String> commandMap, String command) {
+        this(command);
         this.commandMap = commandMap;
     }
 
-    public Map<> getCommandMap() {
+    public void setCommandMap(Map commandMap) {
+        this.commandMap = commandMap;
+    }
+
+    public Map getCommandMap() {
         return commandMap;
     }
 }

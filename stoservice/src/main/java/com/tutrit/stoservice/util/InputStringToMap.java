@@ -22,7 +22,7 @@ public class InputStringToMap {
     }
 
     public static Engineer stringToEngineer(String objects) {
-        Map<> maps = inputMsg(objects);
+        Map maps = inputMsg(objects);
         String object = maps.get("object").toString();
         Map<String, String> map = new HashMap<>();
         String[] flagAndArgs = object.split(" ");

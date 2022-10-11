@@ -14,7 +14,7 @@ public class RequestDispatcher {
     public void doDispatch(String userInput) {
         Request request = new Request(userInput);
         Response response = new Response();
-        RequestMap requestMap = new RequestMap(InputStringToMap.inputMsg(inputMsg()));
+        RequestMap requestMap = new RequestMap(InputStringToMap.inputMsg(userInput), userInput);
 
         switch (Command.fromString(requestMap.getCommandMap().get("command").toString())) {
             case SHOW_DATA -> new DataController().doCommand(request, response);
