@@ -4,7 +4,9 @@ import com.tutrit.stoservice.controller.*;
 import com.tutrit.stoservice.provider.CarProvider;
 import com.tutrit.stoservice.provider.CustomerProvider;
 import com.tutrit.stoservice.repository.*;
+import com.tutrit.stoservice.service.EngineerService;
 
+import static com.tutrit.stoservice.context.ApplicationContext.get;
 import static com.tutrit.stoservice.context.ApplicationContext.put;
 
 public class ApplicationContextLoader {
@@ -29,5 +31,9 @@ public class ApplicationContextLoader {
         put(CustomerProvider.class, new CustomerProvider());
 
         put(RequestDispatcher.class, new RequestDispatcher());
+
+        put(EngineerService.class, new EngineerService(get(EngineerRepository.class)));
+
+        put(EngineerController.class, new EngineerController(get(EngineerService.class)));
     }
 }
