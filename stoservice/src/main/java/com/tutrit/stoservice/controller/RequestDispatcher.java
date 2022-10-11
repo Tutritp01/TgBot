@@ -21,7 +21,6 @@ public class RequestDispatcher {
             case NOT_A_COMMAND -> new NotACommandController().doCommand(request, response);
             case HELP -> new HelpController().doCommand(request, response);
             case NEW_ENGINEER -> ApplicationContext.get(EngineerController.class).doCommand(request, response);
-
         }
         logger.info(response.getResponse());
     }

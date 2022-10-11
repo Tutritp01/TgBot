@@ -15,7 +15,7 @@ public class ApplicationContextLoader {
         throw new IllegalStateException("Utility class");
     }
 
-    public static void run(){
+    public static void run() {
         put(CarRepository.class, new CarRepository());
         put(CustomerRepository.class, new CustomerRepository());
         put(EngineerRepository.class, new EngineerRepository());
