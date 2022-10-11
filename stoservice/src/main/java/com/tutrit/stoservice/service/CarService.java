@@ -17,9 +17,8 @@ public class CarService {
     public CarService(CarRepository carRepository) {
         CarService.carRepository = carRepository;
     }
+
     public static void saveCarToRep(Request request) {
-
-
         Map<String, String> carInformation = stringToMapParser(request.getInformation());
         Car car = new Car();
         car.setId(UUID.randomUUID().toString());

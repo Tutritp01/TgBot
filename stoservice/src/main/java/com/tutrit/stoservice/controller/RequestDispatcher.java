@@ -1,9 +1,10 @@
 package com.tutrit.stoservice.controller;
 
 
-import com.tutrit.stoservice.repository.CarRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static com.tutrit.stoservice.context.ApplicationContext.get;
 
 public class RequestDispatcher {
 
@@ -18,7 +19,7 @@ public class RequestDispatcher {
             case EXIT -> new ExitController().doCommand(request, response);
             case NOT_A_COMMAND -> new NotACommandController().doCommand(request, response);
             case HELP -> new HelpController().doCommand(request, response);
-            case SAVE_CAR -> new RepositoryCarController().doCommand(request,response);
+            case SAVE_CAR -> get(CarController.class).doCommand(request,response);
         }
         logger.info(response.getResponse());
     }
