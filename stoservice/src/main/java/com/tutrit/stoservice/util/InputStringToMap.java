@@ -22,24 +22,23 @@ public class InputStringToMap {
     }
 
     public static Engineer stringToEngineer(String objects) {
-        String object = objects.get("object").toString();
+        Map<> maps = inputMsg(objects);
+        String object = maps.get("object").toString();
         Map<String, String> map = new HashMap<>();
-
         String[] flagAndArgs = object.split(" ");
         for (String block : flagAndArgs) {
             String[] temp = block.split(":");
             map.put(temp[0], temp[1]);
         }
-        Engineer engineer = new Engineer(
-                "temp",
-                map.get("LN"),
-                map.get("FN"),
-                map.get("Fun"),
-                map.get("Cat"),
-                map.get("Edu"),
-                Integer.parseInt(map.get("Exp")),
-                Integer.parseInt(map.get("GExp"))
-        );
+        Engineer engineer = new Engineer();
+        engineer.setIdEngineer("temp");
+        engineer.setFirstName(map.get("FN"));
+        engineer.setLastName(map.get("LN"));
+        engineer.setFunction(map.get("Fun"));
+        engineer.setCategory(map.get("Cat"));
+        engineer.setEducation(map.get("Edu"));
+        engineer.setExperience(Integer.parseInt(map.get("Exp")));
+        engineer.setGeneralExperience(Integer.parseInt(map.get("GExp")));
         return engineer;
     }
 }
