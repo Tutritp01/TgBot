@@ -11,7 +11,7 @@ public class RequestMap extends Request {
     }
 
     public RequestMap(Map<String, String> commandMap, String command) {
-        this(command);
+        super(command);
         this.commandMap = commandMap;
     }
 
