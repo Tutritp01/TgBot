@@ -1,7 +1,7 @@
 package com.tutrit.stoservice.controller;
 
-import com.tutrit.stoservice.bean.User;
 import com.tutrit.stoservice.service.UserService;
+import com.tutrit.stoservice.util.ParseUser;
 
 public class UserController implements CommandController {
 
@@ -14,8 +14,7 @@ public class UserController implements CommandController {
 
     @Override
     public void doCommand(Request request, Response response) {
-        User user = new User("id1", "name1", "123-45-67");
-        userService.saveUser(user);
+        userService.saveUser(ParseUser.parseCommand(request));
         response.setResponse("new user has been saved");
     }
 
