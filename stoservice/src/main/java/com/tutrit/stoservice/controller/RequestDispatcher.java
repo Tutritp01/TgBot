@@ -4,6 +4,8 @@ package com.tutrit.stoservice.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.tutrit.stoservice.context.ApplicationContext.get;
+
 public class RequestDispatcher {
 
     public static Logger logger = LoggerFactory.getLogger("Dispatcher");
@@ -17,7 +19,7 @@ public class RequestDispatcher {
             case EXIT -> new ExitController().doCommand(request, response);
             case NOT_A_COMMAND -> new NotACommandController().doCommand(request, response);
             case HELP -> new HelpController().doCommand(request, response);
-
+            case REGISTER_NEW_ORDER -> get(OrderController.class).doCommand(request, response);
         }
         logger.info(response.getResponse());
     }
