@@ -55,7 +55,7 @@ class EngineerControllerTest {
     @Test
     void getCommandOrdinal() {
         command = engineerController.getCommand();
-        assertEquals(Integer.parseInt("4"), command.ordinal());
+        assertEquals(Integer.parseInt("3"), command.ordinal());
     }
 
     @Test

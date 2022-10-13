@@ -7,8 +7,8 @@ public enum Command {
     SHOW_DATA("show data"),
     EXIT("exit"),
     HELP("help"),
-    NOT_A_COMMAND(null),
-    NEW_ENGINEER("new engineer");
+    NEW_ENGINEER("new engineer"),
+    NOT_A_COMMAND(null);
     String command;
 
     Command(String command) {
