@@ -10,6 +10,9 @@ public class UserInputToEngineerService {
         HashMap<String, String> map;
         String[] keyAndSplit = getKey(inputMsg).split(":", 2);
         var object = getObject(inputMsg);
+        if (object == null) {
+            return makeEngineer(new HashMap<>());
+        }
         switch (keyAndSplit[0]) {
             case "json":
                 map = objectToMapJson(object);
@@ -28,7 +31,7 @@ public class UserInputToEngineerService {
         if (inputMsg.indexOf('{') > 0 && inputMsg.indexOf("}") > 0) {
             return inputMsg.substring(inputMsg.indexOf('{') + 1, inputMsg.indexOf('}'));
         }
-        return "null";
+        return null;
     }
 
     private static String getKey(String inputMsg) {

@@ -25,6 +25,7 @@ public class EngineerController implements CommandController {
         if (engineer != null) {
             engineerService.save(engineer);
             response.setResponse("Engineer " + engineer.getIdEngineer() + " is created");
+            return;
         }
         response.setResponse("Engineer not created");
     }
