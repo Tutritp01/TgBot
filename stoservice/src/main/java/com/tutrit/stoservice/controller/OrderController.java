@@ -6,7 +6,11 @@ import com.tutrit.stoservice.service.OrderService;
 public class OrderController implements CommandController {
 
     private static final Command command = Command.REGISTER_NEW_ORDER;
-    private final OrderService orderService;
+    private OrderService orderService;
+
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
