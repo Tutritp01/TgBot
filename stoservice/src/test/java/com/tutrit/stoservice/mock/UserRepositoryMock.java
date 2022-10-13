@@ -6,7 +6,7 @@ import com.tutrit.stoservice.repository.UserRepository;
 public class UserRepositoryMock extends UserRepository {
     @Override
     public User save(User user) {
-        return user;
+        return new User("id1", "user1", "123");
     }
 
     @Override
