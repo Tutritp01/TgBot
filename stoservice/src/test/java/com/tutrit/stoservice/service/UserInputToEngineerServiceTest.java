@@ -1,4 +1,4 @@
-package com.tutrit.stoservice.util;
+package com.tutrit.stoservice.service;
 
 import com.tutrit.stoservice.bean.Engineer;
 import com.tutrit.stoservice.service.UserInputToEngineerService;
@@ -42,5 +42,15 @@ class UserInputToEngineerServiceTest {
     @Test
     void getEngineerKeyNotCaseTest() {
         assertNull(UserInputToEngineerService.getEngineer("new engineer -md -d {LN:One FN:Two Fun:Three Cat:Four Edu:Five Exp:6 GExp:7}"));
+    }
+
+    @Test
+    void getEngineerKeyNotKeyDTest() {
+        assertNull(UserInputToEngineerService.getEngineer("new engineer -m {LN:One FN:Two Fun:Three Cat:Four Edu:Five Exp:6 GExp:7}"));
+    }
+
+    @Test
+    void getEngineerBracesTest() {
+        assertNull(UserInputToEngineerService.getEngineer("new engineer -m LN:One FN:Two Fun:Three Cat:Four Edu:Five Exp:6 GExp:7}"));
     }
 }

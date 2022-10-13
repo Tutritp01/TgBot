@@ -25,11 +25,17 @@ public class UserInputToEngineerService {
     }
 
     private static String getObject(String inputMsg) {
-        return inputMsg.substring(inputMsg.indexOf('{') + 1, inputMsg.indexOf('}'));
+        if (inputMsg.indexOf('{') > 0 && inputMsg.indexOf("}") > 0) {
+            return inputMsg.substring(inputMsg.indexOf('{') + 1, inputMsg.indexOf('}'));
+        }
+        return "null";
     }
 
     private static String getKey(String inputMsg) {
-        return inputMsg.substring(inputMsg.indexOf('-') + 1, inputMsg.indexOf("-d")).trim();
+        if (inputMsg.indexOf('-') > 0 && inputMsg.indexOf("-d") > 0) {
+            return inputMsg.substring(inputMsg.indexOf('-') + 1, inputMsg.indexOf("-d")).trim();
+        }
+        return "null";
     }
 
     private static HashMap<String, String> objectToMap(String object, String split) {
