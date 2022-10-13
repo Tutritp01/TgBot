@@ -9,11 +9,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StoserviceApplication {
+public class StoServiceApplication {
     private static final Logger log = LoggerFactory.getLogger("main");
 
     public static void main(String[] args) {
-        SpringApplication.run(StoserviceApplication.class, args);
+        SpringApplication.run(StoServiceApplication.class, args);
         ApplicationContextLoader.run();
         new DemoDataLoader().run();
         while (true) {
