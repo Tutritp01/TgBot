@@ -26,7 +26,7 @@ class RequestDispatcherTest {
 
     @Test
     void doDispatchRegisterNewUser() {
-        String userInput = "new_user";
+        String userInput = "new_user -data -i id1 -n user1 -p 123";
         RequestDispatcher requestDispatcher = ApplicationContext.get(RequestDispatcher.class);
         requestDispatcher.doDispatch(userInput);
         assertEquals("[main] INFO Dispatcher - new user has been saved\r\n", output.toString().substring(13));
