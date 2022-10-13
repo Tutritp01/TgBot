@@ -1,6 +1,5 @@
 package com.tutrit.stoservice;
 
-import com.tutrit.stoservice.context.ApplicationContext;
 import com.tutrit.stoservice.context.ApplicationContextLoader;
 import com.tutrit.stoservice.provider.DemoDataLoader;
 import com.tutrit.stoservice.service.MenuService;
