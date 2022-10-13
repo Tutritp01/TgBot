@@ -1,13 +1,10 @@
 package com.tutrit.stoservice.controller;
 
-import com.tutrit.stoservice.util.GetCommand;
-import com.tutrit.stoservice.util.InputStringToMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.tutrit.stoservice.context.ApplicationContext.get;
-import static com.tutrit.stoservice.util.GetCommand.*;
-import static com.tutrit.stoservice.util.InputStringToMap.inputMsg;
+import static com.tutrit.stoservice.util.GetCommand.getCommand;
 
 public class RequestDispatcher {
 
