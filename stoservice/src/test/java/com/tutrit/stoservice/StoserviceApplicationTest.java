@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class StoserviceApplicationTest {
+class StoServiceApplicationTest {
 
     private ByteArrayOutputStream sink;
     private PrintStream controlledOut;
@@ -28,7 +28,7 @@ class StoserviceApplicationTest {
     void test(final String input, final String expected) {
         setControlledStreamsWithInput(input);
         try {
-            StoserviceApplication.main(new String[]{});
+            StoServiceApplication.main(new String[]{});
             controlledOut.flush();
             assertEquals(expected, sink.toString().trim(), "Error on input " + input);
         } finally {

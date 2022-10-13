@@ -96,7 +96,7 @@ public class EngineerRepository implements Repository<Engineer, String> {
     @Override
     public boolean deleteById(String id) {
         for (int i = 0; i < engineers.length; i++) {
-            if (engineers[i].getIdEngineer().equals(id)) {
+            if (engineers[i] != null && engineers[i].getIdEngineer().equals(id)) {
                 engineers[i] = null;
                 return true;
             }

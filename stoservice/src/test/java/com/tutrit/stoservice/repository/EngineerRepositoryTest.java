@@ -144,6 +144,11 @@ class EngineerRepositoryTest {
     }
 
     @Test
+    void testDeleteByIdNull() {
+        assertFalse(engineerRepository.deleteById("4"));
+    }
+
+    @Test
     void testCount() {
         createFiveO();
         engineerRepository.deleteById("4");
