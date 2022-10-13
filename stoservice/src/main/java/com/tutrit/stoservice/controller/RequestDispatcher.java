@@ -14,7 +14,7 @@ public class RequestDispatcher {
         Request request = new Request(userInput);
         Response response = new Response();
 
-        switch (Command.fromString(request.getCommand())) {
+        switch (Command.fromString(request.getCommand().split(" -data")[0])) {
             case SHOW_DATA -> new DataController().doCommand(request, response);
             case EXIT -> new ExitController().doCommand(request, response);
             case NOT_A_COMMAND -> new NotACommandController().doCommand(request, response);
