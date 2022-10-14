@@ -31,14 +31,6 @@ public class ApplicationContextLoader {
         put(NotACommandController.class, new NotACommandController());
         put(UserController.class, new UserController(get(UserService.class)));
 
-        Map<Command, CommandController> commandCommandControllerMap = Map.of(
-                get(DataController.class).getCommand(), get(DataController.class),
-                get(ExitController.class).getCommand(), get(ExitController.class),
-                get(HelpController.class).getCommand(), get(HelpController.class),
-                get(NotACommandController.class).getCommand(), get(NotACommandController.class),
-                get(UserController.class).getCommand(), get(UserController.class)
-        );
-
         put(CarProvider.class, new CarProvider());
         put(CustomerProvider.class, new CustomerProvider());
 
