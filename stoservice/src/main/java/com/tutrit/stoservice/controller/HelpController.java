@@ -8,9 +8,9 @@ public class HelpController implements CommandController {
     private final String ANY = "Any wrong input will return to the beginning";
 
     public void doCommand(Request request, Response response) {
-    response.setResponse(String.format(Arrays.toString(Arrays.stream(Command.values())
+    response.setResponse(Arrays.toString(Arrays.stream(Command.values())
                 .map(e -> e.command != null ? e.command : ANY)
-                .toArray()), request.getCommand()));
+                .toArray()));
     }
 
     @Override
