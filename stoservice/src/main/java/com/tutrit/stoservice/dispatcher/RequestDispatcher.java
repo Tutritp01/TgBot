@@ -13,10 +13,10 @@ public class RequestDispatcher {
     public static Logger logger = LoggerFactory.getLogger("Dispatcher");
 
     public void doDispatch(String userInput) {
-        Request request = new Request(get(ParseCommand.class).getCommand(userInput));
+        Request request = new Request(userInput);
         Response response = new Response();
 
-        switch (Command.fromString(request.getCommand())) {
+        switch (Command.fromString(ParseCommand.getCommand(userInput))) {
             case SHOW_DATA -> new DataController().doCommand(request, response);
             case EXIT -> new ExitController().doCommand(request, response);
             case NOT_A_COMMAND -> new NotACommandController().doCommand(request, response);
