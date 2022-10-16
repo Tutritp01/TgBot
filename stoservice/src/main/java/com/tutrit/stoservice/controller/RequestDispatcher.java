@@ -1,6 +1,7 @@
 package com.tutrit.stoservice.controller;
 
 
+import com.tutrit.stoservice.parser.UserInputParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,8 +14,9 @@ public class RequestDispatcher {
     public void doDispatch(String userInput) {
         Request request = new Request(userInput);
         Response response = new Response();
+        request.setUserInput(UserInputParser.parseUserInput(request.getCommand()));
 
-        switch (Command.fromString(request.getCommand().split(" -data")[0])) {
+        switch (request.getUserInput().getCommand()) {
             case SHOW_DATA -> new DataController().doCommand(request, response);
             case EXIT -> new ExitController().doCommand(request, response);
             case NOT_A_COMMAND -> new NotACommandController().doCommand(request, response);
