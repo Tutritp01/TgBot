@@ -10,14 +10,17 @@ import com.tutrit.stoservice.controller.Command;
  */
 public class UserInputParser  {
 
-    public static UserInput parseUserInput(String command) {
+    ProtocolProvider protocolProvider;
+
+    public UserInputParser(final ProtocolProvider protocolProvider) {
+        this.protocolProvider = protocolProvider;
+    }
+
+    public UserInput parseUserInput(String command) {
         UserInput userInput = new UserInput();
-        if (command.contains(" -d ") && command.contains(" -json ")) {
-            userInput.setObjectValues(new JsonBodyProtocol().parseBodyToObjectValues(command));
-            userInput.setCommand(extractCommand(command));
-        } else if (command.contains(" -d ") && !command.contains(" -json ")) {
-            userInput.setObjectValues(new JsonBodyProtocol().parseBodyToObjectValues(command));
-        }
+        BodyProtocol protocol = protocolProvider.getProtocol(command);
+        userInput.setObjectValues(protocol.parseBodyToObjectValues(command));
+        userInput.setCommand(extractCommand(command));
         return userInput;
     }
 

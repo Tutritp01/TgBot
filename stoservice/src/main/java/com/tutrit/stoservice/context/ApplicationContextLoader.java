@@ -1,6 +1,8 @@
 package com.tutrit.stoservice.context;
 
 import com.tutrit.stoservice.controller.*;
+import com.tutrit.stoservice.parser.ProtocolProvider;
+import com.tutrit.stoservice.parser.UserInputParser;
 import com.tutrit.stoservice.provider.CarProvider;
 import com.tutrit.stoservice.provider.CustomerProvider;
 import com.tutrit.stoservice.repository.*;
@@ -34,6 +36,8 @@ public class ApplicationContextLoader {
         put(CarProvider.class, new CarProvider());
         put(CustomerProvider.class, new CustomerProvider());
 
-        put(RequestDispatcher.class, new RequestDispatcher());
+        put(ProtocolProvider.class, new ProtocolProvider());
+        put(UserInputParser.class, new UserInputParser(get(ProtocolProvider.class)));
+        put(RequestDispatcher.class, new RequestDispatcher(get(UserInputParser.class)));
     }
 }

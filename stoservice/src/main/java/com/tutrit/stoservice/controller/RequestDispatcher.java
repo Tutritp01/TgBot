@@ -1,6 +1,8 @@
 package com.tutrit.stoservice.controller;
 
 
+import com.tutrit.stoservice.bean.User;
+import com.tutrit.stoservice.parser.ProtocolProvider;
 import com.tutrit.stoservice.parser.UserInputParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +11,17 @@ import static com.tutrit.stoservice.context.ApplicationContext.get;
 
 public class RequestDispatcher {
 
+    UserInputParser userInputParser;
     public static final Logger logger = LoggerFactory.getLogger("Dispatcher");
+
+    public RequestDispatcher(final UserInputParser userInputParser) {
+        this.userInputParser = userInputParser;
+    }
 
     public void doDispatch(String userInput) {
         Request request = new Request(userInput);
         Response response = new Response();
-        request.setUserInput(UserInputParser.parseUserInput(request.getCommand()));
+        request.setUserInput(userInputParser.parseUserInput(request.getCommand()));
 
         switch (request.getUserInput().getCommand()) {
             case SHOW_DATA -> new DataController().doCommand(request, response);
