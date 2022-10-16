@@ -23,3 +23,6 @@ tg-bot/src/main/resources/application.properties
 bot.username={bot.username}
 
 bot.token={bot.token}
+
+Format a command with save Customer instance:
+"new customer - data new customer -data -n Vasil -c Brest -ph +375293845674 -e vasil@gmail.com"
