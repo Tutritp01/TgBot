@@ -10,5 +10,6 @@ public class GetCommand {
     }
 
     private GetCommand() {
+        throw new IllegalStateException("Utility class");
     }
 }
