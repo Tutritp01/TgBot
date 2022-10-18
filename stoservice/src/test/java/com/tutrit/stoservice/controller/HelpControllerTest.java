@@ -17,7 +17,7 @@ class HelpControllerTest {
         helpController.doCommand(new Request(""), response);
         assertEquals(Arrays.stream(Command.values())
                 .map(e -> e.command)
-                .filter(obj -> Objects.nonNull(obj))
+                .filter(Objects::nonNull)
                 .collect(Collectors.joining(", ")), response.getResponse());
     }
 
