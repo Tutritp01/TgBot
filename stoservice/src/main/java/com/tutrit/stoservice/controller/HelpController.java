@@ -1,15 +1,18 @@
 package com.tutrit.stoservice.controller;
 
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class HelpController implements CommandController {
     private static final Command command = Command.HELP;
-    private static final String ANY_HELP = "Any wrong input will return to the beginning";
 
     public void doCommand(Request request, Response response) {
-        response.setResponse(Arrays.toString(Arrays.stream(Command.values())
-                .map(e -> e.command != null ? e.command : ANY_HELP)
-                .toArray()).replace("[", "").replace("]", ""));
+        String output = Arrays.stream(Command.values())
+                .map(e -> e.command)
+                .filter(Objects::nonNull)
+                .collect(Collectors.joining(", "));
+        response.setResponse(output);
     }
 
     @Override
