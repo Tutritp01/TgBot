@@ -8,11 +8,10 @@ public class HelpController implements CommandController {
     private static final Command command = Command.HELP;
 
     public void doCommand(Request request, Response response) {
-        String output = Arrays.stream(Command.values())
+        response.setResponse(Arrays.stream(Command.values())
                 .map(e -> e.command)
                 .filter(Objects::nonNull)
-                .collect(Collectors.joining(", "));
-        response.setResponse(output);
+                .collect(Collectors.joining(", ")));
     }
 
     @Override

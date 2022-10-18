@@ -2,7 +2,11 @@ package com.tutrit.stoservice.controller;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HelpControllerTest {
     HelpController helpController = new HelpController();
@@ -11,7 +15,10 @@ class HelpControllerTest {
     @Test
     void doCommand() {
         helpController.doCommand(new Request(""), response);
-        assertEquals("show data, exit, help", response.getResponse());
+        assertEquals(Arrays.stream(Command.values())
+                .map(e -> e.command)
+                .filter(obj -> Objects.nonNull(obj))
+                .collect(Collectors.joining(", ")), response.getResponse());
     }
 
     @Test
