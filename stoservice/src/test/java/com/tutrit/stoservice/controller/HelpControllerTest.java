@@ -11,7 +11,7 @@ class HelpControllerTest {
     @Test
     void doCommand() {
         helpController.doCommand(new Request(""), response);
-        assertEquals("show data, exit, help, Any wrong input will return to the beginning", response.getResponse());
+        assertEquals("show data, exit, help", response.getResponse());
     }
 
     @Test
