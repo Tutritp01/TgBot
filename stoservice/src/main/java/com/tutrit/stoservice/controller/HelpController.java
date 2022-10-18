@@ -9,7 +9,7 @@ public class HelpController implements CommandController {
     public void doCommand(Request request, Response response) {
         response.setResponse(Arrays.toString(Arrays.stream(Command.values())
                 .map(e -> e.command != null ? e.command : ANY_HELP)
-                .toArray()));
+                .toArray()).replace("[", "").replace("]", ""));
     }
 
     @Override
