@@ -95,6 +95,14 @@ class EngineerRepositoryTest {
     }
 
     @Test
+    void testFindNull() {
+        createFiveO();
+        Engineer engineerF = new Engineer("10", "Тесто", "Майко", "Инжинер по гарантии", "высшая", "высшее", 5, 10);
+        engineerRepository.find(engineerF);
+        assertNull(engineerRepository.find(engineerF));
+    }
+
+    @Test
     void testFindById() {
         createFiveF();
         assertEquals(engineer1, engineerRepository.findById("1"));
@@ -102,6 +110,12 @@ class EngineerRepositoryTest {
         assertEquals(engineer3, engineerRepository.findById("3"));
         assertEquals(engineer4, engineerRepository.findById("4"));
         assertEquals(engineer5, engineerRepository.findById("5"));
+    }
+
+    @Test
+    void testFindByIdNull() {
+        createFiveF();
+        assertNull(engineerRepository.findById("10"));
     }
 
     @Test
@@ -130,12 +144,25 @@ class EngineerRepositoryTest {
     }
 
     @Test
+    void testDeleteByIdNull() {
+        assertFalse(engineerRepository.deleteById("4"));
+    }
+
+    @Test
     void testCount() {
         createFiveO();
         engineerRepository.deleteById("4");
         assertNull(EngineerRepository.engineers[3]);
         engineerRepository.save(engineer4i);
         assertEquals("6", EngineerRepository.engineers[3].getIdEngineer());
+    }
+
+    @Test
+    void testFindAll() {
+        createFiveO();
+        Iterable testIterable = engineerRepository.findAll();
+        List testList = (List) testIterable;
+        assertEquals(5, testList.size());
     }
 
     void createFiveF() {
