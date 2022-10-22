@@ -6,8 +6,6 @@ import com.tutrit.stoservice.provider.CustomerProvider;
 import com.tutrit.stoservice.repository.*;
 import com.tutrit.stoservice.service.UserService;
 
-import java.util.Map;
-
 import static com.tutrit.stoservice.context.ApplicationContext.get;
 import static com.tutrit.stoservice.context.ApplicationContext.put;
 
