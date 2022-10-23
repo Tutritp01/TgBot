@@ -11,12 +11,12 @@ public class PromoRepository implements Repository<Promo, String> {
 
     public static final java.util.logging.Logger logger = Logger.getLogger(PromoRepository.class.getName());
 
-    private Set<Promo> promoSet = new HashSet<>();
+    private static Set<Promo> promoSet = new HashSet<>();
 
 
     @Override
     public Promo save(Promo promo) {
-        if (promoSet.contains(promo)) {
+        if (!promoSet.contains(promo)) {
             promoSet.add(promo);
         } else {
             logger.info("Promo already exists");
@@ -59,7 +59,7 @@ public class PromoRepository implements Repository<Promo, String> {
 
     @Override
     public Promo update(Promo promo) {
-        delete(promo);
+        delete(findById(promo.getId()));
         return save(promo);
     }
 
