@@ -1,12 +1,11 @@
 package com.tutrit.stoservice.controller;
 
-import java.util.*;
-
 public enum Command {
 
     SHOW_DATA("show data"),
     EXIT("exit"),
     HELP("help"),
+    REGISTER_NEW_USER("new_user"),
     NOT_A_COMMAND(null);
     String command;
 
@@ -20,6 +19,7 @@ public enum Command {
             case "show data" -> SHOW_DATA;
             case "exit" -> EXIT;
             case "help" -> HELP;
+            case "new_user" -> REGISTER_NEW_USER;
             default -> NOT_A_COMMAND;
         };
     }

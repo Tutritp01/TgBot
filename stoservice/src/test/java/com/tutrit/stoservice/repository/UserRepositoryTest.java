@@ -1,13 +1,11 @@
 package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.User;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserRepositoryTest {
 
@@ -16,29 +14,26 @@ class UserRepositoryTest {
     @BeforeEach
     void setUp() {
         userRepository = new UserRepository();
-        UserRepository.userMap.put("1", new User("1", "user1", "phone1"));
-        UserRepository.userMap.put("2", new User("2", "user2", "phone2"));
-        UserRepository.userMap.put("3", new User("3", "user3", "phone3"));
-        UserRepository.userMap.put("4", new User("4", "user4", "phone4"));
-    }
-
-    @AfterEach
-    void tearDown() {
-        UserRepository.userMap = new HashMap<>();
+        userRepository.save(new User("1", "user1", "phone1"));
+        userRepository.save(new User("2", "user2", "phone2"));
+        userRepository.save(new User("3", "user3", "phone3"));
+        userRepository.save(new User("4", "user4", "phone4"));
     }
 
     @Test
     void createUser() {
+        int expectedCount = userRepository.count() + 1;
         userRepository.save(new User("5", "user5", "phone5"));
-        assertEquals(5, UserRepository.userMap.size());
-        assertTrue(UserRepository.userMap.containsKey("5"));
+        assertEquals(expectedCount, userRepository.count());
     }
 
     @Test
     void findUser() {
+        int expectedCount = userRepository.count() + 1;
         User user = userRepository.save(new User("6", "user6", "phone6"));
-        userRepository.find(user);
-        assertEquals(5, UserRepository.userMap.size());
+        User expected = userRepository.find(user);
+        assertEquals(expectedCount, userRepository.count());
+        assertEquals(expected, userRepository.find(user));
     }
 
     @Test
@@ -50,22 +45,22 @@ class UserRepositoryTest {
 
     @Test
     void updateUser() {
-        userRepository.update(new User("2", "name6", "phone6"));
-        assertTrue(UserRepository.userMap.containsKey("2"));
+        User expected = userRepository.update(new User("2", "name6", "phone6"));
+        assertEquals(expected, userRepository.findById("2"));
     }
 
     @Test
     void deleteUserById() {
-        userRepository.deleteById("3");
-        assertEquals(3, UserRepository.userMap.size());
-        assertFalse(UserRepository.userMap.containsKey("3"));
+        int expectedCount = userRepository.count() - 1;
+        assertTrue(userRepository.deleteById("3"));
+        assertEquals(expectedCount, userRepository.count());
     }
 
     @Test
     void deleteUser() {
+        int expectedCount = userRepository.count();
         User user = userRepository.save(new User("9", "user9", "phone9"));
-        userRepository.delete(user);
-        assertEquals(4, UserRepository.userMap.size());
-        assertFalse(UserRepository.userMap.containsKey("9"));
+        assertTrue(userRepository.delete(user));
+        assertEquals(expectedCount, userRepository.count());
     }
 }
