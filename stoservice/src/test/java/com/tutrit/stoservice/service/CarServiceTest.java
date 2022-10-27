@@ -19,12 +19,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarServiceTest {
 
     CarController carController;
-    CarRepository carRepositoryMock;
+    CarRepositoryMock carRepositoryMock;
     CarService carService;
     Request request;
 
     @BeforeEach
     void setUp() {
+
         carRepositoryMock = new CarRepositoryMock();
         request = new Request("save car -d brand=tesla&model=X&generation=I&modification=suv&engine=diesel&year=2008");
         carService = new CarService(carRepositoryMock);
@@ -35,13 +36,12 @@ class CarServiceTest {
 
     @Test
     void saveCarToRep() {
-        Map<String, String> carInformation = stringToMapParser(request.getInformation());
+                Map<String, String> carInformation = stringToMapParser(request.getInformation());
         Car carExpected = new Car("2243434","tesla", "X", "I", "suv", "diesel", 2008);
         CarService.saveCarToRep(request);
-        assertThat(carRepositoryMock.save(carExpected))
+        assertThat(carRepositoryMock.capturedCar)
                 .usingRecursiveComparison()
                 .ignoringFields("id")
-                .isEqualTo(carRepositoryMock);
-
+                .isEqualTo(carExpected);
     }
 }

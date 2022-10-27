@@ -13,7 +13,7 @@ public class CarRepositoryMock extends CarRepository {
         return null;
     }
 
-    private void capture(final Car car) {
+    public void capture(final Car car) {
         final Car captured = new Car();
         captured.setId(car.getId());
         captured.setBrand(car.getBrand());
@@ -22,6 +22,6 @@ public class CarRepositoryMock extends CarRepository {
         captured.setModel(car.getModel());
         captured.setYear(car.getYear());
         captured.setModification(car.getModification());
-
+        capturedCar = captured;
     }
 }
