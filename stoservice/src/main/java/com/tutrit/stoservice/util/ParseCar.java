@@ -13,24 +13,18 @@ public class ParseCar {
         throw new IllegalStateException("Utility class");
     }
 
-    public static Car parseCommand(Request request) {
+    public static Car parseCommand(Request request) throws ArrayIndexOutOfBoundsException{
         var car = new Car();
         String userInput = request.getCommand();
         String[] parseMap = userInput.split("-d");
-        List<String> parseFlags = new ArrayList<>();
-        if (parseMap.length > 1) {
-            parseFlags.add(parseMap[0].trim());
-            parseFlags.add(parseMap[1].trim());
-        } else {
-            parseFlags.add(parseMap[0].trim());
-            parseFlags.add(null);
-        }
+        parseMap[0] = parseMap[0].strip();
+        parseMap[1] = parseMap[1].strip();
 
         Map<String, String> carInformation = stringToMapParser(parseMap[1]);
         car.setId(UUID.randomUUID().toString());
         for (int i = 0; i < carInformation.size(); i++) {
             switch (i) {
-                case 0 -> car.setBrand(carInformation.get(" brand"));
+                case 0 -> car.setBrand(carInformation.get("brand"));
                 case 1 -> car.setModel(carInformation.get("model"));
                 case 2 -> car.setGeneration(carInformation.get("generation"));
                 case 3 -> car.setModification(carInformation.get("modification"));

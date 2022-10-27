@@ -18,7 +18,12 @@ public class CarController implements CommandController {
     }
 
     public void doCommand(Request request, Response response) {
-        carService.saveCar(ParseCar.parseCommand(request));
-        response.setResponse("new car has been saved");
+        try {
+            carService.saveCar(ParseCar.parseCommand(request));
+            response.setResponse("new car has been saved");
+        }catch (Exception e){
+            response.setResponse("car not saved");
+        }
+
     }
 }
