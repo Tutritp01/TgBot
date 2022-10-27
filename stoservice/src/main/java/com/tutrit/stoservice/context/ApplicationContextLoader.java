@@ -22,7 +22,7 @@ public class ApplicationContextLoader{
         put(OrderRepository.class, new OrderRepository());
         put(UserRepository.class, new UserRepository());
 
-        put(CarService.class, new CarService(ApplicationContext.get(CarRepository.class)));
+        put(CarService.class, new CarService(get(CarRepository.class)));
 
         put(DataController.class, new DataController());
         put(ExitController.class, new ExitController());

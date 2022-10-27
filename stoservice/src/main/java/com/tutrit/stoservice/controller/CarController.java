@@ -5,7 +5,7 @@ import com.tutrit.stoservice.service.CarService;
 public class CarController implements CommandController {
 
     private static final Command command = Command.SAVE_CAR;
-    CarService carService;
+    private final CarService carService;
 
     public CarController(CarService carService) {
         this.carService = carService;
@@ -17,7 +17,7 @@ public class CarController implements CommandController {
     }
 
     public void doCommand(Request request, Response response) {
-        CarService.saveCarToRep(request);
+        CarService.saveCar(request);
         response.setResponse("car saved");
     }
 }
