@@ -11,10 +11,10 @@ public class UtilsInput {
         String[] parseMap = userInput.split("-d");
         List<String> parseFlags = new ArrayList<>();
         if (parseMap.length > 1) {
-            parseFlags.add(parseMap[0].trim());
-            parseFlags.add(parseMap[1].trim());
+            parseFlags.add(parseMap[0].strip());
+            parseFlags.add(parseMap[1].strip());
         } else {
-            parseFlags.add(parseMap[0].trim());
+            parseFlags.add(parseMap[0].strip());
             parseFlags.add(null);
         }
         return parseFlags;

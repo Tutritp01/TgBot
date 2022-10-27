@@ -1,7 +1,6 @@
 package com.tutrit.stoservice.controller;
 
 import java.util.List;
-
 import static com.tutrit.stoservice.utils.UtilsInput.parseFlags;
 
 public class Request {

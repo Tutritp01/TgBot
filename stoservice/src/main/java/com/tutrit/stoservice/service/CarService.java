@@ -15,7 +15,7 @@ public class CarService {
     private static CarRepository carRepository;
 
     public CarService(CarRepository carRepository) {
-        CarService.carRepository = carRepository;
+        this.carRepository = carRepository;
     }
 
     public static void saveCar(Request request) {
