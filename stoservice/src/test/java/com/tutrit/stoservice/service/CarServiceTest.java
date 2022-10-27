@@ -1,43 +1,36 @@
 package com.tutrit.stoservice.service;
 
 import com.tutrit.stoservice.bean.Car;
-import com.tutrit.stoservice.controller.CarController;
-import com.tutrit.stoservice.controller.Request;
+import com.tutrit.stoservice.context.ApplicationContext;
+import com.tutrit.stoservice.context.ApplicationContextLoader;
+import com.tutrit.stoservice.mock.CarRepositoryMock;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
-
-//import static com.tutrit.stoservice.utils.UtilsInput.stringToMapParser;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
 class CarServiceTest {
 
-    CarController carController;
-    CarRepositoryMock carRepositoryMock;
-    CarService carService;
-    Request request;
+    private CarService carService;
+
+    @BeforeAll
+    public static void load() {
+        ApplicationContextLoader.run();
+    }
 
     @BeforeEach
     void setUp() {
-
-        carRepositoryMock = new CarRepositoryMock();
-        request = new Request("save car -d brand=tesla&model=X&generation=I&modification=suv&engine=diesel&year=2008");
-        carService = new CarService(carRepositoryMock);
-        carController = new CarController(carService);
-        Car carExpected = new Car("2243434","tesla", "X", "I", "suv", "diesel", 2008);
+        carService = ApplicationContext.get(CarService.class);
+        carService.setCarRepository(new CarRepositoryMock());
     }
 
+    @Test
+    void saveCar() {
+        Car car = carService.saveCar(new Car("id", "brand", "model", "generation", "modification", "engine", 2008));
+        Assertions.assertEquals(makeCar(), car);
+    }
 
-//    @Test
-//    void saveCar() {
-//        Map<String, String> carInformation = stringToMapParser(request.getInformation());
-//        Car carExpected = new Car("2243434","tesla", "X", "I", "suv", "diesel", 2008);
-//        carService.saveCar(request);
-//        assertThat(carRepositoryMock.capturedCar)
-//                .usingRecursiveComparison()
-//                .ignoringFields("id")
-//                .isEqualTo(carExpected);
-//    }
+    private Car makeCar() {
+        return new Car("id", "brand", "model", "generation", "modification", "engine", 2008);
+    }
 }
