@@ -1,6 +1,7 @@
 package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.service.CarService;
+import com.tutrit.stoservice.util.ParseCar;
 
 public class CarController implements CommandController {
 
@@ -17,7 +18,7 @@ public class CarController implements CommandController {
     }
 
     public void doCommand(Request request, Response response) {
-        carService.saveCar(request);
+        carService.saveCar(ParseCar.parseCommand(request));
         response.setResponse("new car has been saved");
     }
 }

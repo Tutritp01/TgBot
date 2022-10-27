@@ -23,6 +23,6 @@ tg-bot/src/main/resources/application.properties
 bot.username={bot.username}
 
 bot.token={bot.token}
-Parameter entry example:
+# Parameter entry example:
 1) save car -d brand=tesla&model=X&generation=I&modification=suv&engine=diesel&year=2008
    

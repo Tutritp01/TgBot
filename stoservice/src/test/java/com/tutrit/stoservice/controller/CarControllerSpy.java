@@ -13,7 +13,7 @@ public class CarControllerSpy extends CarController{
 
     @Override
     public void doCommand(Request request, Response response) {
-        CarService.saveCar(request);
+//        CarService.saveCar(request);
         super.doCommand(request, response);
         numSaveCarToRep++;
     }
