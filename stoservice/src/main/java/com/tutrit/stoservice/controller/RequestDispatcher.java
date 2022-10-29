@@ -9,7 +9,7 @@ import static com.tutrit.stoservice.utils.GetCommand.getCommand;
 
 public class RequestDispatcher {
 
-    public static Logger logger = LoggerFactory.getLogger("Dispatcher");
+    public static final Logger logger = LoggerFactory.getLogger("Dispatcher");
 
 
     public void doDispatch(String userInput) {
@@ -23,7 +23,8 @@ public class RequestDispatcher {
             case NOT_A_COMMAND -> new NotACommandController().doCommand(request, response);
             case HELP -> new HelpController().doCommand(request, response);
             case NEW_CUSTOMER -> (get(CustomerController.class)).doCommand(request, response);
-
+            case REGISTER_NEW_USER -> get(UserController.class).doCommand(request, response);
+            case SAVE_CAR -> get(CarController.class).doCommand(request,response);
         }
         logger.info(response.getResponse());
     }
