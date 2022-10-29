@@ -20,6 +20,7 @@ public class RequestDispatcher {
             case NOT_A_COMMAND -> new NotACommandController().doCommand(request, response);
             case HELP -> new HelpController().doCommand(request, response);
             case REGISTER_NEW_USER -> get(UserController.class).doCommand(request, response);
+            case SAVE_CAR -> get(CarController.class).doCommand(request,response);
         }
         logger.info(response.getResponse());
     }

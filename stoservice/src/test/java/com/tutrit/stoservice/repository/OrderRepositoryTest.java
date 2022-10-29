@@ -4,6 +4,12 @@ import com.tutrit.stoservice.bean.Order;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.Assert;
+
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 
 import java.util.*;
 
@@ -17,9 +23,9 @@ class OrderRepositoryTest {
     Order order3;
     @BeforeEach
     void setUp() {
-        order1 = new Order("1", "Vasil", "lada", "to do" );
-        order2 = new Order("2", "Dima", "volga", "in progress" );
-        order3 = new Order("3", "Petya", "patriot", "closed" );
+        order1 = new Order("1", "Vasil", "lada", "to do");
+        order2 = new Order("2", "Dima", "volga", "in progress");
+        order3 = new Order("3", "Petya", "patriot", "closed");
         orderRepository = new OrderRepository();
         orderRepository.save(order1);
         orderRepository.save(order2);
@@ -57,16 +63,17 @@ class OrderRepositoryTest {
 
     @Test
     void findAll() {
-        Order order1 = new Order("1", "Vasil", "lada", "to do" );
-        Order order2 = new Order("2", "Dima", "volga", "in progress" );
-        Order order3 = new Order("3", "Petya", "patriot", "closed" );
+        Map<String, Order> orderMap = Map.of(
+            "1", new Order("1", "Vasil", "lada", "to do" ),
+            "2", new Order("2", "Dima", "volga", "in progress" ),
+            "3", new Order("3", "Petya", "patriot", "closed" )
+        );
 
-        Map<String, Order> orderMap = new HashMap<>();
-        orderMap.put(order1.getId(), order1);
-        orderMap.put(order2.getId(), order2);
-        orderMap.put(order3.getId(), order3);
+        final Map<String, Order> actualResult = StreamSupport
+                .stream(orderRepository.findAll().spliterator(), false)
+                .collect(Collectors.toMap(Order::getId, el -> el));
 
-        assertEquals(OrderRepository.orders.values(),  orderRepository.findAll());
+        assertEquals(orderMap, actualResult);
     }
 
     @Test

@@ -6,7 +6,6 @@ public class DataController implements CommandController {
     private static final Command command = Command.SHOW_DATA;
 
     public void doCommand(Request request, Response response) {
-        request.getCommand();
         response.setResponse(String.format(this.loadedDataAsString()));
     }
 
