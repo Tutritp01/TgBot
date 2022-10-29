@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class MessageRepository implements Repository<Message, String> {
 
     public static final Logger logger = Logger.getLogger(MessageRepository.class.getName());
-    private static final List<Message> messages = new ArrayList<>();
+    private static  List<Message> messages = new ArrayList<>();
 
     @Override
     public Message save(Message sms) {
@@ -41,8 +41,8 @@ public class MessageRepository implements Repository<Message, String> {
 
     @Override
     public Message findById(String id) {
-        for (final Message sms : messages) {
-            if (id.equals(sms.Id())) {
+        for (Message sms : messages) {
+            if (id.equals(sms.getId())) {
                 return sms;
             }
         }
@@ -51,19 +51,19 @@ public class MessageRepository implements Repository<Message, String> {
 
     @Override
     public Message update(Message sms) {
-        messages.set((messages.indexOf(findById(sms.Id()))), sms);
+        messages.set((messages.indexOf(findById(sms.getId()))), sms);
         return sms;
     }
 
     @Override
     public boolean delete(Message sms) {
-        return messages.remove(findById(sms.Id()));
+        return messages.remove(findById(sms.getId()));
     }
 
     @Override
     public boolean deleteById(String id) {
         for (final Message message : messages) {
-            if (message.Id().equals(id)) {
+            if (message.getId().equals(id)) {
                 messages.remove(message);
                 return true;
             }
