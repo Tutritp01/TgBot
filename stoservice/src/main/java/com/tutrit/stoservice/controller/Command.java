@@ -7,6 +7,7 @@ public enum Command {
     EXIT("exit"),
     HELP("help"),
     NEW_CUSTOMER("new customer"),
+    NEW_ENGINEER("new engineer"),
     REGISTER_NEW_USER("new_user"),
     NOT_A_COMMAND(null);
     String command;
@@ -23,6 +24,7 @@ public enum Command {
             case "help" -> HELP;
             case "new customer" -> NEW_CUSTOMER;
             case "new_user" -> REGISTER_NEW_USER;
+            case "new engineer" -> NEW_ENGINEER;
             case "save car" -> SAVE_CAR;
             default -> NOT_A_COMMAND;
         };

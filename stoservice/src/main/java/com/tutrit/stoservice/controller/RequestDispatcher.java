@@ -25,6 +25,7 @@ public class RequestDispatcher {
             case NEW_CUSTOMER -> (get(CustomerController.class)).doCommand(request, response);
             case REGISTER_NEW_USER -> get(UserController.class).doCommand(request, response);
             case SAVE_CAR -> get(CarController.class).doCommand(request,response);
+            case NEW_ENGINEER -> get(EngineerController.class).doCommand(request, response);
         }
         logger.info(response.getResponse());
     }
