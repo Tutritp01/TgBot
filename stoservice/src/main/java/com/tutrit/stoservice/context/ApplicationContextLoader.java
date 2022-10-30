@@ -36,7 +36,7 @@ public class ApplicationContextLoader {
         put(NotACommandController.class, new NotACommandController());
         put(UserController.class, new UserController(get(UserService.class)));
         put(CarController.class, new CarController(get(CarService.class)));
-
+        put(EngineerController.class, new EngineerController(get(EngineerService.class)));
         put(CustomerService.class, new CustomerService(get(CustomerRepository.class)));
         put(CustomerController.class, new CustomerController(get(CustomerService.class)));
 
