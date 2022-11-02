@@ -18,10 +18,10 @@ public class RequestDispatcher {
 
 
         switch (Command.fromString(getCommand(userInput))) {
-            case SHOW_DATA -> new DataController().doCommand(request, response);
-            case EXIT -> new ExitController().doCommand(request, response);
-            case NOT_A_COMMAND -> new NotACommandController().doCommand(request, response);
-            case HELP -> new HelpController().doCommand(request, response);
+            case SHOW_DATA -> get(DataController.class).doCommand(request, response);
+            case EXIT -> get(ExitController.class).doCommand(request, response);
+            case NOT_A_COMMAND ->get(NotACommandController.class).doCommand(request, response);
+            case HELP -> get(HelpController.class).doCommand(request, response);
             case NEW_CUSTOMER -> (get(CustomerController.class)).doCommand(request, response);
             case REGISTER_NEW_USER -> get(UserController.class).doCommand(request, response);
             case SAVE_CAR -> get(CarController.class).doCommand(request,response);
