@@ -17,11 +17,11 @@ public class DataController implements CommandController {
         UserRepository userRepository = new UserRepository();
         EngineerRepository engineerRepository = new EngineerRepository();
 
-        carRepository.findAll().forEach(car -> rs.append(car.toString()));
-        customerRepository.findAll().forEach(customer -> rs.append(customer.toString()));
-        orderRepository.findAll().forEach(order -> rs.append(order.toString()));
-        userRepository.findAll().forEach(user -> rs.append(user.toString()));
-        engineerRepository.findAll().forEach(engineer -> rs.append(engineer.toString()));
+        carRepository.findAll().forEach(car -> rs.append("\n").append(car.toString()));
+        customerRepository.findAll().forEach(customer -> rs.append("\n").append(customer.toString()));
+        orderRepository.findAll().forEach(order -> rs.append("\n").append(order.toString()));
+        userRepository.findAll().forEach(user -> rs.append("\n").append(user.toString()));
+        engineerRepository.findAll().forEach(engineer -> rs.append("\n").append(engineer.toString()));
 
         return rs.toString();
     }
