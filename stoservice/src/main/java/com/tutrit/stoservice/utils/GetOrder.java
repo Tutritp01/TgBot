@@ -74,7 +74,6 @@ public class GetOrder {
     private static Order makeOrder(HashMap<String, String> map) {
         var order = new Order();
         if (!map.isEmpty()) {
-            order.setId("id");
             order.setUser(map.get("user"));
             order.setCar(map.get("car"));
             order.setOrderStatus(map.get("orderStatus"));
