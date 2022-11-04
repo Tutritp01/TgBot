@@ -9,6 +9,6 @@ public class GetOrder {
     }
 
     public static Order getOrder(String inputMsg) {
-        return new Order();
+        return new Order("ID", "User", "Car", inputMsg);
     }
 }
