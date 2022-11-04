@@ -5,6 +5,8 @@ import com.tutrit.stoservice.context.ApplicationContextLoader;
 import com.tutrit.stoservice.repository.EngineerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 
@@ -25,16 +27,13 @@ class EngineerControllerTest {
         EngineerRepository.counted = 0;
     }
 
-    @Test
-    void doCommandFirst() {
-        request = new Request("new engineer -m -d {LastName:One FirstName:Two Function:Three Category:Four Education:Five Experience:6 GeneralExperience:7}");
-        engineerController.doCommand(request, response);
-        assertEquals("Engineer 1 is created", response.getResponse());
-    }
-
-    @Test
-    void doCommandSecond() {
-        request = new Request("new engineer -m -d {LastName:One FirstName:Two Function:Three Category:Four Education:Five Experience:6 GeneralExperience:7}");
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "new engineer -m -d {LastName:One FirstName:Two Function:Three Category:Four Education:Five Experience:6 GeneralExperience:7}",
+            "new engineer -m -d {LastName:One FirstName:Two Function:Three Category:Four Education:Five Experience:6 GeneralExperience:7}"
+    })
+    void doCommandFirst(String msgTxt) {
+        request = new Request(msgTxt);
         engineerController.doCommand(request, response);
         assertEquals("Engineer 1 is created", response.getResponse());
     }
@@ -55,6 +54,6 @@ class EngineerControllerTest {
     @Test
     void getCommandString() {
         command = engineerController.getCommand();
-        assertEquals("new engineer", command.command);
+        assertEquals("new engineer", command.commands);
     }
 }
