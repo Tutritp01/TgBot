@@ -9,6 +9,8 @@ public enum Command {
     NEW_CUSTOMER("new customer"),
     NEW_ENGINEER("new engineer"),
     REGISTER_NEW_USER("new_user"),
+
+    GET_CUSTOMER(" get customer"),
     NOT_A_COMMAND(null);
     String command;
 
@@ -26,6 +28,7 @@ public enum Command {
             case "new_user" -> REGISTER_NEW_USER;
             case "new engineer" -> NEW_ENGINEER;
             case "save car" -> SAVE_CAR;
+            case "get customer" -> GET_CUSTOMER;
             default -> NOT_A_COMMAND;
         };
     }
