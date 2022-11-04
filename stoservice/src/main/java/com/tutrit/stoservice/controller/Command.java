@@ -13,8 +13,6 @@ public enum Command {
     NOT_A_COMMAND(null);
     final String commands;
 
-    
-
     Command(String commands) {
         this.commands = commands;
     }
