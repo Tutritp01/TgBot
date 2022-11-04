@@ -50,6 +50,6 @@ class UserInputToEngineerTest {
 
     @Test
     void getEngineerBracesTest() {
-        assertNull(UserInputToEngineer.getEngineer("new engineer -m LN:One FN:Two Fun:Three Cat:Four Edu:Five Exp:6 GExp:7}"));
+        assertNull(UserInputToEngineer.getEngineer("new engineer -m -d LN:One FN:Two Fun:Three Cat:Four Edu:Five Exp:6 GExp:7}"));
     }
 }
