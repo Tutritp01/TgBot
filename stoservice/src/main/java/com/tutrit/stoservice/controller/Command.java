@@ -9,7 +9,6 @@ public enum Command {
     NEW_CUSTOMER("new customer"),
     NEW_ENGINEER("new engineer"),
     REGISTER_NEW_USER("new_user"),
-
     GET_CUSTOMER(" get customer"),
     NOT_A_COMMAND(null);
     String command;
