@@ -49,7 +49,7 @@ public class OrderRepository implements Repository<Order, String> {
     public Order findById(String id) {
         for (String key : orders.keySet()) {
             if (key.equals(id)) {
-                return orders.get(id);
+                return orders.get(key);
             }
         }
         return null;
