@@ -17,8 +17,12 @@ public class OrderController implements CommandController {
     @Override
     public void doCommand(Request request, Response response) {
         Order order = getOrder(request.getCommand());
-        orderService.saveOrder(order);
-        response.setResponse("Order " + order.getId() + " is created");
+        if (order != null) {
+            orderService.saveOrder(order);
+            response.setResponse("Order " + order.getId() + " is created");
+            return;
+        }
+        response.setResponse("Order not created");
     }
 
     @Override
