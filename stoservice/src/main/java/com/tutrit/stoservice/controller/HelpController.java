@@ -9,7 +9,7 @@ public class HelpController implements CommandController {
 
     public void doCommand(Request request, Response response) {
         response.setResponse(Arrays.stream(Command.values())
-                .map(e -> e.command)
+                .map(e -> e.commands)
                 .filter(Objects::nonNull)
                 .collect(Collectors.joining(", ")));
     }
