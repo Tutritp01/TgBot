@@ -59,8 +59,9 @@ class OrderRepositoryTest {
 
     @Test
     void find() {
+        var expected = new Order("2", "Dima", "volga", "in progress");
         Order actual = orderRepository.find(order2);
-        assertEquals(order2, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -106,12 +107,11 @@ class OrderRepositoryTest {
 
     @Test
     void update() {
-        order2 = new Order("2", "sas", "sss", "OrderStatus.CLOSED");
-        orderRepository.update(order2);
-        Order actual = orderRepository.findById(order2.getId());
-        assertEquals(order2, actual);
-        order2 = new Order("2", "Dima", "volga", "in progress");
-        orderRepository.update(order2);
+        var order4 = new Order("2", "sas", "sss", "OrderStatus.CLOSED");
+        var order5 = new Order("2", "sas", "sss", "OrderStatus.CLOSED");
+        orderRepository.update(order4);
+        var actual = orderRepository.findById("2");
+        assertEquals(order5, actual);
     }
 
     @Test
