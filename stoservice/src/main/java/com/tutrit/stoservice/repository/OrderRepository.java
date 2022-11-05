@@ -10,14 +10,13 @@ import java.util.Objects;
 public class OrderRepository implements Repository<Order, String> {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
-    public static Map<String, Order> orders = new HashMap<>();
-
-
+    protected static Map<String, Order> orders = new HashMap<>();
+    protected static int counted = 0;
 
     @Override
     public Order save(Order order) {
         if (!orders.containsKey(order.getId())) {
-            return orders.put(order.getId(), order);
+            return orders.put(Integer.toString(count()), order);
         }
         return null;
     }
@@ -84,6 +83,7 @@ public class OrderRepository implements Repository<Order, String> {
 
     @Override
     public int count() {
-        return orders.size();
+        counted++;
+        return counted;
     }
 }
