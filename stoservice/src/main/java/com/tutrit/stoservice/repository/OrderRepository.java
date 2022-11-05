@@ -10,8 +10,8 @@ import java.util.Objects;
 public class OrderRepository implements Repository<Order, String> {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
-    protected static Map<String, Order> orders = new HashMap<>();
-    protected static int counted = 0;
+    public static Map<String, Order> orders = new HashMap<>();
+    public static int counted = 0;
 
     @Override
     public Order save(Order order) {
