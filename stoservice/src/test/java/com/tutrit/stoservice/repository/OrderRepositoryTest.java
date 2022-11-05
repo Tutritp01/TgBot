@@ -27,6 +27,7 @@ class OrderRepositoryTest {
         order2 = new Order("2", "Dima", "volga", "in progress");
         order3 = new Order("3", "Petya", "patriot", "closed");
         orderRepository = new OrderRepository();
+        orderRepository.counted = 0;
         orderRepository.save(order1);
         orderRepository.save(order2);
         orderRepository.save(order3);
@@ -34,25 +35,27 @@ class OrderRepositoryTest {
 
     @Test
     void save() {
-        orderRepository.delete(order2);
-        order2 = new Order("2", "Dima", "volga", "in progress" );
-        orderRepository.save(order2);
-        assertEquals(order2, orderRepository.findById("2"));
+        var order4 = new Order("", "Dima", "volga", "closed" );
+        orderRepository.save(order4);
+        assertEquals(4, orderRepository.orders.size());
+        var order5 = new Order("", "Santa", "volga", "to do" );
+        orderRepository.save(order5);
+        assertEquals(5, orderRepository.orders.size());
     }
 
     @Test
     void saveAll() {
-        Order order1 = new Order("1", "Vasil", "lada", "to do" );
-        Order order2 = new Order("2", "Dima", "volga", "in progress" );
-        Order order3 = new Order("3", "Petya", "patriot", "closed" );
-        Order order4 = new Order("4", "Vika", "kadet", "to do" );
+        var order4 = new Order("", "Vasil", "lada", "to do" );
+        var order5 = new Order("", "Dima", "volga", "in progress" );
+        var order6 = new Order("", "Petya", "patriot", "closed" );
+        var order7 = new Order("", "Vika", "kadet", "to do" );
         List<Order> ordersList = new ArrayList<>();
-        ordersList.add(order1);
-        ordersList.add(order2);
-        ordersList.add(order3);
         ordersList.add(order4);
+        ordersList.add(order5);
+        ordersList.add(order6);
+        ordersList.add(order7);
         orderRepository.saveAll(ordersList);
-        assertEquals(4, orderRepository.count());
+        assertEquals(7, orderRepository.orders.size());
     }
 
     @Test
