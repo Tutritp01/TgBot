@@ -3,6 +3,7 @@ package com.tutrit.stoservice.repository;
 import com.tutrit.stoservice.bean.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -59,10 +60,11 @@ public class OrderRepository implements Repository<Order, String> {
     public Order update(Order order) {
         for (String key : orders.keySet()) {
             if (key.equals(order.getId())) {
-                return orders.put(order.getId(), order);
+                order.setId(key);
+                return orders.put(key, order);
             }
         }
-        logger.info("object cannot be updated, but maybe we can create a new object.");
+        logger.info("The object cannot be updated, but we can create a new object.");
         return null;
     }
 
@@ -78,7 +80,7 @@ public class OrderRepository implements Repository<Order, String> {
                 return Objects.nonNull(orders.remove(key));
             }
         }
-        logger.info("There is no such key in the map");
+        logger.info("There is no such key in the map.");
         return false;
     }
 
