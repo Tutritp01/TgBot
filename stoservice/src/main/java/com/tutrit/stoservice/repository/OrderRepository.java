@@ -16,7 +16,8 @@ public class OrderRepository implements Repository<Order, String> {
     @Override
     public Order save(Order order) {
         if (!orders.containsKey(order.getId())) {
-            return orders.put(Integer.toString(count()), order);
+            order.setId(Integer.toString(count()));
+            orders.put(order.getId(), order);
         }
         return null;
     }
