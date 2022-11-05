@@ -5,6 +5,8 @@ import com.tutrit.stoservice.context.ApplicationContextLoader;
 import com.tutrit.stoservice.repository.OrderRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,8 +25,15 @@ class OrderControllerTest {
         OrderRepository.counted = 0;
     }
 
-    @Test
-    void doCommand() {
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "new order -m -d {user:USER car:CAR orderStatus:ORDER-STATUS}",
+            "new order -m -d {user:USER car:CAR orderStatus:ORDER-STATUS}"
+    })
+    void doCommandFirst(String msgTxt) {
+        request = new Request(msgTxt);
+        orderController.doCommand(request, response);
+        assertEquals("Order 1 is created", response.getResponse());
     }
 
     @Test
