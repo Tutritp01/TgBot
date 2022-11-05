@@ -75,10 +75,10 @@ public class OrderRepository implements Repository<Order, String> {
     public boolean deleteById(String id) {
         for (String key : orders.keySet()) {
             if (key.equals(id)) {
-                return Objects.nonNull(orders.remove(id));
+                return Objects.nonNull(orders.remove(key));
             }
         }
-        logger.info("there is no such key in the map :(");
+        logger.info("There is no such key in the map");
         return false;
     }
 

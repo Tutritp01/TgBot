@@ -97,9 +97,11 @@ class OrderRepositoryTest {
 
     @Test
     void deleteById() {
-        Order order4 = new Order("4", "sas", "sss", "OrderStatus.CLOSED");
-        Assertions.assertFalse(orderRepository.deleteById(order4.getId()));
-        Assertions.assertTrue(orderRepository.deleteById(order2.getId()));
+        Order order4 = new Order("", "sas", "sss", "OrderStatus.CLOSED");
+        Assertions.assertFalse(orderRepository.deleteById("4"));
+        Assertions.assertTrue(orderRepository.deleteById("2"));
+        orderRepository.save(order4);
+        Assertions.assertTrue(orderRepository.deleteById("4"));
     }
 
     @Test
