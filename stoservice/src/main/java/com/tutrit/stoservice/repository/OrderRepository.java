@@ -25,6 +25,7 @@ public class OrderRepository implements Repository<Order, String> {
     @Override
     public void saveAll(Iterable<Order> ordersMap) {
         for (Order order : ordersMap) {
+            order.setId(Integer.toString(count()));
             orders.put(order.getId(), order);
         }
     }
