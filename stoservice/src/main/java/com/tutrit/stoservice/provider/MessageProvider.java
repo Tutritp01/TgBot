@@ -2,7 +2,6 @@ package com.tutrit.stoservice.provider;
 
 import com.tutrit.stoservice.bean.Message;
 import com.tutrit.stoservice.bean.MessageStatus;
-import com.tutrit.stoservice.bean.User;
 import com.tutrit.stoservice.repository.MessageRepository;
 import com.tutrit.stoservice.repository.UserMessageRepository;
 
@@ -21,15 +20,10 @@ public class MessageProvider {
 
     public static void getMessages() {
         for (int i = 0; i < 10; i++) {
-            User user = getUserInstance(i);
             Message message = getMessageInstance(i);
-            userMessageRepository.save(user, new ArrayList<>(List.of(message)));
+            userMessageRepository.save(UserProvider.getInstance(i), new ArrayList<>(List.of(message)));
             messageRepository.save(message);
         }
-    }
-
-    private static User getUserInstance(int i) {
-        return new User("Id" + i, "User" + i, "Phone" + i);
     }
 
     private static Message getMessageInstance(int i) {
