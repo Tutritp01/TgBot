@@ -2,11 +2,12 @@ package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.bean.Engineer;
 import com.tutrit.stoservice.service.EngineerService;
+import com.tutrit.stoservice.utils.GetCommand;
 
 import static com.tutrit.stoservice.utils.UserInputToEngineer.getEngineer;
 
 public class EngineerController implements CommandController {
-    public static final Command command = Command.NEW_ENGINEER;
+    public static Command command;
 
     EngineerService engineerService;
 
@@ -21,12 +22,22 @@ public class EngineerController implements CommandController {
 
     @Override
     public void doCommand(Request request, Response response) {
-        Engineer engineer = getEngineer(request.getCommand());
-        if (engineer != null) {
-            engineerService.save(engineer);
-            response.setResponse("Engineer " + engineer.getIdEngineer() + " is created");
-            return;
+        switch (GetCommand.getCommand(request.getCommand())) {
+            case "new engineer" -> {
+                command = Command.NEW_ENGINEER;
+                Engineer engineer = getEngineer(request.getCommand());
+                if (engineer != null) {
+                    engineerService.save(engineer);
+                    response.setResponse("Engineer " + engineer.getIdEngineer() + " is created");
+                    return;
+                }
+                response.setResponse("Engineer not created");
+            }
+            case "get engineer id" -> {
+                command = Command.GET_ENGINEER_ID;
+                String id = getID(request.getCommand());
+                engineerService.findById(request.getCommand);
+            }
         }
-        response.setResponse("Engineer not created");
     }
 }
