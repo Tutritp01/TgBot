@@ -1,5 +1,8 @@
 package com.tutrit.stoservice.bean;
 
+import com.tutrit.stoservice.dto.CarDto;
+import com.tutrit.stoservice.parser.MapTo;
+
 import java.util.Objects;
 
 public class Car {
@@ -11,6 +14,8 @@ public class Car {
     private String modification;
     private String engine;
     private int year;
+    @MapTo
+    private User user;
 
     public Car() {
     }

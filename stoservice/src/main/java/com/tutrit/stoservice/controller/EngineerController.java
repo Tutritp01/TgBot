@@ -35,8 +35,6 @@ public class EngineerController implements CommandController {
             }
             case "get engineer id" -> {
                 command = Command.GET_ENGINEER_ID;
-                String id = getID(request.getCommand());
-                engineerService.findById(request.getCommand);
             }
         }
     }
