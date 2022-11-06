@@ -3,7 +3,7 @@ package com.tutrit.stoservice.controller;
 import com.tutrit.stoservice.bean.Order;
 import com.tutrit.stoservice.service.OrderService;
 
-import static com.tutrit.stoservice.utils.GetOrder.getOrder;
+import static com.tutrit.stoservice.utils.UserInputToOrder.getOrder;
 
 public class OrderController implements CommandController {
     private static final Command command = Command.NEW_ORDER;
