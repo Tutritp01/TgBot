@@ -19,13 +19,13 @@ public class UserInputToEngineer {
         var engineer = new Engineer();
         if (!map.isEmpty()) {
             engineer.setIdEngineer("temp");
-            engineer.setFirstName(map.get("FirstName"));
-            engineer.setLastName(map.get("LastName"));
-            engineer.setFunction(map.get("Function"));
-            engineer.setCategory(map.get("Category"));
-            engineer.setEducation(map.get("Education"));
-            engineer.setExperience(Integer.parseInt(map.get("Experience")));
-            engineer.setGeneralExperience(Integer.parseInt(map.get("GeneralExperience")));
+            engineer.setFirstName(map.get("firstName"));
+            engineer.setLastName(map.get("lastName"));
+            engineer.setFunction(map.get("function"));
+            engineer.setCategory(map.get("category"));
+            engineer.setEducation(map.get("education"));
+            engineer.setExperience(Integer.parseInt(map.get("experience")));
+            engineer.setGeneralExperience(Integer.parseInt(map.get("generalExperience")));
             return engineer;
         }
         return null;
