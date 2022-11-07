@@ -24,8 +24,10 @@ public class UserInputToEngineer {
             engineer.setFunction(map.get("function"));
             engineer.setCategory(map.get("category"));
             engineer.setEducation(map.get("education"));
-            engineer.setExperience(Integer.parseInt(map.get("experience")));
-            engineer.setGeneralExperience(Integer.parseInt(map.get("generalExperience")));
+            String experience = map.get("experience");
+            String generalExperience = map.get("generalExperience");
+            if (experience != null) engineer.setExperience(Integer.parseInt(experience));
+            if (generalExperience != null) engineer.setGeneralExperience(Integer.parseInt(generalExperience));
             return engineer;
         }
         return null;

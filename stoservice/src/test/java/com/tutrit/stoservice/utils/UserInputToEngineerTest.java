@@ -52,4 +52,10 @@ class UserInputToEngineerTest {
     void getEngineerBracesTest() {
         assertNull(UserInputToEngineer.getEngineer("new engineer -m -d lastName:One firstName:Two function:Three category:Four education:Five experience:6 generalExperience:7}"));
     }
+
+    @Test
+    void getEngineerNotIntegerField() {
+        Engineer expectedNotIntegerField = new Engineer("temp", "Two", "One", "Three", "Four", "Five", 6, 0);
+        assertEquals(expectedNotIntegerField, UserInputToEngineer.getEngineer("new engineer -m -d {lastName:One firstName:Two function:Three category:Four education:Five experience:6 GeneralExperience:7}"));
+    }
 }
