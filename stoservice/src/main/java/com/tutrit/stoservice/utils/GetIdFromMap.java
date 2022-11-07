@@ -9,6 +9,6 @@ public class GetIdFromMap {
     }
 
     public static String getId (Map<String, String> map) {
-        return map.get("Id");
+        return map.get("id");
     }
 }
