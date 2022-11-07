@@ -13,4 +13,8 @@ public class EngineerService {
     public void save(Engineer engineer) {
         repository.save(engineer);
     }
+
+    public Engineer findById (String id) {
+        return repository.findById(id);
+    }
 }
