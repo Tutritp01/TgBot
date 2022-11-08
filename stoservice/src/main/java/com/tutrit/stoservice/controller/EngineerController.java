@@ -50,7 +50,7 @@ public class EngineerController implements CommandController {
             if (engineer != null) {
                 response.setResponse("Engineer with ID: " + engineer.getIdEngineer() + " found");
             } else {
-                response.setResponse("error 404: car with " + id + " not found");
+                response.setResponse("Error 404: car with " + id + " not found");
             }
             return;
         }
