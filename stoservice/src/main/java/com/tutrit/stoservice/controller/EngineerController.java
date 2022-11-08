@@ -43,7 +43,7 @@ public class EngineerController implements CommandController {
     }
 
     private void getEngineerId(Request request, Response response) {
-        command = Command.GET_ENGINEER_ID;
+        command = Command.GET_ENGINEER;
         String id = GetIdFromMap.getId(GetMap.getMap(request.getCommand()));
         if (id != null) {
             Engineer engineer = engineerService.findById(id);
@@ -52,6 +52,7 @@ public class EngineerController implements CommandController {
             } else {
                 response.setResponse("error 404: car with " + id + " not found");
             }
+            return;
         }
         response.setResponse("Incorrectly entered command, failed to find the ID");
     }
