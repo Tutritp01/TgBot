@@ -64,6 +64,30 @@ class EngineerControllerTest {
         getCommandStringGet();
     }
 
+    @Test
+    void doCommandGetEngineerNoId() {
+        request = new Request("new engineer -m -d {lastName:One firstName:Two function:Three category:Four education:Five experience:6 generalExperience:7}");
+        engineerController.doCommand(request, response);
+        engineerController.doCommand(request, response);
+        request = new Request("get engineer -m -d {id:}");
+        engineerController.doCommand(request, response);
+        assertEquals("Incorrectly entered command, failed to find the ID", response.getResponse());
+    }
+
+    @Test
+    void doCommandGetEngineerNotFound() {
+        request = new Request("new engineer -m -d {lastName:One firstName:Two function:Three category:Four education:Five experience:6 generalExperience:7}");
+        engineerController.doCommand(request, response);
+        engineerController.doCommand(request, response);
+        request = new Request("get engineer -m -d {id:1}");
+        engineerController.doCommand(request, response);
+        assertEquals("Engineer with ID: 1 found", response.getResponse());
+        request = new Request("get engineer -m -d {id:3}");
+        engineerController.doCommand(request, response);
+        assertEquals("Error 404: car with 3 not found", response.getResponse());
+
+    }
+
     void getCommandToStringNew() {
         command = engineerController.getCommand();
         assertEquals("NEW_ENGINEER", command.toString());
