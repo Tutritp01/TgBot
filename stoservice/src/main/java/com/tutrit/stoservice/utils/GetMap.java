@@ -49,7 +49,7 @@ public class GetMap {
             String[] flagAndArgs = object.split(split);
             for (String block : flagAndArgs) {
                 String[] temp = block.split(":");
-                map.put(temp[0], temp[1]);
+                if (temp.length>1) map.put(temp[0], temp[1]);
             }
         }
         return map;
