@@ -10,6 +10,7 @@ public enum Command {
     NEW_ENGINEER("new engineer"),
     REGISTER_NEW_USER("new_user"),
     NEW_ORDER("new order"),
+    NEW_EVENT("new event"),
     NOT_A_COMMAND(null);
     final String commands;
 
@@ -27,6 +28,7 @@ public enum Command {
             case "new engineer" -> NEW_ENGINEER;
             case "save car" -> SAVE_CAR;
             case "new order" -> NEW_ORDER;
+            case "new event" -> NEW_EVENT;
             default -> NOT_A_COMMAND;
         };
     }

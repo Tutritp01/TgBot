@@ -23,15 +23,18 @@ public class ApplicationContextLoader {
         put(EngineerRepository.class, new EngineerRepository());
         put(OrderRepository.class, new OrderRepository());
         put(UserRepository.class, new UserRepository());
+        put(MessageRepository.class, new MessageRepository());
 
         put(UserService.class, new UserService(get(UserRepository.class)));
         put(EngineerService.class, new EngineerService(get(EngineerRepository.class)));
         put(CarService.class, new CarService(get(CarRepository.class)));
         put(CustomerService.class, new CustomerService(get(CustomerRepository.class)));
         put(OrderService.class, new OrderService(get(OrderRepository.class)));
+        put(MessageService.class, new MessageService(get(MessageRepository.class)));
 
         put(CustomerController.class, new CustomerController(get(CustomerService.class)));
-        put(UserController.class, new UserController(get(UserService.class)));
+        put(UserController.class, new UserController(get(UserService.class),
+                get(MessageService.class)));
         put(CarController.class, new CarController(get(CarService.class)));
         put(EngineerController.class, new EngineerController(get(EngineerService.class)));
         put(OrderController.class, new OrderController(get(OrderService.class)));

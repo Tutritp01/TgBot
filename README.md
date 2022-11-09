@@ -25,4 +25,5 @@ bot.username={bot.username}
 bot.token={bot.token}
 # Parameter entry example:
 1) save car -d brand=tesla&model=X&generation=I&modification=suv&engine=diesel&year=2008
+2) new event -i 121 -n Bob -p 123456 -d eventText=black Friday&startDate=12-12-2012
    

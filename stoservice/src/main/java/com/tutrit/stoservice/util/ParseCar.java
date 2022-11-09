@@ -2,9 +2,10 @@ package com.tutrit.stoservice.util;
 
 import com.tutrit.stoservice.bean.Car;
 import com.tutrit.stoservice.controller.Request;
-import java.util.*;
+import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
+import static com.tutrit.stoservice.util.ParseMessage.getStringStringMap;
 
 public class ParseCar {
     private static final Logger logger = Logger.getLogger(ParseCar.class.getName());
@@ -37,15 +38,6 @@ public class ParseCar {
     }
 
     private static Map<String, String> stringToMapParser(String toParse) {
-        try {
-            final String[] keysAndValues = toParse.split("&");
-            return Arrays.stream(keysAndValues)
-                    .collect(Collectors.toMap(
-                            a -> a.substring(0, a.indexOf("=")),
-                            b -> b.substring(b.indexOf("=") + 1)
-                    ));
-        }catch (NullPointerException e){
-            return Collections.emptyMap();
-        }
+        return getStringStringMap(toParse);
     }
 }

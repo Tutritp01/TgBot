@@ -20,8 +20,9 @@ public class ParseUser {
 
         List<Integer> positions = new ArrayList<>();
         int i = 0;
+        String userBody = getUserFromQuery(request);
         while (i != -1) {
-            int index = request.getCommand().indexOf("-", i);
+            int index = userBody.indexOf("-", i);
             if (index != -1) {
                 positions.add(index);
                 i = index + 1;
@@ -35,19 +36,23 @@ public class ParseUser {
             int pos = positions.get(k);
             if (k == positions.size() - 1) {
                 parameters.put(
-                        request.getCommand().substring(pos + 1, pos + 2),
-                        request.getCommand().substring(pos + 3));
+                        userBody.substring(pos + 1, pos + 2),
+                        userBody.substring(pos + 3));
             } else {
                 parameters.put(
-                        request.getCommand().substring(pos + 1, pos + 2),
-                        request.getCommand().substring(pos + 3, positions.get(k + 1) - 1));
+                        userBody.substring(pos + 1, pos + 2),
+                        userBody.substring(pos + 3, positions.get(k + 1) - 1));
             }
         }
-
         user.setId(parameters.get("i"));
         user.setName(parameters.get("n"));
         user.setPhoneNumber(parameters.get("p"));
-
         return user;
+    }
+    private static String getUserFromQuery(Request request){
+        String massageInput = request.getCommand();
+        String[] parseMap = massageInput.split("-d");
+        parseMap[0] = parseMap[0].strip();
+        return parseMap[0];
     }
 }
