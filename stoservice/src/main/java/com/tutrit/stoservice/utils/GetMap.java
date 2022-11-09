@@ -1,21 +1,19 @@
 package com.tutrit.stoservice.utils;
 
-import com.tutrit.stoservice.bean.Order;
-
 import java.util.HashMap;
 
-public class GetOrder {
+public class GetMap {
 
-    private GetOrder() {
+    private GetMap() {
         throw new IllegalStateException("Utility class");
     }
 
-    public static Order getOrder(String inputMsg) {
+    public static HashMap<String, String> getMap(String inputMsg) {
         HashMap<String, String> map;
         String[] keyAndSplit = getKey(inputMsg).split(":", 2);
         var object = getObject(inputMsg);
         if (object == null) {
-            return makeOrder(new HashMap<>());
+            return new HashMap<>();
         }
         map = switch (keyAndSplit[0]) {
             case "json" -> objectToMapJson(object);
@@ -24,7 +22,14 @@ public class GetOrder {
             default -> new HashMap<>();
         };
 
-        return makeOrder(map);
+        return map;
+    }
+
+    private static String getObject(String inputMsg) {
+        if (inputMsg.contains("{") && inputMsg.contains("}")) {
+            return inputMsg.substring(inputMsg.indexOf('{') + 1, inputMsg.indexOf('}'));
+        }
+        return null;
     }
 
     private static String getKey(String inputMsg) {
@@ -34,11 +39,20 @@ public class GetOrder {
         return "null";
     }
 
-    private static String getObject(String inputMsg) {
-        if (inputMsg.contains("{") && inputMsg.contains("}")) {
-            return inputMsg.substring(inputMsg.indexOf('{') + 1, inputMsg.indexOf('}'));
+    private static HashMap<String, String> objectToMap(String object, String split) {
+        HashMap<String, String> map = new HashMap<>();
+        switch (split) {
+            case "|":
+                split = "\\|";
         }
-        return null;
+        if (!object.equals("")) {
+            String[] flagAndArgs = object.split(split);
+            for (String block : flagAndArgs) {
+                String[] temp = block.split(":");
+                if (temp.length>1) map.put(temp[0], temp[1]);
+            }
+        }
+        return map;
     }
 
     private static HashMap<String, String> objectToMapJson(String object) {
@@ -53,32 +67,5 @@ public class GetOrder {
             }
         }
         return map;
-    }
-
-    private static HashMap<String, String> objectToMap(String object, String split) {
-        HashMap<String, String> map = new HashMap<>();
-        switch (split) {
-            case "|":
-                split = "\\|";
-        }
-        if (!object.equals("")) {
-            String[] flagAndArgs = object.split(split);
-            for (String block : flagAndArgs) {
-                String[] temp = block.split(":");
-                map.put(temp[0], temp[1]);
-            }
-        }
-        return map;
-    }
-
-    private static Order makeOrder(HashMap<String, String> map) {
-        var order = new Order();
-        if (!map.isEmpty()) {
-            order.setUser(map.get("user"));
-            order.setCar(map.get("car"));
-            order.setOrderStatus(map.get("orderStatus"));
-            return order;
-        }
-        return null;
     }
 }

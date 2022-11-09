@@ -29,31 +29,82 @@ class EngineerControllerTest {
 
     @ParameterizedTest
     @ValueSource(strings = {
-            "new engineer -m -d {LastName:One FirstName:Two Function:Three Category:Four Education:Five Experience:6 GeneralExperience:7}",
-            "new engineer -m -d {LastName:One FirstName:Two Function:Three Category:Four Education:Five Experience:6 GeneralExperience:7}"
+            "new engineer -m -d {lastName:One firstName:Two function:Three category:Four education:Five experience:6 generalExperience:7}",
+            "new engineer -m -d {lastName:One firstName:Two function:Three category:Four education:Five experience:6 generalExperience:7}"
     })
-    void doCommandFirst(String msgTxt) {
+    void doCommandFirstNew(String msgTxt) {
         request = new Request(msgTxt);
         engineerController.doCommand(request, response);
         assertEquals("Engineer 1 is created", response.getResponse());
+        getCommandToStringNew();
+        getCommandStringNew();
     }
 
     @Test
-    void doCommandFailRequest() {
-        request = new Request("new engineer -m -d LastName:One FirstName:Two Function:Three Category:Four Education:Five Experience:6 GeneralExperience:7}");
+    void doCommandFailRequestNew() {
+        request = new Request("new engineer -m -d lastName:One firstName:Two function:Three category:Four education:Five experience:6 generalExperience:7}");
         engineerController.doCommand(request, response);
         assertEquals("Engineer not created", response.getResponse());
+        getCommandToStringNew();
+        getCommandStringNew();
     }
 
     @Test
-    void getCommandToString() {
+    void doCommandGetEngineer () {
+        request = new Request("new engineer -m -d {lastName:One firstName:Two function:Three category:Four education:Five experience:6 generalExperience:7}");
+        engineerController.doCommand(request, response);
+        engineerController.doCommand(request, response);
+        request = new Request("get engineer -m -d {id:1}");
+        engineerController.doCommand(request, response);
+        assertEquals("Engineer with ID: 1 found", response.getResponse());
+        request = new Request("get engineer -m -d {id:2}");
+        engineerController.doCommand(request, response);
+        assertEquals("Engineer with ID: 2 found", response.getResponse());
+        getCommandToStringGet();
+        getCommandStringGet();
+    }
+
+    @Test
+    void doCommandGetEngineerNoId() {
+        request = new Request("new engineer -m -d {lastName:One firstName:Two function:Three category:Four education:Five experience:6 generalExperience:7}");
+        engineerController.doCommand(request, response);
+        engineerController.doCommand(request, response);
+        request = new Request("get engineer -m -d {id:}");
+        engineerController.doCommand(request, response);
+        assertEquals("Incorrectly entered command, failed to find the ID", response.getResponse());
+    }
+
+    @Test
+    void doCommandGetEngineerNotFound() {
+        request = new Request("new engineer -m -d {lastName:One firstName:Two function:Three category:Four education:Five experience:6 generalExperience:7}");
+        engineerController.doCommand(request, response);
+        engineerController.doCommand(request, response);
+        request = new Request("get engineer -m -d {id:1}");
+        engineerController.doCommand(request, response);
+        assertEquals("Engineer with ID: 1 found", response.getResponse());
+        request = new Request("get engineer -m -d {id:3}");
+        engineerController.doCommand(request, response);
+        assertEquals("Error 404: car with 3 not found", response.getResponse());
+
+    }
+
+    void getCommandToStringNew() {
         command = engineerController.getCommand();
         assertEquals("NEW_ENGINEER", command.toString());
     }
 
-    @Test
-    void getCommandString() {
+    void getCommandStringNew() {
         command = engineerController.getCommand();
         assertEquals("new engineer", command.commands);
+    }
+
+    void getCommandToStringGet() {
+        command = engineerController.getCommand();
+        assertEquals("GET_ENGINEER", command.toString());
+    }
+
+    void getCommandStringGet() {
+        command = engineerController.getCommand();
+        assertEquals("get engineer", command.commands);
     }
 }
