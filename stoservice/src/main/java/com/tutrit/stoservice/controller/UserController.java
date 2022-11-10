@@ -2,6 +2,7 @@ package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.service.UserService;
 import com.tutrit.stoservice.util.ParseUser;
+import com.tutrit.stoservice.utils.GetCommand;
 
 public class UserController implements CommandController {
 
@@ -14,18 +15,13 @@ public class UserController implements CommandController {
 
     @Override
     public void doCommand(Request request, Response response) {
-        if (commandName(request).equals("register")){
+        if (GetCommand.getCommandFromRequest(request).equals("register")){
             userService.saveUserWithDiscount(ParseUser.parseCommand(request));
             response.setResponse("new user has been saved and got a 5% discount!");
         } else {
             userService.saveUser(ParseUser.parseCommand(request));
             response.setResponse("new user has been saved");
         }
-    }
-    public String commandName(Request request) {
-        String userInput = request.getCommand();
-        String[] parseMap = userInput.split("-");
-        return parseMap[0] = parseMap[0].strip();
     }
 
     @Override
