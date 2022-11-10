@@ -15,7 +15,7 @@ public class UserController implements CommandController {
 
     @Override
     public void doCommand(Request request, Response response) {
-        if (GetCommand.getCommandFromRequest(request).equals("register")){
+        if (GetCommand.getCommand(request.getCommand()).equals("register")){
             userService.saveUserWithDiscount(ParseUser.parseCommand(request));
             response.setResponse("new user has been saved and got a 5% discount!");
         } else {
