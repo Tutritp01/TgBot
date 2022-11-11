@@ -8,6 +8,7 @@ public class OrderRepositoryMock extends OrderRepository {
 
     @Override
     public Order save(Order order) {
+        order.setId("1");
         orders.put("1", order);
         return this.order;
     }

@@ -27,6 +27,12 @@ class OrderServiceTest {
     }
 
     @Test
+    void saveOrderNoIdTest() {
+        orderService.saveOrder(new Order("", "Vasil", "lada", "to do"));
+        assertEquals(expected, orderRepository.orders.get("1"));
+    }
+
+    @Test
     void findById() {
         assertEquals(expected, orderService.findById("id"));
     }
