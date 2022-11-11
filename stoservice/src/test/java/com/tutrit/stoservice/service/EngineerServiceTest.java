@@ -43,13 +43,13 @@ class EngineerServiceTest {
 
     @Test
     void saveTest() {
-        engineerService.save(engineer);
+        engineerService.saveEngineer(engineer);
         assertEquals(engineerExpected, engineerRepository.engineers[0]);
     }
 
     @Test
     void saveEngineerNoIdTest() {
-        engineerService.save(engineerNoId);
+        engineerService.saveEngineer(engineerNoId);
         assertEquals(engineerExpected, engineerRepository.engineers[0]);
     }
 }
