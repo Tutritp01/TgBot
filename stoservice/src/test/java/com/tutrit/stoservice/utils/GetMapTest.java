@@ -13,4 +13,9 @@ class GetMapTest {
     void getMapTest() {
         assertEquals(expected, GetMap.getMap("Text msg -m -d {One:OneValue Two:TwoValue Three:ThreeValue}"));
     }
+
+    @Test
+    void getMap() {
+        assertEquals(expected, GetMap.getMap("Text msg -d {One:OneValue Two:TwoValue Three:ThreeValue}"));
+    }
 }

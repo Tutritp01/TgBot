@@ -33,10 +33,10 @@ public class GetMap {
     }
 
     private static String getKey(String inputMsg) {
-        if (inputMsg.contains("-") && inputMsg.contains("-d")) {
+        if ((inputMsg.indexOf("-") != inputMsg.lastIndexOf("-")) && inputMsg.contains("-") && inputMsg.contains("-d")) {
             return inputMsg.substring(inputMsg.indexOf('-') + 1, inputMsg.indexOf("-d")).trim();
         }
-        return "null";
+        return "m";
     }
 
     private static HashMap<String, String> objectToMap(String object, String split) {
