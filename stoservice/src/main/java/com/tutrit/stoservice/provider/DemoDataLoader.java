@@ -25,5 +25,7 @@ public class DemoDataLoader {
 
         UserRepository userRepository = new UserRepository();
         userRepository.saveAll(UserProvider.getUsers(5));
+
+        MessageProvider.getMessages();
     }
 }

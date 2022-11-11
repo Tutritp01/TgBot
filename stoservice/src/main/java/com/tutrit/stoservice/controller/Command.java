@@ -8,6 +8,7 @@ public enum Command {
     HELP("help"),
     NEW_CUSTOMER("new customer"),
     NEW_ENGINEER("new engineer"),
+    GET_ENGINEER("get engineer"),
     REGISTER_NEW_USER("new_user"),
     NEW_ORDER("new order"),
     NEW_EVENT("new event"),
@@ -26,6 +27,7 @@ public enum Command {
             case "new customer" -> NEW_CUSTOMER;
             case "new_user" -> REGISTER_NEW_USER;
             case "new engineer" -> NEW_ENGINEER;
+            case "get engineer" -> GET_ENGINEER;
             case "save car" -> SAVE_CAR;
             case "new order" -> NEW_ORDER;
             case "new event" -> NEW_EVENT;
