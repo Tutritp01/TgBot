@@ -52,4 +52,9 @@ class EngineerServiceTest {
         engineerService.saveEngineer(engineerNoId);
         assertEquals(engineerExpected, engineerRepository.engineers[0]);
     }
+
+    @Test
+    void FindByIdTest() {
+        assertEquals(engineerExpected,engineerService.findById("text"));
+    }
 }
