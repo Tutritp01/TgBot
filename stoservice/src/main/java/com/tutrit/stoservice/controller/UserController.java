@@ -21,14 +21,17 @@ public class UserController implements CommandController {
     @Override
     public void doCommand(Request request, Response response) {
 
-        User newUser = userService.saveUser(ParseUser.parseCommand(request));
         switch (GetCommand.getCommand(request.getCommand())) {
             case "register" -> {
                 userService.saveUserWithDiscount(ParseUser.parseCommand(request));
                 response.setResponse("new user has been saved and got a 5% discount!");
             }
-            case "new_user" -> response.setResponse("new user has been saved");
+            case "new_user" -> {
+                userService.saveUser(ParseUser.parseCommand(request));
+                response.setResponse("new user has been saved");
+            }
             case "new event" -> {
+                userService.saveUser(ParseUser.parseCommand(request));
                 messageService.saveMessage(ParseMessage.parseCommand(request, newUser));
                 response.setResponse("new user and massage has been saved");
             }
