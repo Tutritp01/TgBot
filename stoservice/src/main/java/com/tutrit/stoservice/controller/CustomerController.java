@@ -50,7 +50,7 @@ public class CustomerController implements CommandController {
             if (customer != null) {
                 response.setResponse("Customer with ID: " + customer.getId() + " found");
             } else {
-                response.setResponse("Error 404: car with " + id + " not found");
+                response.setResponse("Error 404: customer with " + id + " not found");
             }
             return;
         }
