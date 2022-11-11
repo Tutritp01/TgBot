@@ -8,15 +8,16 @@ public enum Command {
     HELP("help"),
     NEW_CUSTOMER("new customer"),
     NEW_ENGINEER("new engineer"),
+    GET_ENGINEER("get engineer"),
     REGISTER_NEW_USER("new_user"),
     REGISTER("register"),
+    NEW_ORDER("new order"),
     NOT_A_COMMAND(null);
-    String command;
+    final String commands;
 
-    Command(String command) {
-        this.command = command;
+    Command(String commands) {
+        this.commands = commands;
     }
-
 
     public static Command fromString(String command) {
         return switch (command) {
@@ -26,8 +27,10 @@ public enum Command {
             case "new customer" -> NEW_CUSTOMER;
             case "new_user" -> REGISTER_NEW_USER;
             case "new engineer" -> NEW_ENGINEER;
+            case "get engineer" -> GET_ENGINEER;
             case "save car" -> SAVE_CAR;
             case "register" -> REGISTER;
+            case "new order" -> NEW_ORDER;
             default -> NOT_A_COMMAND;
         };
     }

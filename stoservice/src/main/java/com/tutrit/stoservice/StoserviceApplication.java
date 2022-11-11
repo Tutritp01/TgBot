@@ -2,6 +2,7 @@ package com.tutrit.stoservice;
 
 import com.tutrit.stoservice.context.ApplicationContextLoader;
 import com.tutrit.stoservice.provider.DemoDataLoader;
+import com.tutrit.stoservice.provider.SendMessageJob;
 import com.tutrit.stoservice.service.MenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +17,7 @@ public class StoserviceApplication {
         SpringApplication.run(StoserviceApplication.class, args);
         ApplicationContextLoader.run();
         new DemoDataLoader().run();
-        while (true) {
-            new MenuService().run();
-        }
+        new MenuService().start();
+        new SendMessageJob().start();
     }
 }
