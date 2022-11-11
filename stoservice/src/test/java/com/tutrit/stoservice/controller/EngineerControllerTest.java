@@ -84,7 +84,7 @@ class EngineerControllerTest {
         assertEquals("Engineer with ID: 1 found", response.getResponse());
         request = new Request("get engineer -m -d {id:3}");
         engineerController.doCommand(request, response);
-        assertEquals("Error 404: car with 3 not found", response.getResponse());
+        assertEquals("Error 404: Engineer with 3 not found", response.getResponse());
 
     }
 
