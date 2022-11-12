@@ -4,6 +4,7 @@ public enum Command {
 
     SHOW_DATA("show data"),
     SAVE_CAR("save car"),
+    GET_CAR("get car"),
     EXIT("exit"),
     HELP("help"),
     NEW_CUSTOMER("new customer"),
@@ -31,6 +32,7 @@ public enum Command {
             case "new engineer" -> NEW_ENGINEER;
             case "get engineer" -> GET_ENGINEER;
             case "save car" -> SAVE_CAR;
+            case "get car" -> GET_CAR;
             case "register" -> REGISTER;
             case "new order" -> NEW_ORDER;
             case "get order" -> GET_ORDER;
