@@ -38,7 +38,7 @@ public class CarRepository implements Repository<Car, String> {
 
     @Override
     public Car findById(String id) {
-        Car car = new Car();
+        Car car = null;
         try {
             if (!isContains(id)) {
                 throw new CarNotFoundException("Car not found!");
