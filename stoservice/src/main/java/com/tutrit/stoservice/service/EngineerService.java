@@ -10,7 +10,7 @@ public class EngineerService {
         this.repository = repository;
     }
 
-    public void save(Engineer engineer) {
+    public void saveEngineer(Engineer engineer) {
         repository.save(engineer);
     }
 

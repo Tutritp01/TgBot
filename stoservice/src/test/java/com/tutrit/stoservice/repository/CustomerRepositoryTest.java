@@ -4,9 +4,7 @@ import com.tutrit.stoservice.bean.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.SortedSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +15,7 @@ class CustomerRepositoryTest {
     @BeforeEach
     void SetUp() {
         customerRepository = new CustomerRepository();
+        CustomerRepository.customers.clear();
         CustomerRepository.customers.addAll(List.of(
                 new Customer("1", "customer1", "city1", "phoneNumber1", "email1"),
                 new Customer("2", "customer2", "city2", "phoneNumber2", "email2"),
@@ -86,7 +85,7 @@ class CustomerRepositoryTest {
     void updateCustomer() {
         Customer customer = new Customer("7", "customer7", "city7", "phoneNumber7", "email7");
         customerRepository.update(customer);
-        assertEquals(true, CustomerRepository.customers.contains(customer));
+        assertTrue(CustomerRepository.customers.contains(customer));
 
     }
 
@@ -101,7 +100,7 @@ class CustomerRepositoryTest {
     void deleteById() {
         Customer customerId = new Customer("9876", "customer5", "city5", "phoneNumber5", "email5");
         customerRepository.deleteById (customerId.getId());
-        assertEquals(false,customerRepository.deleteById (customerId.getId()));
+        assertFalse(customerRepository.deleteById (customerId.getId()));
 
     }
 
