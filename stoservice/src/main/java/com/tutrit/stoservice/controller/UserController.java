@@ -1,5 +1,6 @@
 package com.tutrit.stoservice.controller;
 
+import com.tutrit.stoservice.bean.Message;
 import com.tutrit.stoservice.bean.Promo;
 import com.tutrit.stoservice.bean.User;
 import com.tutrit.stoservice.service.MessageService;
@@ -44,6 +45,12 @@ public class UserController implements CommandController {
                 User newUser = userService.saveUser(ParseUser.parseCommand(request));
                 Promo promo = promoService.savePromo(ParsePromo.parseCommand(request, newUser));
                 response.setResponse("\nDear " + newUser.getName() + "! you created a promo: \n" + promo.toString());
+            }
+            case "start promo" -> {
+                Promo promo = promoService.findPromo(ParsePromo.getArray(request)[0]);
+                Message message = messageService.findMessage(ParsePromo.getArray(request)[1]);
+                message = messageService.updateMessage(message, promo);
+                response.setResponse(String.format("%nHi!!! a promo condition: %s", message.getEventText()));
             }
             default -> response.setResponse("Something went wrong");
        }

@@ -16,6 +16,16 @@ public class PromoService {
         return promoRepository.save(promo);
     }
 
+    public Promo findPromo(String name){
+        Iterable<Promo> result = promoRepository.findAll();
+        for (Promo promo : result) {
+            if(promo.getNamePromo().equals(name)){
+                return promo;
+            }
+        }
+        return null;
+    }
+
     public void setPromoRepository(PromoRepository promoRepository) {
         this.promoRepository = promoRepository;
     }
