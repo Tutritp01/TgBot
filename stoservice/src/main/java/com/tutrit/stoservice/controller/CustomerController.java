@@ -4,8 +4,7 @@ import com.tutrit.stoservice.bean.Customer;
 import com.tutrit.stoservice.service.CustomerService;
 import com.tutrit.stoservice.utils.GetIdFromMap;
 import com.tutrit.stoservice.utils.GetMap;
-
-import static com.tutrit.stoservice.utils.GetCustomer.getCustomer;
+import com.tutrit.stoservice.utils.UserInputToCustomer;
 
 public class CustomerController implements CommandController {
 
@@ -24,7 +23,6 @@ public class CustomerController implements CommandController {
 
     @Override
     public void doCommand(Request request, Response response) {
-        Customer customer = getCustomer(request.getCommand());
         switch (request.getCommand()) {
             case "new customer" -> newCustomer(request, response);
             case "get customer" -> getCustomerById(request, response);
@@ -33,7 +31,7 @@ public class CustomerController implements CommandController {
 
     private void newCustomer(Request request, Response response) {
         command = Command.NEW_CUSTOMER;
-        Customer customer = getCustomer(request.getCommand());
+        Customer customer = UserInputToCustomer.getCustomer(request.getCommand());
         if (customer != null) {
             customerService.saveCustomer(customer);
             response.setResponse("Customer " + customer.getId() + "is saved");
