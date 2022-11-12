@@ -15,8 +15,8 @@ public class MapToUser {
     private static User makeUser(HashMap<String, String> map) {
         var user = new User();
         if (!map.isEmpty()) {
-            user.setName("name");
-            user.setPhoneNumber("phoneNumber");
+            user.setName(map.get("name"));
+            user.setPhoneNumber(map.get("phoneNumber"));
             return user;
         }
         return null;
