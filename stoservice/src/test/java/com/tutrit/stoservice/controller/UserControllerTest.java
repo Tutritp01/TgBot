@@ -1,6 +1,8 @@
 package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.context.ApplicationContextLoader;
+import com.tutrit.stoservice.service.MessageService;
+import com.tutrit.stoservice.service.PromoService;
 import com.tutrit.stoservice.service.UserService;
 import com.tutrit.stoservice.spy.UserControllerSpy;
 import org.junit.jupiter.api.BeforeAll;
@@ -23,7 +25,9 @@ class UserControllerTest {
     @BeforeEach
     public void setUp() {
         userController = get(UserController.class);
-        userControllerSpy = new UserControllerSpy(get(UserService.class));
+        userControllerSpy = new UserControllerSpy(get(UserService.class),
+                get(MessageService.class),
+                get(PromoService.class));
     }
 
     @Test
