@@ -5,7 +5,8 @@ import com.tutrit.stoservice.repository.CustomerRepository;
 
 public class CustomerService {
 
-   private static CustomerRepository customerRepository;
+    private static CustomerRepository customerRepository;
+
 
     public CustomerService(final CustomerRepository customerRepository) {
 
@@ -14,5 +15,8 @@ public class CustomerService {
 
     public void saveCustomer(Customer customer) {
         customerRepository.save(customer);
+    }
+    public Customer getCustomer(String id) {
+        return customerRepository.findById(id);
     }
 }
