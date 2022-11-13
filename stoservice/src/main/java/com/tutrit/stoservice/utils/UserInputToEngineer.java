@@ -2,7 +2,7 @@ package com.tutrit.stoservice.utils;
 
 import com.tutrit.stoservice.bean.Engineer;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class UserInputToEngineer {
 
@@ -11,11 +11,11 @@ public class UserInputToEngineer {
     }
 
     public static Engineer getEngineer(String inputMsg) {
-        HashMap<String, String> map = GetMap.getMap(inputMsg);
+        Map<String, String> map = GetMap.getMap(inputMsg);
         return makeEngineer(map);
     }
 
-    private static Engineer makeEngineer(HashMap<String, String> map) {
+    private static Engineer makeEngineer(Map<String, String> map) {
         var engineer = new Engineer();
         if (!map.isEmpty()) {
             engineer.setIdEngineer("temp");

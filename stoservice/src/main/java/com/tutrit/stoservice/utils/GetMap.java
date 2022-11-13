@@ -1,6 +1,7 @@
 package com.tutrit.stoservice.utils;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class GetMap {
 
@@ -8,7 +9,7 @@ public class GetMap {
         throw new IllegalStateException("Utility class");
     }
 
-    public static HashMap<String, String> getMap(String inputMsg) {
+    public static Map<String, String> getMap(String inputMsg) {
         HashMap<String, String> map;
         String[] keyAndSplit = getKey(inputMsg).split(":", 2);
         var object = getObject(inputMsg);
@@ -33,10 +34,12 @@ public class GetMap {
     }
 
     private static String getKey(String inputMsg) {
-        if (inputMsg.contains("-") && inputMsg.contains("-d")) {
+        if (inputMsg.contains("{")) inputMsg = inputMsg.substring(0, inputMsg.indexOf('{'));
+        if (!inputMsg.contains("-d")) return "error";
+        if ((inputMsg.indexOf("-") != inputMsg.lastIndexOf("-")) && inputMsg.contains("-") && inputMsg.contains("-d")) {
             return inputMsg.substring(inputMsg.indexOf('-') + 1, inputMsg.indexOf("-d")).trim();
         }
-        return "null";
+        return "m";
     }
 
     private static HashMap<String, String> objectToMap(String object, String split) {

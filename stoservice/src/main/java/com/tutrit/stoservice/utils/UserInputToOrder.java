@@ -2,7 +2,7 @@ package com.tutrit.stoservice.utils;
 
 import com.tutrit.stoservice.bean.Order;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class UserInputToOrder {
 
@@ -11,11 +11,11 @@ public class UserInputToOrder {
     }
 
     public static Order getOrder(String inputMsg) {
-        HashMap<String, String> map = GetMap.getMap(inputMsg);
+        Map<String, String> map = GetMap.getMap(inputMsg);
         return makeOrder(map);
     }
 
-    private static Order makeOrder(HashMap<String, String> map) {
+    private static Order makeOrder(Map<String, String> map) {
         var order = new Order();
         if (!map.isEmpty()) {
             order.setUser(map.get("user"));
