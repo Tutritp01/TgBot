@@ -10,7 +10,6 @@ public enum Command {
     NEW_CUSTOMER("new customer"),
     NEW_ENGINEER("new engineer"),
     GET_ENGINEER("get engineer"),
-
     GET_CUSTOMER ("get customer"),
     REGISTER_NEW_USER("new_user"),
     REGISTER("register"),
@@ -18,6 +17,7 @@ public enum Command {
     GET_ORDER("get order"),
     NEW_EVENT("new event"),
     PROMO("promo"),
+    START_PROMO("start promo"),
     NOT_A_COMMAND(null);
     final String commands;
 
@@ -42,6 +42,7 @@ public enum Command {
             case "get order" -> GET_ORDER;
             case "new event" -> NEW_EVENT;
             case "promo" -> PROMO;
+            case "start promo" -> START_PROMO;
             default -> NOT_A_COMMAND;
         };
     }
