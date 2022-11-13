@@ -1,9 +1,12 @@
 package com.tutrit.stoservice.controller;
 
+import com.tutrit.stoservice.bean.Promo;
 import com.tutrit.stoservice.bean.User;
 import com.tutrit.stoservice.service.MessageService;
+import com.tutrit.stoservice.service.PromoService;
 import com.tutrit.stoservice.service.UserService;
 import com.tutrit.stoservice.util.ParseMessage;
+import com.tutrit.stoservice.util.ParsePromo;
 import com.tutrit.stoservice.util.ParseUser;
 import com.tutrit.stoservice.utils.GetCommand;
 
@@ -12,10 +15,12 @@ public class UserController implements CommandController {
     private static final Command command = Command.REGISTER_NEW_USER;
     private final UserService userService;
     private final MessageService messageService;
+    private final PromoService promoService;
 
-    public UserController(UserService userService, MessageService messageService) {
+    public UserController(UserService userService, MessageService messageService, PromoService promoService) {
         this.userService = userService;
         this.messageService = messageService;
+        this.promoService = promoService;
     }
     
     @Override
@@ -31,9 +36,14 @@ public class UserController implements CommandController {
                 response.setResponse("new user has been saved");
             }
             case "new event" -> {
-                userService.saveUser(ParseUser.parseCommand(request));
+                User newUser = userService.saveUser(ParseUser.parseCommand(request));
                 messageService.saveMessage(ParseMessage.parseCommand(request, newUser));
                 response.setResponse("new user and massage has been saved");
+            }
+            case "promo" -> {
+                User newUser = userService.saveUser(ParseUser.parseCommand(request));
+                Promo promo = promoService.savePromo(ParsePromo.parseCommand(request, newUser));
+                response.setResponse("\nDear " + newUser.getName() + "! you created a promo: \n" + promo.toString());
             }
             default -> response.setResponse("Something went wrong");
        }
