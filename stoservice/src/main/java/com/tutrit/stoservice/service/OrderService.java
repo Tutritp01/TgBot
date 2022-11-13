@@ -1,16 +1,20 @@
 package com.tutrit.stoservice.service;
 
 import com.tutrit.stoservice.bean.Order;
-import com.tutrit.stoservice.repository.OrderRepository;
+import com.tutrit.stoservice.repository.Repository;
 
 public class OrderService {
-    OrderRepository orderRepository;
+    Repository<Order, String> repository;
 
-    public OrderService(final OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
+    public OrderService(final Repository<Order, String> repository) {
+        this.repository = repository;
     }
 
-    public Order saveOrder(Order order) {
-        return orderRepository.save(order);
+    public void saveOrder(Order order) {
+        repository.save(order);
+    }
+
+    public Order findById(String id) {
+        return repository.findById(id);
     }
 }
