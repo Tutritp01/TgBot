@@ -32,14 +32,14 @@ public class UserController implements CommandController {
     
     @Override
     public void doCommand(Request request, Response response) {
-         switch (GetCommand.getCommand(request.getCommand())) {
+        switch (GetCommand.getCommand(request.getCommand())) {
             case "new user" -> newUser(request, response);
-            case "get user" -> getUserById(request, response);  
+            case "get user" -> getUserById(request, response);
             case "register" -> {
                 userService.saveUserWithDiscount(ParseUser.parseCommand(request));
                 response.setResponse("new user has been saved and got a 5% discount!");
             }
-                           
+
             case "new event" -> {
                 User newUser = userService.saveUser(ParseUser.parseCommand(request));
                 messageService.saveMessage(ParseMessage.parseCommand(request, newUser));
@@ -57,8 +57,9 @@ public class UserController implements CommandController {
                 response.setResponse(String.format("%nHi!!! a promo condition: %s", message.getEventText()));
             }
             default -> response.setResponse("Something went wrong");
-       }
-       
+        }
+    }
+
    private void newUser(Request request, Response response) {
         command = Command.REGISTER_NEW_USER;
         User user = getUser(request.getCommand());
@@ -84,7 +85,10 @@ public class UserController implements CommandController {
         }
         response.setResponse("Incorrectly entered command, failed to find the ID");
     }
-}
+
+
+
+
     @Override
     public Command getCommand() {
         return command;
