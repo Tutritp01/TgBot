@@ -29,4 +29,6 @@ bot.token={bot.token}
 3) new event -i 121 -n Bob -p 123456 -d eventText=black Friday&startDate=12-12-2012
 4) promo -i 1 -n Vladek -p +375291234567 -d discount=25&namePromo=BLACK&startDate=01-12-2022&endDate=30-12-2022
 5) start promo -d eventText=black Friday&namePromo=BLACK
+
+
    
