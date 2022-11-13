@@ -2,7 +2,7 @@ package com.tutrit.stoservice.utils;
 
 import com.tutrit.stoservice.bean.Customer;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class UserInputToCustomer {
 
@@ -11,11 +11,11 @@ public class UserInputToCustomer {
     }
 
     public static Customer getCustomer(String inputMsg) {
-        HashMap<String, String> map = GetMap.getMap(inputMsg);
+        Map<String, String> map = GetMap.getMap(inputMsg);
         return makeCustomer(map);
     }
 
-    private static Customer makeCustomer(HashMap<String, String> map) {
+    private static Customer makeCustomer(Map<String, String> map) {
         var customer = new Customer();
         if (!map.isEmpty()) {
             customer.setId("temp");
