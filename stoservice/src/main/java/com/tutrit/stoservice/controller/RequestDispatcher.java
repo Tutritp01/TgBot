@@ -19,7 +19,7 @@ public class RequestDispatcher {
             case EXIT -> get(ExitController.class).doCommand(request, response);
             case NOT_A_COMMAND -> get(NotACommandController.class).doCommand(request, response);
             case HELP -> get(HelpController.class).doCommand(request, response);
-            case NEW_CUSTOMER -> (get(CustomerController.class)).doCommand(request, response);
+            case NEW_CUSTOMER, GET_CUSTOMER -> (get(CustomerController.class)).doCommand(request, response);
             case REGISTER_NEW_USER, REGISTER, NEW_EVENT -> get(UserController.class).doCommand(request, response);
             case SAVE_CAR, GET_CAR -> get(CarController.class).doCommand(request, response);
             case NEW_ENGINEER, GET_ENGINEER -> get(EngineerController.class).doCommand(request, response);
