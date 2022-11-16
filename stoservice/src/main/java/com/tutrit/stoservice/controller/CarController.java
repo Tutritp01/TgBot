@@ -35,7 +35,7 @@ public class CarController implements CommandController {
         try {
             Car car = ParseCar.parseCommand(request);
             carService.saveCar(car);
-            response.setResponse("Car " + car.getId() + " is saved");
+            response.setResponse("new car has been saved");
         } catch (Exception e) {
             response.setResponse("Car not saved");
         }
