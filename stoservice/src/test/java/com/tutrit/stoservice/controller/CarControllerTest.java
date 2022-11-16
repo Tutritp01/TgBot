@@ -6,8 +6,9 @@ import com.tutrit.stoservice.spy.CarControllerSpy;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static com.tutrit.stoservice.context.ApplicationContext.get;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarControllerTest {
     private CarController carController;
@@ -26,7 +27,7 @@ class CarControllerTest {
 
     @Test
     void doCommand() {
-        var request = new Request("save car -d brand=tesla&model=X&generation=I&modification=suv&engine=diesel&year=2008");
+        var request = new Request("save car -d owner=Mask&vin=1234321&plateNumber=0000AA1&brand=tesla&model=X&generation=I&modification=suv&engine=diesel&year=2008");
         var response = new Response();
 
         carControllerSpy.doCommand(request, response);
@@ -41,6 +42,7 @@ class CarControllerTest {
 
     @Test
     void getCommand() {
+        carController.doCommand(new Request("save car"), new Response());
         Command expectedCommand = Command.fromString("save car");
         assertEquals(expectedCommand, carController.getCommand());
     }
