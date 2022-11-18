@@ -2,9 +2,11 @@ package com.tutrit.stoservice.util;
 
 import com.tutrit.stoservice.bean.Car;
 import com.tutrit.stoservice.controller.Request;
+
 import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Logger;
+
 import static com.tutrit.stoservice.util.ParseMessage.getStringStringMap;
 
 public class ParseCar {
@@ -14,7 +16,7 @@ public class ParseCar {
         throw new IllegalStateException("Utility class");
     }
 
-    public static Car parseCommand(Request request) throws ArrayIndexOutOfBoundsException{
+    public static Car parseCommand(Request request) throws ArrayIndexOutOfBoundsException {
         var car = new Car();
         String userInput = request.getCommand();
         String[] parseMap = userInput.split("-d");
@@ -23,17 +25,16 @@ public class ParseCar {
 
         Map<String, String> carInformation = stringToMapParser(parseMap[1]);
         car.setId(UUID.randomUUID().toString());
-        for (int i = 0; i < carInformation.size(); i++) {
-            switch (i) {
-                case 0 -> car.setBrand(carInformation.get("brand"));
-                case 1 -> car.setModel(carInformation.get("model"));
-                case 2 -> car.setGeneration(carInformation.get("generation"));
-                case 3 -> car.setModification(carInformation.get("modification"));
-                case 4 -> car.setEngine(carInformation.get("engine"));
-                case 5 -> car.setYear(Integer.parseInt(carInformation.get("year")));
-                default -> logger.info("No vehicle data has been saved.");
-            }
-        }
+        car.setOwner(carInformation.get("owner"));
+        car.setVin(carInformation.get("vin"));
+        car.setPlateNumber(carInformation.get("plateNumber"));
+        car.setBrand(carInformation.get("brand"));
+        car.setModel(carInformation.get("model"));
+        car.setGeneration(carInformation.get("generation"));
+        car.setModification(carInformation.get("modification"));
+        car.setEngine(carInformation.get("engine"));
+        car.setYear(Integer.parseInt(carInformation.get("year")));
+        if (carInformation.isEmpty()) logger.info("No vehicle data has been saved.");
         return car;
     }
 

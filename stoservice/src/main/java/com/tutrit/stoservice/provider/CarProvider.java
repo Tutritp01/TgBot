@@ -17,6 +17,6 @@ public class CarProvider {
     }
 
     public static Car getInstance() {
-        return new Car("id", "brand", "model", "generation", "modification", "engine", 2000);
+        return new Car("id", "owner", "vin", "plateNumber",  "brand", "model", "generation", "modification", "engine", 2000);
     }
 }

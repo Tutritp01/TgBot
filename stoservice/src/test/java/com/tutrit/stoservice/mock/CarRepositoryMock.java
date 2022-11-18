@@ -9,7 +9,7 @@ public class CarRepositoryMock extends CarRepository {
 
     @Override
     public Car save(Car car) {
-        return new Car("id", "brand", "model", "generation", "modification", "engine", 2008);
+        return new Car("id", "owner", "vin", "plateNumber", "brand", "model", "generation", "modification", "engine", 2008);
     }
 
     @Override

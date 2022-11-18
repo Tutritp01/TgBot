@@ -26,11 +26,11 @@ class CarServiceTest {
 
     @Test
     void saveCar() {
-        Car car = carService.saveCar(new Car("id", "brand", "model", "generation", "modification", "engine", 2008));
+        Car car = carService.saveCar(new Car("id", "owner", "vin", "plateNumber", "brand", "model", "generation", "modification", "engine", 2008));
         Assertions.assertEquals(makeCar(), car);
     }
 
     private Car makeCar() {
-        return new Car("id", "brand", "model", "generation", "modification", "engine", 2008);
+        return new Car("id", "owner", "vin", "plateNumber", "brand", "model", "generation", "modification", "engine", 2008);
     }
 }

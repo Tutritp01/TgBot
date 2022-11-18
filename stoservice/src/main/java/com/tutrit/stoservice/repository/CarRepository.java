@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class CarRepository implements Repository<Car, String> {
     public static final Logger logger = Logger.getLogger(CarRepository.class.getName());
-    public static List<Car> cars = new ArrayList<>();
+    private static final List<Car> cars = new ArrayList<>();
 
     @Override
     public Car save(Car car) {
