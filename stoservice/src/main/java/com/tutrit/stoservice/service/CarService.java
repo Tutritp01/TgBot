@@ -7,6 +7,9 @@ public class CarService {
 
     private CarRepository carRepository;
 
+    public CarService() {
+    }
+
     public CarService(final CarRepository carRepository) {
         this.carRepository = carRepository;
     }

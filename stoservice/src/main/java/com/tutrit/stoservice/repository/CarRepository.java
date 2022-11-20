@@ -11,6 +11,9 @@ public class CarRepository implements Repository<Car, String> {
     public static final Logger logger = Logger.getLogger(CarRepository.class.getName());
     public static List<Car> cars = new ArrayList<>();
 
+    public CarRepository() {
+    }
+
     @Override
     public Car save(Car car) {
         if (isContains(car.getId())) {

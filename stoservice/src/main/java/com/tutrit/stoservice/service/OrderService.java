@@ -6,6 +6,9 @@ import com.tutrit.stoservice.repository.Repository;
 public class OrderService {
     Repository<Order, String> repository;
 
+    public OrderService() {
+    }
+
     public OrderService(final Repository<Order, String> repository) {
         this.repository = repository;
     }
