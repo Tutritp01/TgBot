@@ -22,7 +22,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(String id, Customer customer, User userField, Car carField, Engineer engineer, String user, String car, String orderStatus) {
+    public Order(String id, Customer customer, User userField, Car carField, Engineer engineer, String orderStatus) {
         this.id = id;
         this.customer = customer;
         this.userField = userField;
@@ -32,8 +32,6 @@ public class Order {
         } catch (Exception e) {
             log.debug("Error adding engineer to order");
         }
-        this.user = user;
-        this.car = car;
         this.orderStatus = orderStatus;
     }
 
