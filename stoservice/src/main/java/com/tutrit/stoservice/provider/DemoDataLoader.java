@@ -23,6 +23,7 @@ public class DemoDataLoader {
 
         OrderRepository orderRepository = ApplicationContext.get(OrderRepository.class);
         orderRepository.saveAll(OrderProvider.getOrders(5));
+        orderRepository.saveAll(OrderProvider.getFiveRealOrder());
 
         UserRepository userRepository = ApplicationContext.get(UserRepository.class);
         userRepository.saveAll(UserProvider.getUsers(5));
