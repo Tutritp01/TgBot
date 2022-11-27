@@ -4,19 +4,19 @@ import com.tutrit.stoservice.context.ApplicationContextLoader;
 import com.tutrit.stoservice.provider.DemoDataLoader;
 import com.tutrit.stoservice.provider.SendMessageJob;
 import com.tutrit.stoservice.service.MenuService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.tutrit.stoservice.settings.Configurations;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import static com.tutrit.stoservice.context.ApplicationContext.get;
+
 @SpringBootApplication
 public class StoserviceApplication {
-    private static final Logger log = LoggerFactory.getLogger("main");
 
     public static void main(String[] args) {
         SpringApplication.run(StoserviceApplication.class, args);
         ApplicationContextLoader.run();
-        new DemoDataLoader().run();
+        if (get(Configurations.class).isLoadDataDemo()) new DemoDataLoader().run();
         new MenuService().start();
         new SendMessageJob().start();
     }
