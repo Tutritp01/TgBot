@@ -8,6 +8,10 @@ public class Configurations {
     private String pathToProperties = "stoservice/src/main/resources/config.properties";
     private boolean loadDataDemo;
 
+    public Configurations() {
+        getProperties();
+    }
+
     public void setPathToProperties(String pathToProperties) {
         this.pathToProperties = pathToProperties;
     }
