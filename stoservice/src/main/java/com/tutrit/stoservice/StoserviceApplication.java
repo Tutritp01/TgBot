@@ -16,7 +16,6 @@ public class StoserviceApplication {
     public static void main(String[] args) {
         SpringApplication.run(StoserviceApplication.class, args);
         ApplicationContextLoader.run();
-        get(Configurations.class).getProperties();
         if (get(Configurations.class).isLoadDataDemo()) new DemoDataLoader().run();
         new MenuService().start();
         new SendMessageJob().start();
