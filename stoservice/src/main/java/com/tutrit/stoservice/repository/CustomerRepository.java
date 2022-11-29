@@ -1,21 +1,20 @@
 package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Customer;
-import com.tutrit.stoservice.controller.Command;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
+import java.util.Collection;
 import java.util.HashSet;
 
 public class CustomerRepository implements Repository<Customer, String> {
 
-    public static Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
-    public static HashSet<Customer> customers = new HashSet<>();
+    public static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
+    private static HashSet<Customer> customers = new HashSet<>();
 
     @Override
     public Customer save(Customer customer) {
-        if (customers.contains(customer) == false) {
+        if (!customers.contains(customer)) {
             customers.add(customer);
         } else {
             logger.info("Customers already exists");
@@ -25,7 +24,7 @@ public class CustomerRepository implements Repository<Customer, String> {
 
     @Override
     public void saveAll(Iterable<Customer> obj) {
-       customers.addAll(new HashSet<>());
+        customers.addAll((Collection<? extends Customer>) obj);
 
     }
 
@@ -57,7 +56,7 @@ public class CustomerRepository implements Repository<Customer, String> {
 
     @Override
     public Customer update(Customer customer) {
-        if (customers.contains(customer) == true) {
+        if (customers.contains(customer)) {
             return customer;
         } else {
             delete(customer);
@@ -67,7 +66,7 @@ public class CustomerRepository implements Repository<Customer, String> {
 
     @Override
     public boolean delete(Customer customer) {
-        if (customers.contains(customer) == true) {
+        if (customers.contains(customer)) {
             customers.remove(customer);
         }
         return false;
@@ -88,5 +87,3 @@ public class CustomerRepository implements Repository<Customer, String> {
         return customers.size();
     }
 }
-
-
