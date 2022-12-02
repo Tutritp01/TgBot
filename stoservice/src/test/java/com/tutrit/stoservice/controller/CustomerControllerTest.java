@@ -9,13 +9,17 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static com.tutrit.stoservice.context.ApplicationContext.get;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CustomerControllerTest {
 
+    private CustomerController customerController;
+
     @BeforeEach
     public void setUp() {
         ApplicationContextLoader.run();
+        customerController = get(CustomerController.class);
     }
 
     @Test
@@ -50,5 +54,14 @@ class CustomerControllerTest {
         assertEquals(1, customerControllerSpy.numSaveCustomerToRepCalled);
     }
 
-
+    @Test
+    void integrationCarControllerTest() {
+        Response response = new Response();
+        Request request = new Request("new customer -d id=zero&name=bob&city=minsk&phoneNumber=923429823&email=1823rew@mail.com");
+        customerController.doCommand(request, response);
+        assertEquals("Customer zerois saved", response.getResponse());
+        request = new Request("get customer -d id=234532");
+        customerController.doCommand(request, response);
+        assertEquals("Error 404: customer with 234532 not found", response.getResponse());
+    }
 }

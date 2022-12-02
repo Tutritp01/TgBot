@@ -25,7 +25,6 @@ public class CarController implements CommandController {
     }
 
     public void doCommand(Request request, Response response) {
-
         switch (GetCommand.getCommand(request.getCommand())) {
             case "save car" -> newCar(request, response);
             case "get car" -> getCarById(request, response);
