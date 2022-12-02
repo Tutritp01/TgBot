@@ -3,7 +3,7 @@ package com.tutrit.stoservice.bean;
 import java.util.Objects;
 
 public class Engineer {
-    private String idEngineer;
+    private String id;
     private String firstName;
     private String lastName;
     private String function;
@@ -15,8 +15,8 @@ public class Engineer {
     public Engineer() {
     }
 
-    public Engineer(String idEngineer, String firstName, String lastName, String function, String category, String education, int experience, int generalExperience) {
-        this.idEngineer = idEngineer;
+    public Engineer(String id, String firstName, String lastName, String function, String category, String education, int experience, int generalExperience) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.function = function;
@@ -27,11 +27,11 @@ public class Engineer {
     }
 
     public String getIdEngineer() {
-        return idEngineer;
+        return id;
     }
 
     public void setIdEngineer(String idEngineer) {
-        this.idEngineer = idEngineer;
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -95,18 +95,18 @@ public class Engineer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Engineer engineer = (Engineer) o;
-        return experience == engineer.experience && generalExperience == engineer.generalExperience && Objects.equals(idEngineer, engineer.idEngineer) && Objects.equals(firstName, engineer.firstName) && Objects.equals(lastName, engineer.lastName) && Objects.equals(function, engineer.function) && Objects.equals(category, engineer.category) && Objects.equals(education, engineer.education);
+        return experience == engineer.experience && generalExperience == engineer.generalExperience && Objects.equals(id, engineer.id) && Objects.equals(firstName, engineer.firstName) && Objects.equals(lastName, engineer.lastName) && Objects.equals(function, engineer.function) && Objects.equals(category, engineer.category) && Objects.equals(education, engineer.education);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idEngineer, firstName, lastName, function, category, education, experience, generalExperience);
+        return Objects.hash(id, firstName, lastName, function, category, education, experience, generalExperience);
     }
 
     @Override
     public String toString() {
         return "Engineer{" +
-                "idEngineer='" + idEngineer + '\'' +
+                "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", function='" + function + '\'' +

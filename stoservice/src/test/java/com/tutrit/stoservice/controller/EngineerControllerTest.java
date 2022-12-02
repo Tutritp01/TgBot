@@ -42,11 +42,13 @@ class EngineerControllerTest {
 
     @Test
     void doCommandFailRequestNew() {
-        request = new Request("new engineer -m -d lastName:One firstName:Two function:Three category:Four education:Five experience:6 generalExperience:7}");
+        request = new Request("new engineer -d id=zero&lastName=One&firstName=Two&function=Three&category=Four&education=Five&experience=6&generalExperience=7");
         engineerController.doCommand(request, response);
-        assertEquals("Engineer not created", response.getResponse());
-        getCommandToStringNew();
-        getCommandStringNew();
+        request = new Request("get engineer -d id=234532");
+        engineerController.doCommand(request, response);
+        assertEquals("Error 404: Engineer with 234532 not found", response.getResponse());
+//        getCommandToStringNew();
+//        getCommandStringNew();
     }
 
     @Test
