@@ -1,7 +1,10 @@
 package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.bean.Car;
+import com.tutrit.stoservice.bean.User;
+import com.tutrit.stoservice.mapper.UserInput;
 import com.tutrit.stoservice.service.CarService;
+import com.tutrit.stoservice.util.GetBodyAsMap;
 import com.tutrit.stoservice.util.ParseCar;
 import com.tutrit.stoservice.utils.GetCommand;
 import com.tutrit.stoservice.utils.GetIdFromMap;
@@ -33,7 +36,7 @@ public class CarController implements CommandController {
     private void newCar(Request request, Response response) {
         command = Command.SAVE_CAR;
         try {
-            Car car = ParseCar.parseCommand(request);
+            Car car = newUserInput(request).getBodyAs(Car.class);
             carService.saveCar(car);
             response.setResponse("new car has been saved");
         } catch (Exception e) {
@@ -43,7 +46,7 @@ public class CarController implements CommandController {
 
     private void getCarById(Request request, Response response) {
         command = Command.GET_CAR;
-        String id = GetIdFromMap.getId(GetMap.getMap(request.getCommand()));
+        String id = GetIdFromMap.getId(newUserInput(request).getObjectValues());
         if (id != null) {
             Car car = carService.getCar(id);
             if (car != null) {
@@ -54,5 +57,10 @@ public class CarController implements CommandController {
             return;
         }
         response.setResponse("Incorrectly entered command, failed to find the ID");
+    }
+    private UserInput newUserInput(Request request) {
+        UserInput userInput = new UserInput();
+        userInput.setObjectValues(GetBodyAsMap.parseUserInput(request));
+        return userInput;
     }
 }
