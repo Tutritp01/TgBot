@@ -34,15 +34,23 @@ class UserControllerTest {
     void doCommand() {
         var request = new Request("new_user -data -i id1 -n user1 -p 123");
         var response = new Response();
-
         userControllerSpy.doCommand(request, response);
-
         var expectedResponse = new Response();
         expectedResponse.setResponse("new user has been saved");
-
         assertEquals(expectedResponse.getResponse(), response.getResponse());
         assertEquals(1, userControllerSpy.numSaveUserToRep);
 
+    }
+
+    @Test
+    void userControllerIntegratedTest() {
+        Response response = new Response();
+        Request request = new Request("new user -d id=zero&name=user&phoneNumber=1234");
+        userController.doCommand(request, response);
+        assertEquals("User zero is created", response.getResponse());
+        request = new Request("get user -d id=234532");
+        userController.doCommand(request, response);
+        assertEquals("Error 404: user with 234532 not found", response.getResponse());
     }
 
     @Test
@@ -51,3 +59,4 @@ class UserControllerTest {
         assertEquals(expectedCommand, userController.getCommand());
     }
 }
+
