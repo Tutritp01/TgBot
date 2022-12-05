@@ -103,4 +103,36 @@ class OrderControllerTest {
         command = orderController.getCommand();
         assertEquals("get order", command.commands);
     }
+    @Test
+    void integrationOrderControllerTest() {
+        Response response = new Response();
+        Request request = new Request("new order " +
+                "-d car.id=zero" +
+                "&car.owner=Vlad" +
+                "&vin=car.vw1989zzz1234321" +
+                "&car.plateNumber=0000AA1" +
+                "&car.brand=volkswagen" +
+                "&car.model=golf" +
+                "&car.generation=II" +
+                "&car.modification=hatchback" +
+                "&car.engine=diesel" +
+                "&car.year=1989" +
+                "&user.id=zero" +
+                "&user.name=user" +
+                "&user.phoneNumber=1234" +
+                "&customer.id=zero" +
+                "&customer.name=bob" +
+                "&customer.city=minsk" +
+                "&customer.phoneNumber=923429823" +
+                "&customer.email=1823rew@mail.com" +
+                "&id=zero" +
+                "&orderStatus=new" +
+                "&user=Vasyl" +
+                "&car=vag");
+        orderController.doCommand(request, response);
+        assertEquals("Order 1 is created", response.getResponse());
+        request = new Request("get order -d id=234532");
+        orderController.doCommand(request, response);
+        assertEquals("Error 404: Order with 234532 not found", response.getResponse());
+    }
 }

@@ -1,12 +1,11 @@
 package com.tutrit.stoservice.controller;
 
 import com.tutrit.stoservice.bean.Engineer;
+import com.tutrit.stoservice.mapper.UserInput;
 import com.tutrit.stoservice.service.EngineerService;
+import com.tutrit.stoservice.util.GetBodyAsMap;
 import com.tutrit.stoservice.utils.GetCommand;
 import com.tutrit.stoservice.utils.GetIdFromMap;
-import com.tutrit.stoservice.utils.GetMap;
-
-import static com.tutrit.stoservice.utils.UserInputToEngineer.getEngineer;
 
 public class EngineerController implements CommandController {
     private Command command;
@@ -31,20 +30,30 @@ public class EngineerController implements CommandController {
         }
     }
 
+    private UserInput newUserInput(Request request) {
+        UserInput userInput = new UserInput();
+        userInput.setObjectValues(GetBodyAsMap.parseUserInput(request));
+        return userInput;
+    }
+
     private void newEngineer(Request request, Response response) {
         command = Command.NEW_ENGINEER;
-        Engineer engineer = getEngineer(request.getCommand());
-        if (engineer != null) {
-            engineerService.saveEngineer(engineer);
-            response.setResponse("Engineer " + engineer.getIdEngineer() + " is created");
-            return;
+        try {
+            Engineer engineer = newUserInput(request).getBodyAs(Engineer.class);
+            if (engineer != null) {
+                engineerService.saveEngineer(engineer);
+                response.setResponse("Engineer " + engineer.getIdEngineer() + " is created");
+                return;
+            }
+            response.setResponse("Engineer not created");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        response.setResponse("Engineer not created");
     }
 
     private void getEngineerId(Request request, Response response) {
         command = Command.GET_ENGINEER;
-        String id = GetIdFromMap.getId(GetMap.getMap(request.getCommand()));
+        String id = GetIdFromMap.getId(newUserInput(request).getObjectValues());
         if (id != null) {
             Engineer engineer = engineerService.findById(id);
             if (engineer != null) {

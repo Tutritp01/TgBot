@@ -3,17 +3,17 @@ package com.tutrit.stoservice.controller;
 import com.tutrit.stoservice.bean.Message;
 import com.tutrit.stoservice.bean.Promo;
 import com.tutrit.stoservice.bean.User;
+import com.tutrit.stoservice.mapper.UserInput;
 import com.tutrit.stoservice.service.MessageService;
 import com.tutrit.stoservice.service.PromoService;
 import com.tutrit.stoservice.service.UserService;
+import com.tutrit.stoservice.util.GetBodyAsMap;
 import com.tutrit.stoservice.util.ParseMessage;
 import com.tutrit.stoservice.util.ParsePromo;
 import com.tutrit.stoservice.util.ParseUser;
 import com.tutrit.stoservice.utils.GetCommand;
 import com.tutrit.stoservice.utils.GetIdFromMap;
 import com.tutrit.stoservice.utils.GetMap;
-
-import static com.tutrit.stoservice.mapper.MapToUser.getUser;
 
 
 public class UserController implements CommandController {
@@ -73,18 +73,22 @@ public class UserController implements CommandController {
 
     private void newUser(Request request, Response response) {
         command = Command.REGISTER_NEW_USER;
-        User user = getUser(request.getCommand());
-        if (user != null) {
-            userService.saveUser(ParseUser.parseCommand(request));
-            response.setResponse("User " + user.getId() + " is created");
-            return;
+        try {
+            User user = newUserInput(request).getBodyAs(User.class);
+            if (user != null) {
+                userService.saveUser(user);
+                response.setResponse("User " + user.getId() + " is created");
+                return;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         response.setResponse("User not created");
     }
 
     private void getUserById(Request request, Response response) {
         command = Command.GET_USER;
-        String id = GetIdFromMap.getId(GetMap.getMap(request.getCommand()));
+        String id = GetIdFromMap.getId(newUserInput(request).getObjectValues());
         if (id != null) {
             User user = userService.findUSerById(id);
             if (user != null) {
@@ -95,5 +99,11 @@ public class UserController implements CommandController {
             return;
         }
         response.setResponse("Incorrectly entered command, failed to find the ID");
+    }
+
+    private UserInput newUserInput(Request request) {
+        UserInput userInput = new UserInput();
+        userInput.setObjectValues(GetBodyAsMap.parseUserInput(request));
+        return userInput;
     }
 }
