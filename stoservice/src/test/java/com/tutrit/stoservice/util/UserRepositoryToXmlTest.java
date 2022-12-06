@@ -1,4 +1,4 @@
-package com.tutrit.stoservice.utils;
+package com.tutrit.stoservice.util;
 
 import com.tutrit.stoservice.bean.User;
 import com.tutrit.stoservice.repository.UserRepository;
