@@ -11,11 +11,8 @@ import java.util.stream.Collectors;
 public class GetBodyAsMap {
     private static final Logger logger = Logger.getLogger(GetBodyAsMap.class.getName());
 
-    private GetBodyAsMap() {
-        throw new IllegalStateException("Utility class");
-    }
 
-    public static Map<String, String> separateBodyFromCommand(Request request) throws ArrayIndexOutOfBoundsException {
+    public static Map<String, String> parseUserInput(Request request) throws ArrayIndexOutOfBoundsException {
         String userInput = request.getCommand();
         int index = userInput.indexOf("-d");
         String body = userInput.substring(index + 3).strip();
