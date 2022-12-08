@@ -1,6 +1,7 @@
 package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Car;
+import com.tutrit.stoservice.mock.CarRepositoryMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,8 +33,8 @@ class CarRepositoryTest {
 
         assertEquals(expected, carRepository.count());
 
-        int expected2 = carRepository.count();
         carRepository.save(new Car("id3", "owner", "vin", "plateNumber", "brand4", "model5", "6g", "mod7", "engine8", 2009));
+        int expected2 = carRepository.count();
         assertEquals(expected2, carRepository.count());
     }
 
@@ -70,6 +71,7 @@ class CarRepositoryTest {
 
     @Test
     void findByIdCar() {
+        carRepository = new CarRepositoryMock();
         Car car10 = new Car("id10", "owner", "vin", "plateNumber", "brand10", "model10", "10g", "mod10", "engine10", 2010);
         Car car11 = new Car("id11", "owner", "vin", "plateNumber", "brand11", "model11", "11g", "mod11", "engine11", 2011);
         Car car12 = new Car("id11", "owner", "vin", "plateNumber", "brand12", "model12", "12g", "mod12", "engine12", 2012);
@@ -79,7 +81,7 @@ class CarRepositoryTest {
         carRepository.save(car12);
         carRepository.save(car13);
 
-        assertEquals(car13, carRepository.findById("id13"));
+        assertEquals(carRepository.find(car11), carRepository.findById("spyValues2"));
     }
 
     @Test
@@ -94,18 +96,19 @@ class CarRepositoryTest {
 
     @Test
     void updateCar() {
+        carRepository = new CarRepositoryMock();
         Car car14 = new Car("id14", "owner", "vin", "plateNumber", "brand14", "model14", "14g", "mod14", "engine14", 2014);
         Car car15 = new Car("id15", "owner", "vin", "plateNumber", "brand15", "model15", "15g", "mod15", "engine15", 2015);
         Car car16 = new Car("id16", "owner", "vin", "plateNumber", "brand16", "model16", "16g", "mod16", "engine16", 2016);
         Car car17 = new Car("id17", "owner", "vin", "plateNumber", "brand17", "model17", "17g", "mod17", "engine17", 2017);
-        Car car18 = new Car("id17", "owner", "vin", "plateNumber", "brand18", "model18", "18g", "mod18", "engine18", 2018);
+        Car car18 = new Car("spyValues2", "owner", "vin", "plateNumber", "brand18", "model18", "18g", "mod18", "engine18", 2018);
         carRepository.save(car14);
         carRepository.save(car15);
         carRepository.save(car16);
         carRepository.save(car17);
         carRepository.update(car18);
 
-        assertEquals(car18, carRepository.findById("id17"));
+        assertEquals(car18, carRepository.findById("spyValues2"));
     }
 
     @Test
@@ -122,20 +125,20 @@ class CarRepositoryTest {
 
     @Test
     void deleteByIdCar() {
+        carRepository = new CarRepositoryMock();
         Car car21 = new Car("id21", "owner", "vin", "plateNumber", "brand21", "model21", "21g", "mod21", "engine21", 2021);
         Car car22 = new Car("id22", "owner", "vin", "plateNumber", "brand22", "model22", "22g", "mod22", "engine22", 2022);
         carRepository.save(car21);
         carRepository.save(car22);
         int expected = carRepository.count() - 1;
-        carRepository.deleteById("id21");
-
+        carRepository.deleteById("spyValues2");
         assertEquals(expected, carRepository.count());
     }
 
     @Test
     void count() {
         int counter = 0;
-        for (Car car: carRepository.findAll()) {
+        for (Car car : carRepository.findAll()) {
             counter++;
         }
 
