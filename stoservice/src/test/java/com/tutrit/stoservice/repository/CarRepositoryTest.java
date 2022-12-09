@@ -81,7 +81,7 @@ class CarRepositoryTest {
         carRepository.save(car12);
         carRepository.save(car13);
 
-        assertEquals(carRepository.find(car11), carRepository.findById("spyValues2"));
+        assertEquals("spyValues1", carRepository.findById("spyValues1").getId());
     }
 
     @Test
