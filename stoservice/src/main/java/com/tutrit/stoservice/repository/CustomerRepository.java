@@ -6,8 +6,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.UUID;
 
-public class CustomerRepository implements Repository<Customer, String> {
+public class CustomerRepository implements Repository<Customer, String>, MyIdGenerator<Customer> {
 
     public static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     private static HashSet<Customer> customers = new HashSet<>();
@@ -16,6 +17,7 @@ public class CustomerRepository implements Repository<Customer, String> {
     public Customer save(Customer customer) {
         if (!customers.contains(customer)) {
             customers.add(customer);
+            setUUID(customer);
         } else {
             logger.info("Customers already exists");
         }
@@ -23,10 +25,11 @@ public class CustomerRepository implements Repository<Customer, String> {
     }
 
     @Override
-    public void saveAll(Iterable<Customer> obj) {
-        customers.addAll((Collection<? extends Customer>) obj);
-
+    public void saveAll(Iterable<Customer> customer) {
+        customers.addAll((Collection<? extends Customer>) customer);
+        customers.forEach(this::setUUID);
     }
+
 
     @Override
     public Customer find(Customer customer) {
@@ -85,5 +88,10 @@ public class CustomerRepository implements Repository<Customer, String> {
 
     public int count() {
         return customers.size();
+    }
+
+    @Override
+    public void setUUID(Customer customer) {
+        customer.setId(UUID.randomUUID().toString());
     }
 }
