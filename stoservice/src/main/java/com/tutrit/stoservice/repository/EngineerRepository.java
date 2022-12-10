@@ -3,8 +3,9 @@ package com.tutrit.stoservice.repository;
 import com.tutrit.stoservice.bean.Engineer;
 
 import java.util.Arrays;
+import java.util.UUID;
 
-public class EngineerRepository implements Repository<Engineer, String> {
+public class EngineerRepository implements Repository<Engineer, String>, MyIdGenerator<Engineer> {
 
     public static Engineer[] engineers = new Engineer[3];
     public static int counted = 0;
@@ -14,7 +15,7 @@ public class EngineerRepository implements Repository<Engineer, String> {
         int returnIndex = 0;
         for (int i = 0; i < engineers.length; i++) {
             if (engineers[i] == null) {
-                engineer.setIdEngineer(Integer.toString(count()));
+                setUUID(engineer);
                 returnIndex = i;
                 engineers[i] = engineer;
                 if ((i * 2) >= engineers.length) {
@@ -36,7 +37,7 @@ public class EngineerRepository implements Repository<Engineer, String> {
     @Override
     public Engineer find(Engineer engineer) {
         for (Engineer engineerRepository : engineers) {
-            if (engineerRepository != null && engineerRepository.getIdEngineer().equals(engineer.getIdEngineer())) {
+            if (engineerRepository != null && engineerRepository.getId().equals(engineer.getId())) {
                 return engineerRepository;
             }
         }
@@ -65,7 +66,7 @@ public class EngineerRepository implements Repository<Engineer, String> {
     @Override
     public Engineer findById(String id) {
         for (Engineer engineerRepository : engineers) {
-            if (engineerRepository != null && engineerRepository.getIdEngineer().equals(id)) {
+            if (engineerRepository != null && engineerRepository.getId().equals(id)) {
                 return engineerRepository;
             }
         }
@@ -75,7 +76,7 @@ public class EngineerRepository implements Repository<Engineer, String> {
     @Override
     public Engineer update(Engineer engineer) {
         if (find(engineer) != null) {
-            int i = Integer.parseInt(find(engineer).getIdEngineer()) - 1;
+            int i = Integer.parseInt(find(engineer).getId()) - 1;
             engineers[i] = engineer;
             return engineers[i];
         }
@@ -85,7 +86,7 @@ public class EngineerRepository implements Repository<Engineer, String> {
     @Override
     public boolean delete(Engineer engineer) {
         for (int i = 0; i < engineers.length; i++) {
-            if (engineers[i] != null && engineers[i].getIdEngineer().equals(engineer.getIdEngineer())) {
+            if (engineers[i] != null && engineers[i].getId().equals(engineer.getId())) {
                 engineers[i] = null;
                 return true;
             }
@@ -96,7 +97,7 @@ public class EngineerRepository implements Repository<Engineer, String> {
     @Override
     public boolean deleteById(String id) {
         for (int i = 0; i < engineers.length; i++) {
-            if (engineers[i] != null && engineers[i].getIdEngineer().equals(id)) {
+            if (engineers[i] != null && engineers[i].getId().equals(id)) {
                 engineers[i] = null;
                 return true;
             }
@@ -108,5 +109,10 @@ public class EngineerRepository implements Repository<Engineer, String> {
     public int count() {
         counted++;
         return counted;
+    }
+
+    @Override
+    public void setUUID(Engineer engineer) {
+        engineer.setId(UUID.randomUUID().toString());
     }
 }
