@@ -1,7 +1,7 @@
 package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Car;
-import com.tutrit.stoservice.mock.CarRepositoryMock;
+import com.tutrit.stoservice.mock.CarRepositoryUUIDMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -71,7 +71,7 @@ class CarRepositoryTest {
 
     @Test
     void findByIdCar() {
-        carRepository = new CarRepositoryMock();
+        carRepository = new CarRepositoryUUIDMock();
         Car car10 = new Car("id10", "owner", "vin", "plateNumber", "brand10", "model10", "10g", "mod10", "engine10", 2010);
         Car car11 = new Car("id11", "owner", "vin", "plateNumber", "brand11", "model11", "11g", "mod11", "engine11", 2011);
         Car car12 = new Car("id11", "owner", "vin", "plateNumber", "brand12", "model12", "12g", "mod12", "engine12", 2012);
@@ -96,7 +96,7 @@ class CarRepositoryTest {
 
     @Test
     void updateCar() {
-        carRepository = new CarRepositoryMock();
+        carRepository = new CarRepositoryUUIDMock();
         Car car14 = new Car("id14", "owner", "vin", "plateNumber", "brand14", "model14", "14g", "mod14", "engine14", 2014);
         Car car15 = new Car("id15", "owner", "vin", "plateNumber", "brand15", "model15", "15g", "mod15", "engine15", 2015);
         Car car16 = new Car("id16", "owner", "vin", "plateNumber", "brand16", "model16", "16g", "mod16", "engine16", 2016);
@@ -125,7 +125,7 @@ class CarRepositoryTest {
 
     @Test
     void deleteByIdCar() {
-        carRepository = new CarRepositoryMock();
+        carRepository = new CarRepositoryUUIDMock();
         Car car21 = new Car("id21", "owner", "vin", "plateNumber", "brand21", "model21", "21g", "mod21", "engine21", 2021);
         Car car22 = new Car("id22", "owner", "vin", "plateNumber", "brand22", "model22", "22g", "mod22", "engine22", 2022);
         carRepository.save(car21);

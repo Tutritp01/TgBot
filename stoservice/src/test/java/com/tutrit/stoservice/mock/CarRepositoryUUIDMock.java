@@ -3,7 +3,7 @@ package com.tutrit.stoservice.mock;
 import com.tutrit.stoservice.bean.Car;
 import com.tutrit.stoservice.repository.CarRepository;
 
-public class CarRepositoryMock extends CarRepository {
+public class CarRepositoryUUIDMock extends CarRepository {
 
     public Car capturedCar;
 
@@ -44,7 +44,6 @@ public class CarRepositoryMock extends CarRepository {
 
     @Override
     public void setUUID(Car car) {
-        MockUUID mockUUID = new MockUUID();
-        mockUUID.setUUID(car);
+        car.setId("spyValues" + count());
     }
 }

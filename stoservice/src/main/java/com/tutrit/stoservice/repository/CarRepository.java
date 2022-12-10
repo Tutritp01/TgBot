@@ -24,8 +24,9 @@ public class CarRepository implements Repository<Car, String>,MyIdGenerator<Car>
     }
 
     @Override
-    public void saveAll(Iterable<Car> cars) {
-        CarRepository.cars.addAll((Collection<? extends Car>) cars);
+    public void saveAll(Iterable<Car> car) {
+        CarRepository.cars.addAll((Collection<? extends Car>) car);
+        cars.forEach(this::setUUID);
     }
 
     @Override
