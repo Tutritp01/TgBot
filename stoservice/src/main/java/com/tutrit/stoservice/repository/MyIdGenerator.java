@@ -1,10 +1,7 @@
 package com.tutrit.stoservice.repository;
 
-
 public interface MyIdGenerator<T> {
 
- void setUUID (T obj);
-
+    void setUUID(T obj);
 
 }
-
