@@ -37,38 +37,38 @@ public class EngineerRepositoryToXml {
         try {
             Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 
-            Element tagUser = document.createElement("engineer");
-            document.appendChild(tagUser);
+            Element tagEngineer = document.createElement("engineer");
+            document.appendChild(tagEngineer);
 
-            tagUser.setAttribute("id", engineer.getIdEngineer());
+            tagEngineer.setAttribute("id", engineer.getIdEngineer());
 
             Element tagFirstName = document.createElement("firstName");
             tagFirstName.setTextContent(engineer.getFirstName());
-            tagUser.appendChild(tagFirstName);
+            tagEngineer.appendChild(tagFirstName);
 
             Element tagLastName = document.createElement("lastName");
             tagLastName.setTextContent(engineer.getLastName());
-            tagUser.appendChild(tagLastName);
+            tagEngineer.appendChild(tagLastName);
 
             Element tagFunction = document.createElement("function");
             tagFunction.setTextContent(engineer.getFunction());
-            tagUser.appendChild(tagFunction);
+            tagEngineer.appendChild(tagFunction);
 
             Element tagCategory = document.createElement("category");
             tagCategory.setTextContent(engineer.getCategory());
-            tagUser.appendChild(tagCategory);
+            tagEngineer.appendChild(tagCategory);
 
             Element tagEducation = document.createElement("education");
             tagEducation.setTextContent(engineer.getEducation());
-            tagUser.appendChild(tagEducation);
+            tagEngineer.appendChild(tagEducation);
 
             Element tagExperience = document.createElement("experience");
             tagExperience.setTextContent(String.valueOf(engineer.getExperience()));
-            tagUser.appendChild(tagExperience);
+            tagEngineer.appendChild(tagExperience);
 
             Element tagGeneralExperience = document.createElement("generalExperience");
             tagGeneralExperience.setTextContent(String.valueOf(engineer.getGeneralExperience()));
-            tagUser.appendChild(tagGeneralExperience);
+            tagEngineer.appendChild(tagGeneralExperience);
 
             TransformerFactory factory = TransformerFactory.newInstance();
             factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
