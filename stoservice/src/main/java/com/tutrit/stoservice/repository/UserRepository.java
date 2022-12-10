@@ -4,14 +4,17 @@ import com.tutrit.stoservice.bean.User;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
-public class UserRepository implements Repository<User, String> {
+public class UserRepository implements Repository<User, String>, MyIdGenerator<User> {
 
     private static Map<String, User> userMap = new HashMap<>();
 
     @Override
     public User save(User user) {
         userMap.put(user.getId(), user);
+        setUUID(user);
+
         return user;
     }
 
@@ -19,6 +22,7 @@ public class UserRepository implements Repository<User, String> {
     public void saveAll(Iterable<User> users) {
         for (User user : users) {
             userMap.put(user.getId(), user);
+            setUUID(user);
         }
     }
 
@@ -55,5 +59,11 @@ public class UserRepository implements Repository<User, String> {
 
     public int count() {
         return userMap.size();
+    }
+
+    @Override
+    public void setUUID(User user) {
+        user.setId(UUID.randomUUID().toString());
+
     }
 }

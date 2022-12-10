@@ -5,9 +5,10 @@ import com.tutrit.stoservice.bean.Promo;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import java.util.logging.Logger;
 
-public class PromoRepository implements Repository<Promo, String> {
+public class PromoRepository implements Repository<Promo, String>, MyIdGenerator<Promo> {
 
     public static final java.util.logging.Logger logger = Logger.getLogger(PromoRepository.class.getName());
 
@@ -18,6 +19,7 @@ public class PromoRepository implements Repository<Promo, String> {
     public Promo save(Promo promo) {
         if (!promoSet.contains(promo)) {
             promoSet.add(promo);
+            setUUID(promo);
         } else {
             logger.info("Promo already exists");
         }
@@ -27,6 +29,7 @@ public class PromoRepository implements Repository<Promo, String> {
     @Override
     public void saveAll(Iterable<Promo> promo) {
         promoSet.addAll((Collection<? extends Promo>) promo);
+        promoSet.forEach(this::setUUID);
     }
 
     @Override
@@ -91,5 +94,10 @@ public class PromoRepository implements Repository<Promo, String> {
     private static class PromoNotFoundException extends Exception {
         public PromoNotFoundException(String s) {
         }
+    }
+
+    @Override
+    public void setUUID(Promo promo) {
+        promo.setId(UUID.randomUUID().toString());
     }
 }
