@@ -3,6 +3,7 @@ package com.tutrit.stoservice.repository;
 import com.tutrit.stoservice.bean.Engineer;
 
 import java.util.Arrays;
+import java.util.stream.StreamSupport;
 
 public class EngineerRepository implements Repository<Engineer, String> {
 
@@ -106,7 +107,6 @@ public class EngineerRepository implements Repository<Engineer, String> {
 
     @Override
     public int count() {
-        counted++;
-        return counted;
+        return (int) StreamSupport.stream(findAll().spliterator(), false).count();
     }
 }

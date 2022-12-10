@@ -22,7 +22,7 @@ class GetBodyAsMapTest {
             values.put("experience", "6");
             values.put("generalExperience", "7");
             Request request = new Request("new engineer -d idEngineer=zero&lastName=One&firstName=Two&function=Three&category=Four&education=Five&experience=6&generalExperience=7");
-            assertEquals(values, GetBodyAsMap.separateBodyFromCommand(request));
+            assertEquals(values, GetBodyAsMap.parseUserInput(request));
 
         }
     }
