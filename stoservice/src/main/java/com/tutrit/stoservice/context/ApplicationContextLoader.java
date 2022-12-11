@@ -6,6 +6,7 @@ import com.tutrit.stoservice.provider.CarProvider;
 import com.tutrit.stoservice.provider.CustomerProvider;
 import com.tutrit.stoservice.repository.*;
 import com.tutrit.stoservice.service.*;
+import com.tutrit.stoservice.settings.ArgsSetup;
 import com.tutrit.stoservice.settings.Configurations;
 
 import static com.tutrit.stoservice.context.ApplicationContext.get;
@@ -19,6 +20,7 @@ public class ApplicationContextLoader {
 
     public static void run() {
         put(Configurations.class, new Configurations());
+        put(ArgsSetup.class, new ArgsSetup());
         put(CarRepository.class, new CarRepository());
         put(CustomerRepository.class, new CustomerRepository());
         put(EngineerRepository.class, new EngineerRepository());
