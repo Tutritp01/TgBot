@@ -1,9 +1,9 @@
 package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Engineer;
-
 import java.util.Arrays;
 import java.util.UUID;
+import java.util.stream.StreamSupport;
 
 public class EngineerRepository implements Repository<Engineer, String>, MyIdGenerator<Engineer> {
 
@@ -107,8 +107,7 @@ public class EngineerRepository implements Repository<Engineer, String>, MyIdGen
 
     @Override
     public int count() {
-        counted++;
-        return counted;
+        return (int) StreamSupport.stream(findAll().spliterator(), false).count();
     }
 
     @Override
