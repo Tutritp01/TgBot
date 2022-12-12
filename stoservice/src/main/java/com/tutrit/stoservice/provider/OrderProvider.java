@@ -29,11 +29,11 @@ public class OrderProvider {
     }
 
     static Order getInstance(int i) {
-        return new Order("Id" + i, "User" + i, "Car" + i, "Open" + i);
+        return null;//new Order("Id" + i, "User" + i, "Car" + i, "Open" + i);
     }
 
     static Order getInstance() {
-        return new Order("Id", "User", "Car", "Open");
+        return null;//new Order("Id", "User", "Car", "Open");
     }
 
     public static List<Order> getFiveRealOrder() {
