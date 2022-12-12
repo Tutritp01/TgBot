@@ -7,6 +7,13 @@
 
 </head>
 <body>
-Hello World!
+<div class="row">
+    <div class="col-md-3">
+        MENU
+    </div>
+    <div class="col-md-9">
+        INPUT
+    </div>
+</div>
 </body>
 </html>
