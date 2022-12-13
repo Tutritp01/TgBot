@@ -1,12 +1,16 @@
 package com.tutrit.stoservice.settings;
 
-import static com.tutrit.stoservice.context.ApplicationContext.get;
-
 public class ArgsSetup {
+    Configurations configurations;
+
+    ArgsSetup(Configurations configurations) {
+        this.configurations = configurations;
+    }
+
     public void readingFlags(String[] args) {
         for (String arg : args) {
-            if (arg.equals("-eld")) get(Configurations.class).setLoadDataDemo(true);
-            if (arg.equals("-dld")) get(Configurations.class).setLoadDataDemo(false);
+            if (arg.equals("-eld")) configurations.setLoadDataDemo(true);
+            if (arg.equals("-dld")) configurations.setLoadDataDemo(false);
         }
     }
 }
