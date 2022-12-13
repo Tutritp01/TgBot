@@ -28,7 +28,7 @@ public class Configurations {
             String loadDemoProp = properties.getProperty("LoadDemoData");
             if (loadDemoProp.equals("Yes")) {
                 loadDataDemo = true;
-            } else {
+            } else if (loadDemoProp.equals("No")){
                 loadDataDemo = false;
             }
         } catch (IOException e) {
