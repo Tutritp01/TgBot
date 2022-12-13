@@ -8,7 +8,7 @@ public class ArgsSetup {
     }
 
     public void readingFlags(String[] args) {
-        for (String arg : args) {
+        if (args != null) for (String arg : args) {
             if (arg.equals("-eld")) configurations.setLoadDataDemo(true);
             if (arg.equals("-dld")) configurations.setLoadDataDemo(false);
         }
