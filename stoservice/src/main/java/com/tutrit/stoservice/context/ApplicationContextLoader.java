@@ -20,7 +20,7 @@ public class ApplicationContextLoader {
 
     public static void run() {
         put(Configurations.class, new Configurations());
-        put(ArgsSetup.class, new ArgsSetup());
+        put(ArgsSetup.class, new ArgsSetup(get(Configurations.class)));
         put(CarRepository.class, new CarRepository());
         put(CustomerRepository.class, new CustomerRepository());
         put(EngineerRepository.class, new EngineerRepository());
