@@ -3,7 +3,7 @@ package com.tutrit.stoservice.settings;
 public class ArgsSetup {
     Configurations configurations;
 
-    ArgsSetup(Configurations configurations) {
+    public ArgsSetup(Configurations configurations) {
         this.configurations = configurations;
     }
 
