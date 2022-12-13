@@ -18,7 +18,7 @@ public class ApplicationContextLoader {
     }
 
     public static void run() {
-        put(Configurations.class, new Configurations());
+        put(Configurations.class, new Configurations("src/main/resources/config.properties"));
         put(CarRepository.class, new CarRepository());
         put(CustomerRepository.class, new CustomerRepository());
         put(EngineerRepository.class, new EngineerRepository());
