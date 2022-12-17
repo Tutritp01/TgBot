@@ -10,9 +10,10 @@
 </head>
 <body>
 <h1>All Cars</h1><br/>
-<button type="button" class="btn btn-primary">Add</button>
+<a href="carForm.jsp" class="btn btn-primary" type="button">Add</a>
 <div class="table">
     <table class="table table-light table-striped table-bordered border-primary">
+        <caption>All Cars</caption>
         <thead>
         <tr>
             <th scope="col">ID</th>
@@ -30,7 +31,7 @@
         <c:forEach var="car" items="${requestScope.cars}">
             <tbody>
             <tr>
-                <td><c:out value="${car.id}"/>
+                <td><a href="carForm.jsp"><c:out value="${car.id}"/></a>
                 <td><c:out value="${car.owner}"/>
                 <td><c:out value="${car.vin}"/>
                 <td><c:out value="${car.plateNumber}"/>
@@ -42,8 +43,8 @@
                 <td><c:out value="${car.year}"/>
                 <td>
                     <div style="text-align: center">
-                        <button type="button" class="btn btn-primary">Edit</button>
-                        <button type="button" class="btn btn-primary">Delete</button>
+                        <a href="carForm.jsp" class="btn btn-primary" type="button">Edit</a>
+                        <a href="carDelete.jsp" class="btn btn-danger" type="button">Delete</a>
                     </div>
                 </td>
             </tr>
