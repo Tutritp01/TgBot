@@ -26,7 +26,7 @@ public class AddEngineerServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/create/add-engineer.jsp");
         try {
             requestDispatcher.forward(request, response);
-        } catch (ServletException|IOException e) {
+        } catch (ServletException | IOException e) {
             throw new RuntimeException("Exception in AddEngineerServlet.doGet " + e);
         }
     }
@@ -53,7 +53,7 @@ public class AddEngineerServlet extends HttpServlet {
                 }
                 engineerField.setAccessible(false);
 
-            } catch (NoSuchFieldException|IllegalAccessException e) {
+            } catch (NoSuchFieldException | IllegalAccessException e) {
                 throw new RuntimeException("Exception in AddEngineerServlet.doPost " + e);
             }
         }
