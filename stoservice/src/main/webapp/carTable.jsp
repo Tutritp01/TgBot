@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>AllCars</title>
-    <jsp:include page="header.html"/>
+    <jsp:include page="WEB-INF/view/header.html"/>
 </head>
 <body>
 <h1>All Cars</h1><br/>
