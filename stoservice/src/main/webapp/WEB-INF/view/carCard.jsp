@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CarCard</title>
-    <jsp:include page="WEB-INF/view/header.html"/>
+    <jsp:include page="header.html"/>
 </head>
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
