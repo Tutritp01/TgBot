@@ -3,14 +3,13 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-    <display-name>AllCars</display-name>
     <servlet>
         <servlet-name>AllCars</servlet-name>
-        <servlet-class>com.tutrit.stoservice.servlets.AllCarsServlet</servlet-class>
+        <servlet-class>com.tutrit.stoservice.servlets.CarTableServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>AllCars</servlet-name>
-        <url-pattern>/cars</url-pattern>
+        <url-pattern>/carTable</url-pattern>
     </servlet-mapping>
 </web-app>

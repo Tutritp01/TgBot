@@ -41,7 +41,7 @@
                 <td><c:out value="${car.engine}"/>
                 <td><c:out value="${car.year}"/>
                 <td>
-                    <div style="text-align: center;">
+                    <div style="text-align: center">
                         <button type="button" class="btn btn-primary">Edit</button>
                         <button type="button" class="btn btn-primary">Delete</button>
                     </div>
