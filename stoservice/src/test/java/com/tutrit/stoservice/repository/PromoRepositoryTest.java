@@ -1,6 +1,7 @@
 package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Promo;
+import com.tutrit.stoservice.mock.PromoRepositoryUUIDMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ class PromoRepositoryTest {
 
     @BeforeEach
     public void setUp() {
-        promoRepository = new PromoRepository();
+        promoRepository = new PromoRepositoryUUIDMock();
     }
 
     @Test
@@ -68,31 +69,33 @@ class PromoRepositoryTest {
 
     @Test
     void findById() {
-        Promo promo11 = new Promo("id11", 65, "kupon11", null, null, null, null);
-        Promo promo12 = new Promo("id12", 70, "kupon12", null, null, null, null);
+        Promo promo11 = new Promo("spyValues1", 65, "kupon11", null, null, null, null);
+        Promo promo12 = new Promo("spyValues2", 70, "kupon12", null, null, null, null);
         promoRepository.save(promo11);
         promoRepository.save(promo12);
 
-        assertEquals(promo12, promoRepository.findById("id12"));
+        assertEquals(promo12, promoRepository.findById(promo12.getId()));
     }
 
     @Test
     void update() {
-        Promo promo13 = new Promo("id13", 75, "kupon13", null, null, null, null);
-        Promo promo14 = new Promo("id13", 80, "kupon14", null, null, null, null);
+        Promo promo13 = new Promo("spyValues1", 75, "kupon13", null, null, null, null);
+        Promo promo14 = new Promo("spyValues2", 80, "kupon14", null, null, null, null);
         promoRepository.save(promo13);
+        promoRepository.save(promo14);
         promoRepository.update(promo14);
 
-        assertEquals(promo14, promoRepository.findById("id13"));
+        assertEquals(promo14, promoRepository.findById(promo14.getId()));
     }
 
     @Test
     void delete() {
-        Promo promo15 = new Promo("id15", 85, "kupon15", null, null, null, null);
-        Promo promo16 = new Promo("id16", 90, "kupon16", null, null, null, null);
+        // promoRepository = new PromoRepositoryUUIDMock();
+        Promo promo15 = new Promo("spyValues1", 85, "kupon15", null, null, null, null);
+        Promo promo16 = new Promo("spyValues2", 90, "kupon16", null, null, null, null);
         promoRepository.save(promo15);
         promoRepository.save(promo16);
-        int expected = promoRepository.count() - 2;
+        int expected = promoRepository.count();// - 2;
         promoRepository.delete(promo15);
         promoRepository.delete(promo16);
 
@@ -101,13 +104,13 @@ class PromoRepositoryTest {
 
     @Test
     void deleteById() {
-        Promo promo17 = new Promo("id17", 95, "kupon17", null, null, null, null);
-        Promo promo18 = new Promo("id18", 15, "kupon18", null, null, null, null);
+        Promo promo17 = new Promo("spyValues1", 95, "kupon17", null, null, null, null);
+        Promo promo18 = new Promo("spyValues2", 15, "kupon18", null, null, null, null);
         promoRepository.save(promo17);
         promoRepository.save(promo18);
         int expected = promoRepository.count() - 2;
-        promoRepository.deleteById("id17");
-        promoRepository.deleteById("id18");
+        promoRepository.deleteById(promo17.getId());
+        promoRepository.deleteById(promo18.getId());
 
         assertEquals(expected, promoRepository.count());
     }

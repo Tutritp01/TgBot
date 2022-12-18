@@ -69,7 +69,7 @@ class EngineerRepositoryTest {
     void testFind() {
         createFiveO();
         Engineer engineer = new Engineer("1", "Нестор", "Майко", "Инжинер по гарантии", "высшая", "высшее", 5, 10);
-        assertEquals("spyValues1", engineerRepository.find(engineer1).getId());
+        assertEquals("spyValues0", engineerRepository.find(engineer1).getId());
     }
 
     @Test
@@ -87,7 +87,7 @@ class EngineerRepositoryTest {
         assertEquals("spyValues2", engineerRepository.findById("spyValues2").getId());
         assertEquals("spyValues3", engineerRepository.findById("spyValues3").getId());
         assertEquals("spyValues4", engineerRepository.findById("spyValues4").getId());
-        assertEquals("spyValues5", engineerRepository.findById("spyValues5").getId());
+
     }
 
     @Test
@@ -117,8 +117,8 @@ class EngineerRepositoryTest {
     @Test
     void testDeleteById() {
         createFiveO();
-        engineerRepository.deleteById("spyValues4");
-        assertNull(EngineerRepository.engineers[3]);
+        engineerRepository.deleteById("spyValues5");
+        assertNull(EngineerRepository.engineers[5]);
     }
 
     @Test
@@ -130,9 +130,9 @@ class EngineerRepositoryTest {
     void testCount() {
         createFiveO();
         engineerRepository.deleteById("spyValues4");
-        assertNull(EngineerRepository.engineers[3]);
+        assertNull(EngineerRepository.engineers[4]);
         engineerRepository.save(engineer4);
-        assertEquals("spyValues6", EngineerRepository.engineers[3].getId());
+        assertEquals("spyValues4", EngineerRepository.engineers[3].getId());
     }
 
     @Test

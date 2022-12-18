@@ -87,7 +87,8 @@ class CustomerRepositoryTest {
 
     @Test
     void deleteCustomer() {
-        Customer customer = new Customer("spyValues8", "customer5", "city5", "phoneNumber5", "email5");
+        Customer customer = new Customer("spyValues1", "customer5", "city5", "phoneNumber5", "email5");
+        customerRepository.save(customer);
         customerRepository.delete(customer);
         assertEquals(0, customerRepository.count());
     }
