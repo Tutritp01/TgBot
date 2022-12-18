@@ -2,7 +2,6 @@ package com.tutrit.stoservice.servlets;
 
 import com.tutrit.stoservice.bean.Engineer;
 import com.tutrit.stoservice.context.ApplicationContext;
-import com.tutrit.stoservice.context.ApplicationContextLoader;
 import com.tutrit.stoservice.repository.EngineerRepository;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -15,24 +14,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 
-@WebServlet(name = "AddEngineerServlet", value = "/add-engineer")
+//@WebServlet(name = "AddEngineerServlet", value = "/add-engineer")
 public class AddEngineerServlet extends HttpServlet {
-    static {
-        ApplicationContextLoader.run();
-    }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/create/add-engineer.jsp");
         try {
             requestDispatcher.forward(request, response);
-        } catch (ServletException|IOException e) {
+        } catch (ServletException |IOException e) {
             throw new RuntimeException("Exception in AddEngineerServlet.doGet " + e);
         }
     }
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         var engineer = new Engineer();
         String value;
         int valueInt;
@@ -67,7 +63,13 @@ public class AddEngineerServlet extends HttpServlet {
         }
         writer.println(engineerInRepo + " saved in repository");
         writer.println("");
-        writer.println("<p><button onclick=\"location.href='/index.html'\">Back to main</button></p>");
+        writer.println("<p><button onclick=\"location.href='/'\">Back to main</button></p>");
+
+        request.setAttribute("error", false);
+        request.setAttribute("successMessageFromForward", engineerInRepo + " saved in repository");
+        final RequestDispatcher view = request.getRequestDispatcher("/all-engineer");
+        view.forward(request,response);
+//        todo redirect;
     }
 
     private static boolean isAnInt(Field field) {

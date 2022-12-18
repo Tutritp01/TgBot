@@ -7,4 +7,13 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <servlet>
+        <servlet-name>AddEngeneer</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.AddEngineerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddEngeneer</servlet-name>
+        <url-pattern>/add-engineer</url-pattern>
+    </servlet-mapping>
 </web-app>

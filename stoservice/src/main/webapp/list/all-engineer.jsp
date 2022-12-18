@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,8 @@
 </head>
 <body>
 <button onclick="location.href='/add-engineer'">Add Engineer</button>
+<h1><c:out value="${requestScope.successMessage}"/></h1>
+<h5><c:out value="${requestScope.successMessageFromForward}"/></h5>
     <table>
         <thead>
         <tr>
@@ -23,14 +26,14 @@
         <c:forEach var="engineer" items="${requestScope.listEngineers}">
             <tbody>
             <tr>
-                <td><c:out value="${engineer.idEngineer}"/>
-                <td><c:out value="${engineer.firstName}"/>
-                <td><c:out value="${engineer.lastName}"/>
-                <td><c:out value="${engineer.function}"/>
-                <td><c:out value="${engineer.category}"/>
-                <td><c:out value="${engineer.education}"/>
-                <td><c:out value="${engineer.experience}"/>
-                <td><c:out value="${engineer.generalExperience}"/>
+                <td><c:out value="${engineer.idEngineer}"/></td>
+                <td><c:out value="${engineer.firstName}"/></td>
+                <td><c:out value="${engineer.lastName}"/></td>
+                <td><c:out value="${engineer.function}"/></td>
+                <td><c:out value="${engineer.category}"/></td>
+                <td><c:out value="${engineer.education}"/></td>
+                <td><c:out value="${engineer.experience}"/></td>
+                <td><c:out value="${engineer.generalExperience}"/></td>
                 <td>
                     <button name="id" value="${engineer.idEngineer}"
                             formmethod = "post" onclick="location.href='/edit-engineer'">Edit</button>
