@@ -12,4 +12,14 @@
         <servlet-name>AllCars</servlet-name>
         <url-pattern>/carTable</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CarForm</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CarForm</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CarForm</servlet-name>
+        <url-pattern>/carForm</url-pattern>
+    </servlet-mapping>
 </web-app>
