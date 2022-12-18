@@ -17,6 +17,7 @@
         <servlet-name>AllCars</servlet-name>
         <url-pattern>/carTable</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>com.tutrit.stoservice.servlets.LoginServlet</servlet-class>
@@ -24,5 +25,14 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>InputCommand</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.InputCommandServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InputCommand</servlet-name>
+        <url-pattern>/input</url-pattern>
     </servlet-mapping>
 </web-app>
