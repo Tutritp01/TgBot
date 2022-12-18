@@ -12,7 +12,7 @@
 <h1>All Cars</h1><br/>
 <a href="carForm.jsp" class="btn btn-primary" type="button">Add</a>
 <div class="table">
-    <table class="table table-light table-striped table-bordered border-primary">
+    <table class="table table-light table-striped">
         <caption>All Cars</caption>
         <thead>
         <tr>
