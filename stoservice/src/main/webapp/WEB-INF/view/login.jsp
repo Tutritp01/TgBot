@@ -12,7 +12,7 @@
     <form class="px-4 py-3" action="" method="post">
         <div class="mb-3">
             <label for="exampleDropdownFormEmail1" class="form-label">Login</label>
-            <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="login">
+            <input type="login" class="form-control" id="exampleDropdownFormEmail1" placeholder="login">
         </div>
         <div class="mb-3">
             <label for="exampleDropdownFormPassword1" class="form-label">Password</label>

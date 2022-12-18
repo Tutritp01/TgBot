@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
 
-    private static final String PATH = "/login.jsp";
+    private static final String PATH = "/WEB-INF/view/login.jsp";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
