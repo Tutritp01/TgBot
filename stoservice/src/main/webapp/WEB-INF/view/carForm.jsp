@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
-    <form class="needs-validation was-validated" action="/carForm" method="GET" novalidate>
+    <form class="needs-validation was-validated" action="/carForm" method="POST" novalidate>
         <div class="col-md-20">
             <label for="id" class="form-label">Id</label>
             <input type="text" class="form-control" id="id" required placeholder="id" value="${requestScope.id}">

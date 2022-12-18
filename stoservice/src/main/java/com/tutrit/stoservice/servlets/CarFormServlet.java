@@ -10,8 +10,6 @@ public class CarFormServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/view/carForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/carForm.jsp").forward(req, resp);
     }
-
-
 }
