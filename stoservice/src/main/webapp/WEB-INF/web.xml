@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>CarForm</servlet-name>
-        <servlet-class>com.tutrit.stoservice.servlets.CarForm</servlet-class>
+        <servlet-class>com.tutrit.stoservice.servlets.CarFormServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
