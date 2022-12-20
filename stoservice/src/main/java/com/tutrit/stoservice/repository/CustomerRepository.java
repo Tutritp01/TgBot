@@ -16,8 +16,8 @@ public class CustomerRepository implements Repository<Customer, String>, MyIdGen
     @Override
     public Customer save(Customer customer) {
         if (!customers.contains(customer)) {
-            customers.add(customer);
             setUUID(customer);
+            customers.add(customer);
         } else {
             logger.info("Customers already exists");
         }
@@ -26,8 +26,11 @@ public class CustomerRepository implements Repository<Customer, String>, MyIdGen
 
     @Override
     public void saveAll(Iterable<Customer> customer) {
-        customers.addAll((Collection<? extends Customer>) customer);
-        customers.forEach(this::setUUID);
+        Collection<Customer> temp = new HashSet<>();
+        temp.addAll((Collection<? extends Customer>) customer);
+        temp.forEach(this::setUUID);
+        customers.addAll(temp);
+
     }
 
 
@@ -71,6 +74,7 @@ public class CustomerRepository implements Repository<Customer, String>, MyIdGen
     public boolean delete(Customer customer) {
         if (customers.contains(customer)) {
             customers.remove(customer);
+            return true;
         }
         return false;
     }

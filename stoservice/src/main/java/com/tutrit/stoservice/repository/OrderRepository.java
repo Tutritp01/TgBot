@@ -18,8 +18,8 @@ public class OrderRepository implements Repository<Order, String>, MyIdGenerator
     @Override
     public Order save(Order order) {
         if (!orders.containsKey(order.getId())) {
-            orders.put(order.getId(), order);
             setUUID(order);
+            orders.put(order.getId(), order);
         }
         return null;
     }

@@ -2,6 +2,7 @@ package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Promo;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,8 +19,9 @@ public class PromoRepository implements Repository<Promo, String>, MyIdGenerator
     @Override
     public Promo save(Promo promo) {
         if (!promoSet.contains(promo)) {
-            promoSet.add(promo);
             setUUID(promo);
+            setDateStamp(promo);
+            promoSet.add(promo);
         } else {
             logger.info("Promo already exists");
         }
@@ -28,8 +30,10 @@ public class PromoRepository implements Repository<Promo, String>, MyIdGenerator
 
     @Override
     public void saveAll(Iterable<Promo> promo) {
-        promoSet.addAll((Collection<? extends Promo>) promo);
-        promoSet.forEach(this::setUUID);
+        Collection<Promo> temp = new HashSet<>();
+        temp.addAll((Collection<? extends Promo>) promo);
+        temp.forEach(this::setUUID);
+        promoSet.addAll(temp);
     }
 
     @Override
@@ -68,7 +72,11 @@ public class PromoRepository implements Repository<Promo, String>, MyIdGenerator
 
     @Override
     public boolean delete(Promo promo) {
-        return promoSet.remove(findById(promo.getId()));
+        if (promoSet.contains(promo)) {
+            promoSet.remove(promo);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -100,4 +108,14 @@ public class PromoRepository implements Repository<Promo, String>, MyIdGenerator
     public void setUUID(Promo promo) {
         promo.setId(UUID.randomUUID().toString());
     }
+
+    public static void setDateStamp(Promo promo) {
+        promo.setTimeStamp(LocalDateTime.now());
+    }
+
+    public void clean() {
+        promoSet.clear();
+    }
+
 }
+

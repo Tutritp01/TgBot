@@ -1,11 +1,9 @@
 package com.tutrit.stoservice.repository;
 
+import com.tutrit.stoservice.bean.Customer;
 import com.tutrit.stoservice.bean.Message;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class MessageRepository implements Repository<Message, String>, MyIdGenerator<Message> {
@@ -22,8 +20,10 @@ public class MessageRepository implements Repository<Message, String>, MyIdGener
 
     @Override
     public void saveAll(Iterable<Message> smsList) {
-        MessageRepository.messages.addAll((Collection<Message>) smsList);
-        messages.forEach(this::setUUID);
+        Collection<Message> temp = new ArrayList<>();
+        temp.addAll((Collection<? extends Message>) smsList);
+        temp.forEach(this::setUUID);
+        messages.addAll(temp);
     }
 
     @Override
@@ -82,5 +82,8 @@ public class MessageRepository implements Repository<Message, String>, MyIdGener
     @Override
     public void setUUID(Message sms) {
         sms.setId(UUID.randomUUID().toString());
+    }
+    public  void clean(){
+        messages.clear();
     }
 }

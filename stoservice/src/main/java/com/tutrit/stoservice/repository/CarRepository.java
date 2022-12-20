@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-public class CarRepository implements Repository<Car, String>,MyIdGenerator<Car> {
+public class CarRepository implements Repository<Car, String>, MyIdGenerator<Car> {
     public static final Logger logger = Logger.getLogger(CarRepository.class.getName());
     private static final List<Car> cars = new ArrayList<>();
 
@@ -17,16 +17,18 @@ public class CarRepository implements Repository<Car, String>,MyIdGenerator<Car>
         if (isContains(car.getId())) {
             return update(car);
         } else {
-            cars.add(car);
             setUUID(car);
+            cars.add(car);
         }
         return car;
     }
 
     @Override
     public void saveAll(Iterable<Car> car) {
-        CarRepository.cars.addAll((Collection<? extends Car>) car);
-        cars.forEach(this::setUUID);
+        Collection<Car> temp = new ArrayList<>();
+        temp.addAll((Collection<? extends Car>) car);
+        temp.forEach(this::setUUID);
+        cars.addAll(temp);
     }
 
     @Override
