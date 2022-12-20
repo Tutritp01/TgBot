@@ -12,8 +12,8 @@ public class UserRepository implements Repository<User, String>, MyIdGenerator<U
 
     @Override
     public User save(User user) {
-        userMap.put(user.getId(), user);
         setUUID(user);
+        userMap.put(user.getId(), user);
 
         return user;
     }
@@ -21,8 +21,8 @@ public class UserRepository implements Repository<User, String>, MyIdGenerator<U
     @Override
     public void saveAll(Iterable<User> users) {
         for (User user : users) {
-            userMap.put(user.getId(), user);
             setUUID(user);
+            userMap.put(user.getId(), user);
         }
     }
 

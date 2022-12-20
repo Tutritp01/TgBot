@@ -3,6 +3,7 @@ package com.tutrit.stoservice.repository;
 import com.tutrit.stoservice.bean.Message;
 import com.tutrit.stoservice.bean.MessageStatus;
 import com.tutrit.stoservice.mock.MessageRepositoryUUIDMock;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,8 +19,11 @@ class MessageRepositoryTest {
     @BeforeEach
     public void setUp() {
         messageRepository = new MessageRepositoryUUIDMock();
-        messageRepository.clean();
+    }
 
+    @AfterEach
+    void clear() {
+        messageRepository.clean();
     }
 
     @Test
@@ -73,25 +77,25 @@ class MessageRepositoryTest {
 
     @Test
     void findById() {
-        Message message11 = new Message("spyValues1", "event 11", LocalDateTime.now(), LocalDateTime.now(), null, null);
-        Message message12 = new Message("spyValues2", "event 12", LocalDateTime.now(), LocalDateTime.now(), null, null);
+        Message message11 = new Message("spyValues0", "event 11", LocalDateTime.now(), LocalDateTime.now(), null, null);
+        Message message12 = new Message("spyValues1", "event 12", LocalDateTime.now(), LocalDateTime.now(), null, null);
         messageRepository.save(message11);
         messageRepository.save(message12);
 
-        assertEquals(message11, messageRepository.findById("spyValues1"));
+        assertEquals(message11, messageRepository.findById("spyValues0"));
         assertNull(messageRepository.findById("id10000"));
     }
 
     @Test
     void update() {
-        Message message13 = new Message("spyValues1", "event 13", LocalDateTime.now(), LocalDateTime.now(), null, null);
-        Message message14 = new Message("spyValues2", "event 14", LocalDateTime.now(), LocalDateTime.now(), null, null);
+        Message message13 = new Message("spyValues0", "event 13", LocalDateTime.now(), LocalDateTime.now(), null, null);
+        Message message14 = new Message("spyValues1", "event 14", LocalDateTime.now(), LocalDateTime.now(), null, null);
 
         messageRepository.save(message13);
         messageRepository.save(message14);
         messageRepository.update(message14);
 
-        assertEquals(message14, messageRepository.findById("spyValues2"));
+        assertEquals(message14, messageRepository.findById("spyValues1"));
     }
 
     @Test
@@ -110,12 +114,12 @@ class MessageRepositoryTest {
 
     @Test
     void deleteById() {
-        Message message17 = new Message("spyValues1", "event 17", LocalDateTime.now(), LocalDateTime.now(), null, null);
-        Message message18 = new Message("spyValues2", "event 18", LocalDateTime.now(), LocalDateTime.now(), null, null);
+        Message message17 = new Message("spyValues0", "event 17", LocalDateTime.now(), LocalDateTime.now(), null, null);
+        Message message18 = new Message("spyValues1", "event 18", LocalDateTime.now(), LocalDateTime.now(), null, null);
         messageRepository.save(message17);
         messageRepository.save(message18);
         int expected = messageRepository.count() - 1;
-        messageRepository.deleteById("spyValues2");
+        messageRepository.deleteById("spyValues1");
 
         assertEquals(expected, messageRepository.count());
     }

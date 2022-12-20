@@ -3,7 +3,6 @@ package com.tutrit.stoservice.repository;
 import com.tutrit.stoservice.bean.Car;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -24,11 +23,8 @@ public class CarRepository implements Repository<Car, String>, MyIdGenerator<Car
     }
 
     @Override
-    public void saveAll(Iterable<Car> car) {
-        Collection<Car> temp = new ArrayList<>();
-        temp.addAll((Collection<? extends Car>) car);
-        temp.forEach(this::setUUID);
-        cars.addAll(temp);
+    public void saveAll(Iterable<Car> cars) {
+        cars.forEach(this::save);
     }
 
     @Override

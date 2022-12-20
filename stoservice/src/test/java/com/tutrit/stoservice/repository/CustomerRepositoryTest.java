@@ -2,10 +2,12 @@ package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Customer;
 import com.tutrit.stoservice.mock.CustomerRepositoryUUIDMock;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -20,17 +22,21 @@ class CustomerRepositoryTest {
     void SetUp() {
         customerRepository = new CustomerRepositoryUUIDMock();
 
-    }
 
+    }
+    @AfterEach
+    void clear(){
+        customerRepository.clean();
+    }
     @Test
     void saveCustomer() {
-        customerRepository.save(new Customer("1", "customer1", "city1", "phoneNumber1", "email1"));
+        customerRepository.save(new Customer("spyValues0", "customer1", "city1", "phoneNumber1", "email1"));
         assertEquals(1, customerRepository.count());
 
-        Customer customer = new Customer("2", "customer2", "city2", "phoneNumber2", "email2");
+        Customer customer = new Customer("spyValues1", "customer2", "city2", "phoneNumber2", "email2");
         customerRepository.save(customer);
         System.out.println(customerRepository);
-        assertEquals(customerRepository.findById("spyValues2"), customerRepository.find(customer));
+        assertEquals(customerRepository.findById("spyValues1"), customerRepository.find(customer));
     }
 
     @Test
@@ -54,7 +60,7 @@ class CustomerRepositoryTest {
         Customer customer = new Customer("3", "customer3", "city3", "phoneNumber3", "email3");
         customerRepository.save(customer);
         customerRepository.find(customer);
-        assertEquals("spyValues3", customerRepository.find(customer).getId());
+        assertEquals("spyValues0", customerRepository.find(customer).getId());
     }
 
     @Test

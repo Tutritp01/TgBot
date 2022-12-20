@@ -4,7 +4,6 @@ import com.tutrit.stoservice.bean.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.UUID;
 
@@ -25,12 +24,8 @@ public class CustomerRepository implements Repository<Customer, String>, MyIdGen
     }
 
     @Override
-    public void saveAll(Iterable<Customer> customer) {
-        Collection<Customer> temp = new HashSet<>();
-        temp.addAll((Collection<? extends Customer>) customer);
-        temp.forEach(this::setUUID);
-        customers.addAll(temp);
-
+    public void saveAll(Iterable<Customer> customers) {
+        customers.forEach(this::save);
     }
 
 
@@ -47,7 +42,6 @@ public class CustomerRepository implements Repository<Customer, String>, MyIdGen
     @Override
     public Iterable<Customer> findAll() {
         return customers;
-
     }
 
     @Override
@@ -74,7 +68,6 @@ public class CustomerRepository implements Repository<Customer, String>, MyIdGen
     public boolean delete(Customer customer) {
         if (customers.contains(customer)) {
             customers.remove(customer);
-            return true;
         }
         return false;
     }
@@ -84,7 +77,6 @@ public class CustomerRepository implements Repository<Customer, String>, MyIdGen
         for (final Customer customer : customers) {
             if (customer.getId().equals(id)) {
                 customers.remove(customer);
-                return true;
             }
         }
         return false;
@@ -97,5 +89,8 @@ public class CustomerRepository implements Repository<Customer, String>, MyIdGen
     @Override
     public void setUUID(Customer customer) {
         customer.setId(UUID.randomUUID().toString());
+    }
+    public void clean() {
+        customers.clear();
     }
 }

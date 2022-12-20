@@ -3,7 +3,6 @@ package com.tutrit.stoservice.repository;
 import com.tutrit.stoservice.bean.Promo;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -29,11 +28,8 @@ public class PromoRepository implements Repository<Promo, String>, MyIdGenerator
     }
 
     @Override
-    public void saveAll(Iterable<Promo> promo) {
-        Collection<Promo> temp = new HashSet<>();
-        temp.addAll((Collection<? extends Promo>) promo);
-        temp.forEach(this::setUUID);
-        promoSet.addAll(temp);
+    public void saveAll(Iterable<Promo> promoSet) {
+        promoSet.forEach(this::save);
     }
 
     @Override
@@ -74,7 +70,6 @@ public class PromoRepository implements Repository<Promo, String>, MyIdGenerator
     public boolean delete(Promo promo) {
         if (promoSet.contains(promo)) {
             promoSet.remove(promo);
-            return true;
         }
         return false;
     }

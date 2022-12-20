@@ -13,17 +13,14 @@ public class MessageRepository implements Repository<Message, String>, MyIdGener
 
     @Override
     public Message save(Message sms) {
-        messages.add(0, sms);
         setUUID(sms);
+        messages.add(0, sms);
         return sms;
     }
 
     @Override
     public void saveAll(Iterable<Message> smsList) {
-        Collection<Message> temp = new ArrayList<>();
-        temp.addAll((Collection<? extends Message>) smsList);
-        temp.forEach(this::setUUID);
-        messages.addAll(temp);
+        smsList.forEach(this::save);
     }
 
     @Override
@@ -83,7 +80,8 @@ public class MessageRepository implements Repository<Message, String>, MyIdGener
     public void setUUID(Message sms) {
         sms.setId(UUID.randomUUID().toString());
     }
-    public  void clean(){
+
+    public void clean() {
         messages.clear();
     }
 }

@@ -43,10 +43,7 @@ class CarRepositoryTest {
         Car car29 = new Car("id29", "owner", "vin", "plateNumber", "brand29", "model29", "29g", "mod29", "engine29", 2029);
         Car car30 = new Car("id30", "owner", "vin", "plateNumber", "brand30", "model30", "30g", "mod30", "engine30", 2030);
         Car car31 = new Car("id31", "owner", "vin", "plateNumber", "brand31", "model31", "31g", "mod31", "engine31", 2031);
-        carRepository.save(car29);
-        carRepository.save(car30);
-        carRepository.save(car31);
-        int expected = carRepository.count() + 3;
+               int expected = carRepository.count() + 3;
 
         List<Car> listCars = List.of(car29, car30, car31);
         carRepository.saveAll(listCars);
