@@ -90,6 +90,7 @@ public class CustomerRepository implements Repository<Customer, String>, MyIdGen
     public void setUUID(Customer customer) {
         customer.setId(UUID.randomUUID().toString());
     }
+    
     public void clean() {
         customers.clear();
     }
