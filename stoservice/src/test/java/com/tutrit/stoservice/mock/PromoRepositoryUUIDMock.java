@@ -9,7 +9,7 @@ public class PromoRepositoryUUIDMock extends PromoRepository {
 
     @Override
     public void setUUID(Promo promo) {
-        promo.setId("spyValues" + count());
+        promo.setId("spyValues" + (count()+1));
 
     }
 }
