@@ -17,11 +17,11 @@ public class Promo {
     public Promo() {
     }
 
-    public Promo(String id, int discount, String namePromo, LocalDateTime startDate, LocalDateTime endDate, User author, PromoStatus status) {
+    public Promo(String id, int discount, String namePromo, LocalDateTime timeStamp, LocalDateTime startDate, LocalDateTime endDate, User author, PromoStatus status) {
         this.id = id;
         this.discount = discount;
         this.namePromo = namePromo;
-        this.timeStamp = LocalDateTime.now();
+        this.timeStamp = timeStamp;
         this.startDate = startDate;
         this.endDate = endDate;
         this.author = author;
@@ -95,7 +95,8 @@ public class Promo {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Promo promo)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        Promo promo = (Promo) o;
         return discount == promo.discount && Objects.equals(id, promo.id) && Objects.equals(namePromo, promo.namePromo) && Objects.equals(timeStamp, promo.timeStamp) && Objects.equals(startDate, promo.startDate) && Objects.equals(endDate, promo.endDate) && Objects.equals(author, promo.author) && status == promo.status;
     }
 
