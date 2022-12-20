@@ -4,16 +4,12 @@ import com.tutrit.stoservice.bean.Car;
 import com.tutrit.stoservice.bean.Customer;
 import com.tutrit.stoservice.bean.Engineer;
 import com.tutrit.stoservice.bean.Order;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.StreamSupport;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -47,7 +43,8 @@ class OrderRepositoryTest {
     void save() {
         var order4 = makeOrder(4);
         orderRepository.save(order4);
-        assertEquals(4, orderRepository.orders.size());
+        int expected = orderRepository.count();
+        assertEquals(expected, orderRepository.orders.size());
         var order5 = makeOrder(5);
         orderRepository.save(order5);
         assertEquals(5, orderRepository.orders.size());
