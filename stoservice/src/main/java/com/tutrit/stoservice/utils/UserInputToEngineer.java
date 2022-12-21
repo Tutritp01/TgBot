@@ -18,7 +18,7 @@ public class UserInputToEngineer {
     private static Engineer makeEngineer(Map<String, String> map) {
         var engineer = new Engineer();
         if (!map.isEmpty()) {
-            engineer.setIdEngineer("temp");
+            engineer.setId("temp");
             engineer.setFirstName(map.get("firstName"));
             engineer.setLastName(map.get("lastName"));
             engineer.setFunction(map.get("function"));

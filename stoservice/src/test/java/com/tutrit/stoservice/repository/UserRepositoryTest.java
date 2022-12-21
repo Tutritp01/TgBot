@@ -4,8 +4,7 @@ import com.tutrit.stoservice.bean.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UserRepositoryTest {
 
@@ -58,9 +57,9 @@ class UserRepositoryTest {
 
     @Test
     void deleteUser() {
-        int expectedCount = userRepository.count();
+        int expectedCount = userRepository.count() + 1;
         User user = userRepository.save(new User("9", "user9", "phone9"));
-        assertTrue(userRepository.delete(user));
+        assertFalse(userRepository.delete(user));
         assertEquals(expectedCount, userRepository.count());
     }
 }

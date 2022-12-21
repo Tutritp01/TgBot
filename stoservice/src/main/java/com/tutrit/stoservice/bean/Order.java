@@ -24,9 +24,6 @@ public class Order {
 
     public Order(){}
 
-    public Order(String id, String user, String car, String open) {
-    }
-
     public Order(String id, Customer customer, User user, Car car, Engineer engineer, String orderStatus) {
         this.id = id;
         this.customer = customer;
@@ -104,7 +101,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", customer=" + customer +
                 ", user=" + user +
                 ", car=" + car +

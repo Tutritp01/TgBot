@@ -26,11 +26,11 @@ public class Engineer {
         this.generalExperience = generalExperience;
     }
 
-    public String getIdEngineer() {
+    public String getId() {
         return id;
     }
 
-    public void setIdEngineer(String idEngineer) {
+    public void setId(String id) {
         this.id = id;
     }
 
