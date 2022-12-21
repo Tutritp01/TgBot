@@ -4,10 +4,10 @@ import com.tutrit.stoservice.bean.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.UUID;
 
-public class CustomerRepository implements Repository<Customer, String> {
+public class CustomerRepository implements Repository<Customer, String>, MyIdGenerator<Customer> {
 
     public static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     private static HashSet<Customer> customers = new HashSet<>();
@@ -15,6 +15,7 @@ public class CustomerRepository implements Repository<Customer, String> {
     @Override
     public Customer save(Customer customer) {
         if (!customers.contains(customer)) {
+            setUUID(customer);
             customers.add(customer);
         } else {
             logger.info("Customers already exists");
@@ -23,10 +24,10 @@ public class CustomerRepository implements Repository<Customer, String> {
     }
 
     @Override
-    public void saveAll(Iterable<Customer> obj) {
-        customers.addAll((Collection<? extends Customer>) obj);
-
+    public void saveAll(Iterable<Customer> customers) {
+        customers.forEach(this::save);
     }
+
 
     @Override
     public Customer find(Customer customer) {
@@ -41,7 +42,6 @@ public class CustomerRepository implements Repository<Customer, String> {
     @Override
     public Iterable<Customer> findAll() {
         return customers;
-
     }
 
     @Override
@@ -77,7 +77,6 @@ public class CustomerRepository implements Repository<Customer, String> {
         for (final Customer customer : customers) {
             if (customer.getId().equals(id)) {
                 customers.remove(customer);
-                return true;
             }
         }
         return false;
@@ -85,5 +84,14 @@ public class CustomerRepository implements Repository<Customer, String> {
 
     public int count() {
         return customers.size();
+    }
+
+    @Override
+    public void setUUID(Customer customer) {
+        customer.setId(UUID.randomUUID().toString());
+    }
+    
+    public void clean() {
+        customers.clear();
     }
 }

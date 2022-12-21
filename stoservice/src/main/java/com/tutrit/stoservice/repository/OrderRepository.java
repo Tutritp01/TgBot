@@ -7,8 +7,9 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
-public class OrderRepository implements Repository<Order, String> {
+public class OrderRepository implements Repository<Order, String>, MyIdGenerator<Order> {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
     public static Map<String, Order> orders = new HashMap<>();
@@ -17,7 +18,7 @@ public class OrderRepository implements Repository<Order, String> {
     @Override
     public Order save(Order order) {
         if (!orders.containsKey(order.getId())) {
-            order.setId(Integer.toString(count()));
+            setUUID(order);
             orders.put(order.getId(), order);
         }
         return null;
@@ -88,5 +89,10 @@ public class OrderRepository implements Repository<Order, String> {
     public int count() {
         counted++;
         return counted;
+    }
+
+    @Override
+    public void setUUID(Order order) {
+        order.setId(UUID.randomUUID().toString());
     }
 }
