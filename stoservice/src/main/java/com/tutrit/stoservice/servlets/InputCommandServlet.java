@@ -1,23 +1,27 @@
 package com.tutrit.stoservice.servlets;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import com.tutrit.stoservice.context.ApplicationContext;
+import com.tutrit.stoservice.controller.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class InputCommandServlet extends HttpServlet {
+
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String contextPath = req.getContextPath();
         String inputCommand = req.getParameter("input");
 
-        PrintWriter writer = resp.getWriter();
-        try {
-            writer.println("<h2>" + "Ну здравствуй" + "<h2>");
-        } finally {
-            writer.close();
-        }
+        RequestDispatcher requestDispatcher = ApplicationContext.get(RequestDispatcher.class);
+        requestDispatcher.doDispatch(inputCommand);
+
+
+        req.setAttribute("output", requestDispatcher.getResp());
+        req.getRequestDispatcher(contextPath).forward(req, resp);
     }
 }
