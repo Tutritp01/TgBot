@@ -1,20 +1,17 @@
 package com.tutrit.stoservice.servlets;
 
-import com.tutrit.stoservice.repository.CarRepository;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.tutrit.stoservice.context.ApplicationContext.get;
+public class LoginServlet extends HttpServlet {
 
-public class CarTableServlet extends HttpServlet {
+    private static final String PATH = "/WEB-INF/view/login.jsp";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("cars", get(CarRepository.class).findAll());
-        req.getRequestDispatcher("/carTable.jsp").forward(req, resp);
+        req.getRequestDispatcher(PATH).forward(req, resp);
     }
 }
