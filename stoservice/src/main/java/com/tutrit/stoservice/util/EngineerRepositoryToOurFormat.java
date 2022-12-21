@@ -26,7 +26,7 @@ public class EngineerRepositoryToOurFormat {
         directory.mkdirs();
 
         for (Engineer engineer : engineers) {
-            File newFile = new File(directory, engineer.getIdEngineer());
+            File newFile = new File(directory, engineer.getId());
 
             if (newFile.exists()) {
                 Files.delete(newFile.toPath());

@@ -42,7 +42,7 @@ public class EngineerController implements CommandController {
             Engineer engineer = newUserInput(request).getBodyAs(Engineer.class);
             if (engineer != null) {
                 engineerService.saveEngineer(engineer);
-                response.setResponse("Engineer " + engineer.getIdEngineer() + " is created");
+                response.setResponse("Engineer " + engineer.getId() + " is created");
                 return;
             }
             response.setResponse("Engineer not created");
@@ -57,7 +57,7 @@ public class EngineerController implements CommandController {
         if (id != null) {
             Engineer engineer = engineerService.findById(id);
             if (engineer != null) {
-                response.setResponse("Engineer with ID: " + engineer.getIdEngineer() + " found");
+                response.setResponse("Engineer with ID: " + engineer.getId() + " found");
             } else {
                 response.setResponse("Error 404: Engineer with " + id + " not found");
             }
