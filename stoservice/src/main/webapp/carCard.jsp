@@ -9,8 +9,8 @@
 </head>
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
-    <a href="carForm.jsp" class="btn btn-lg btn-primary" type="button">Edit</a>
-    <a href="carDelete.jsp" class="btn btn-lg btn-danger" type="button">Delete</a>
+    <button type="button" class="btn btn-lg btn-primary">Edit</button>
+    <button type="button" class="btn btn-lg btn-danger">Delete</button>
 </div>
 </body>
 </html>
