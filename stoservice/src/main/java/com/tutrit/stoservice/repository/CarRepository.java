@@ -3,11 +3,11 @@ package com.tutrit.stoservice.repository;
 import com.tutrit.stoservice.bean.Car;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
-public class CarRepository implements Repository<Car, String> {
+public class CarRepository implements Repository<Car, String>, MyIdGenerator<Car> {
     public static final Logger logger = Logger.getLogger(CarRepository.class.getName());
     private static final List<Car> cars = new ArrayList<>();
 
@@ -16,6 +16,7 @@ public class CarRepository implements Repository<Car, String> {
         if (isContains(car.getId())) {
             return update(car);
         } else {
+            setUUID(car);
             cars.add(car);
         }
         return car;
@@ -23,7 +24,7 @@ public class CarRepository implements Repository<Car, String> {
 
     @Override
     public void saveAll(Iterable<Car> cars) {
-        CarRepository.cars.addAll((Collection<? extends Car>) cars);
+        cars.forEach(this::save);
     }
 
     @Override
@@ -83,6 +84,12 @@ public class CarRepository implements Repository<Car, String> {
         }
         return car != null;
     }
+
+    @Override
+    public void setUUID(Car car) {
+        car.setId(UUID.randomUUID().toString());
+    }
+
 
     private static class CarNotFoundException extends Exception {
         public CarNotFoundException(String s) {

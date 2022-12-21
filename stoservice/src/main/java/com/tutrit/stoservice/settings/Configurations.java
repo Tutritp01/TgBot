@@ -21,6 +21,10 @@ public class Configurations {
         return loadDataDemo;
     }
 
+    public void setLoadDataDemo(boolean loadDataDemo) {
+        this.loadDataDemo = loadDataDemo;
+    }
+
     public void getProperties() {
         Properties properties = new Properties();
         try (FileInputStream fileInputStream = new FileInputStream(pathToProperties)) {
