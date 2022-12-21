@@ -15,7 +15,19 @@ public class ApplicationContext {
         context.put(clazz, object);
     }
 
-    public static <T> T get(Class<T> clazz) {
+    static <T> T loadClass(Class<T> clazz) {
         return (T) context.get(clazz);
+    }
+
+    public static <T> T get(Class<T> clazz) {
+        T obj = (T) context.get(clazz);
+        if (obj == null) {
+            ApplicationContextLoader.run();
+        }
+        obj = (T) context.get(clazz);
+        if (obj == null) {
+            throw new RuntimeException("Class not loaded: " + clazz.getName());
+        }
+        return obj;
     }
 }
