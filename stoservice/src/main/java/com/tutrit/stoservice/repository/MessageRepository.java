@@ -1,26 +1,26 @@
 package com.tutrit.stoservice.repository;
 
+import com.tutrit.stoservice.bean.Customer;
 import com.tutrit.stoservice.bean.Message;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
 
-public class MessageRepository implements Repository<Message, String> {
+public class MessageRepository implements Repository<Message, String>, MyIdGenerator<Message> {
 
     public static final Logger logger = Logger.getLogger(MessageRepository.class.getName());
-    private static  List<Message> messages = new ArrayList<>();
+    private static List<Message> messages = new ArrayList<>();
 
     @Override
     public Message save(Message sms) {
+        setUUID(sms);
         messages.add(0, sms);
         return sms;
     }
 
     @Override
     public void saveAll(Iterable<Message> smsList) {
-        MessageRepository.messages.addAll((Collection<Message>) smsList);
+        smsList.forEach(this::save);
     }
 
     @Override
@@ -74,5 +74,14 @@ public class MessageRepository implements Repository<Message, String> {
     @Override
     public int count() {
         return messages.size();
+    }
+
+    @Override
+    public void setUUID(Message sms) {
+        sms.setId(UUID.randomUUID().toString());
+    }
+
+    public void clean() {
+        messages.clear();
     }
 }
