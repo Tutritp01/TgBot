@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <title>Homepage</title>
-    <%@ include file="WEB-INF/header.html" %>
+    <%@ include file="WEB-INF/view/header.html" %>
 </head>
 <body>
 </body>

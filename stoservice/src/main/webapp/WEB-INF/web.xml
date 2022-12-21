@@ -2,4 +2,14 @@
         "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app></web-app>
+<web-app>
+    <servlet>
+        <servlet-name>AllCars</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CarTableServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AllCars</servlet-name>
+        <url-pattern>/carTable</url-pattern>
+    </servlet-mapping>
+</web-app>
