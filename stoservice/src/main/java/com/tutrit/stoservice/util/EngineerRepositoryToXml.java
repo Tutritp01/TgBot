@@ -40,7 +40,7 @@ public class EngineerRepositoryToXml {
             Element tagEngineer = document.createElement("engineer");
             document.appendChild(tagEngineer);
 
-            tagEngineer.setAttribute("id", engineer.getIdEngineer());
+            tagEngineer.setAttribute("id", engineer.getId());
 
             Element tagFirstName = document.createElement("firstName");
             tagFirstName.setTextContent(engineer.getFirstName());
@@ -76,7 +76,7 @@ public class EngineerRepositoryToXml {
             Transformer transformer = factory.newTransformer();
             DOMSource source = new DOMSource(document);
 
-            File xml = new File(directory, engineer.getIdEngineer() + ".xml");
+            File xml = new File(directory, engineer.getId() + ".xml");
             if (xml.createNewFile()) {
                 StreamResult result = new StreamResult(xml);
                 transformer.transform(source, result);
