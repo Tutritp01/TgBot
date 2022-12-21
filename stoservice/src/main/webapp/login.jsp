@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <jsp:include page="/header.jsp"/>
+    <jsp:include page="/WEB-INF/view/header.jsp"/>
 </head>
 <body>
 <div class="d-flex justify-content-center">
