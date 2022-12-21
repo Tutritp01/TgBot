@@ -4,7 +4,7 @@ import com.tutrit.stoservice.bean.Order;
 import com.tutrit.stoservice.repository.OrderRepository;
 
 public class OrderRepositoryMock extends OrderRepository {
-    Order order = new Order("1", "Vasil", "lada", "to do");
+    Order order; //= new Order("1", "Vasil", "lada", "to do");
 
     @Override
     public Order save(Order order) {

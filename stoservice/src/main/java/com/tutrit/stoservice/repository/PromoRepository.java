@@ -2,12 +2,13 @@ package com.tutrit.stoservice.repository;
 
 import com.tutrit.stoservice.bean.Promo;
 
-import java.util.Collection;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import java.util.logging.Logger;
 
-public class PromoRepository implements Repository<Promo, String> {
+public class PromoRepository implements Repository<Promo, String>, MyIdGenerator<Promo> {
 
     public static final java.util.logging.Logger logger = Logger.getLogger(PromoRepository.class.getName());
 
@@ -17,6 +18,8 @@ public class PromoRepository implements Repository<Promo, String> {
     @Override
     public Promo save(Promo promo) {
         if (!promoSet.contains(promo)) {
+            setUUID(promo);
+            setDateStamp(promo);
             promoSet.add(promo);
         } else {
             logger.info("Promo already exists");
@@ -25,8 +28,8 @@ public class PromoRepository implements Repository<Promo, String> {
     }
 
     @Override
-    public void saveAll(Iterable<Promo> promo) {
-        promoSet.addAll((Collection<? extends Promo>) promo);
+    public void saveAll(Iterable<Promo> promoSet) {
+        promoSet.forEach(this::save);
     }
 
     @Override
@@ -65,7 +68,10 @@ public class PromoRepository implements Repository<Promo, String> {
 
     @Override
     public boolean delete(Promo promo) {
-        return promoSet.remove(findById(promo.getId()));
+        if (promoSet.contains(promo)) {
+            promoSet.remove(promo);
+        }
+        return false;
     }
 
     @Override
@@ -92,4 +98,19 @@ public class PromoRepository implements Repository<Promo, String> {
         public PromoNotFoundException(String s) {
         }
     }
+
+    @Override
+    public void setUUID(Promo promo) {
+        promo.setId(UUID.randomUUID().toString());
+    }
+
+    public static void setDateStamp(Promo promo) {
+        promo.setTimeStamp(LocalDateTime.now());
+    }
+
+    public void clean() {
+        promoSet.clear();
+    }
+
 }
+
