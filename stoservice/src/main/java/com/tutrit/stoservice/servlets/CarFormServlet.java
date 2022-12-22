@@ -4,14 +4,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
-public class LoginServlet extends HttpServlet {
-
-    private static final String PATH = "/WEB-INF/view/login.jsp";
+public class CarFormServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(PATH).forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/carForm.jsp").forward(req, resp);
     }
 }
