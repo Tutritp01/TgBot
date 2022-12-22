@@ -12,7 +12,7 @@ class ArgsSetupTest {
 
     @BeforeEach
     void setUp() {
-        configurations = new Configurations();
+        configurations = new Configurations("src/test/resources/configFalse.properties");
         argsSetup = new ArgsSetup(configurations);
     }
 
