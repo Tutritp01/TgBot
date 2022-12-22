@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>All Cars</h1><br/>
-<a href="/WEB-INF/view/carForm.jsp" class="btn btn-primary" type="button">Add</a>
+<a href="/carForm" class="btn btn-primary" type="button">Add</a>
 <div class="table">
     <table class="table table-light table-striped">
         <caption>All Cars</caption>
@@ -31,7 +31,7 @@
         <c:forEach var="car" items="${requestScope.cars}">
             <tbody>
             <tr>
-                <td><a href="/WEB-INF/view/carForm.jsp"><c:out value="${car.id}"/></a>
+                <td><a href="/carForm"><c:out value="${car.id}"/></a>
                 <td><c:out value="${car.owner}"/>
                 <td><c:out value="${car.vin}"/>
                 <td><c:out value="${car.plateNumber}"/>
@@ -43,8 +43,8 @@
                 <td><c:out value="${car.year}"/>
                 <td>
                     <div style="text-align: center">
-                        <a href="/WEB-INF/view/carForm.jsp" class="btn btn-primary" type="button">Edit</a>
-                        <a href="/WEB-INF/view/carDelete.jsp" class="btn btn-danger" type="button">Delete</a>
+                        <a href="/carForm" class="btn btn-primary" type="button">Edit</a>
+                        <a href="/carDelete" class="btn btn-danger" type="button">Delete</a>
                     </div>
                 </td>
             </tr>

@@ -10,9 +10,9 @@
 </head>
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
-    <a href="/WEB-INF/view/carTable.jsp" type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Warning"
+    <a href="/carTable" type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Warning"
        data-bs-content="Do you really want to delete the car??" aria-describedby="popover892921">Delete</a>
-    <a href="/WEB-INF/view/carCard.jsp" class="btn btn-lg btn-success" type="button">Cancel</a>
+    <a href="/carCard" class="btn btn-lg btn-success" type="button">Cancel</a>
 </div>
 </body>
 </html>
