@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="d-flex justify-content-center">
-    <form class="needs-validation was-validated" action="carCard.jsp" method="post" novalidate>
+    <form class="needs-validation was-validated" action="/WEB-INF/view/carCard.jsp" method="post" novalidate>
         <div class="col-md-12">
             <label for="id" class="form-label">Id</label>
             <input type="text" class="form-control" id="id" required="">
@@ -59,7 +59,7 @@
                 <button class="btn btn-primary" type="reset">Clear</button>
             </div>
             <div class="col order-last">
-                <a href="carTable.jsp" class="btn btn-danger" type="button">Cancel</a>
+                <a href="/WEB-INF/view/carTable.jsp" class="btn btn-danger" type="button">Cancel</a>
             </div>
         </div>
     </form>
