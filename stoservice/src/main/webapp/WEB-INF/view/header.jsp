@@ -19,7 +19,7 @@
             <a href="/login" class="btn btn-primary px-4 me-4" type="button">Login</a>
         </div>
         <div class="col-last">
-            <form class="d-flex input-group align-items-center me-5" action="/input" method="GET">
+            <form class="d-flex input-group align-items-center me-5" action="/input" method="get">
                 <input type="text" class="form-control" name="input" placeholder="Input command...">
                 <input type="submit" class="col-md-20 btn btn-primary px-4" value="Input">
             </form>
