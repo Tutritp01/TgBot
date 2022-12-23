@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,47 +10,51 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<div class="d-flex justify-content-center">
-    <form class="needs-validation was-validated" action="/carCard" method="post" novalidate>
+<div class="position-absolute top-50 start-50 translate-middle">
+    <form class="was-validated" action="/carCard" method="post">
         <div class="col-md-12">
-            <label for="id" class="form-label">Id</label>
-            <input type="text" class="form-control" id="id" required="">
+            <input type="text" class="form-control" name="id" required placeholder="id"
+                   value="${requestScope.get("id")}">
+        </div>
+        <div class="col-md-12 py-1">
+            <input type="text" class="form-control" name="owner" required placeholder="owner"
+                   value="${requestScope.get("owner")}">
         </div>
         <div class="col-md-12">
-            <label for="owner" class="form-label">Owner</label>
-            <input type="text" class="form-control" id="owner" required="">
+            <input type="text" class="form-control" name="vin" required placeholder="vin"
+                   value="${requestScope.get("vin")}">
+        </div>
+        <div class="col-md-12 py-1">
+            <input type="text" class="form-control" name="plateNumber" required placeholder="plate number"
+                   value="${requestScope.get("plateNumber")}">
         </div>
         <div class="col-md-12">
-            <label for="vin" class="form-label">Vin</label>
-            <input type="text" class="form-control" id="vin" required="">
+            <input type="text" class="form-control" name="brand" required placeholder="brand"
+                   value="${requestScope.get("brand")}">
+        </div>
+        <div class="col-md-12 py-1">
+            <input type="text" class="form-control" name="model" required placeholder="model"
+                   value="${requestScope.get("model")}">
         </div>
         <div class="col-md-12">
-            <label for="plateNumber" class="form-label">PlateNumber</label>
-            <input type="text" class="form-control" id="plateNumber" required="">
+            <input type="text" class="form-control" name="generation" required placeholder="generation"
+                   value="${requestScope.get("generation")}">
         </div>
-        <div class="col-md-12">
-            <label for="brand" class="form-label">Brand</label>
-            <input type="text" class="form-control" id="brand" required="">
-        </div>
-        <div class="col-md-12">
-            <label for="model" class="form-label">Model</label>
-            <input type="text" class="form-control" id="model" required="">
-        </div>
-        <div class="col-md-12">
-            <label for="generation" class="form-label">Generation</label>
-            <input type="text" class="form-control" id="generation" required="">
-        </div>
-        <div class="col-md-12">
-            <label for="modification" class="form-label">Modification</label>
-            <input type="text" class="form-control" id="modification" required="">
+        <div class="col-md-12 py-1">
+            <input type="text" class="form-control" name="modification" required placeholder="modification"
+                   value="${requestScope.get("modification")}">
         </div>
         <div>
-            <label for="engine" class="form-label">Engine</label>
-            <input type="text" class="form-control" id="engine" required="">
+            <input type="text" class="form-control" name="engine" required placeholder="engine"
+                   value="${requestScope.get("engine")}">
         </div>
-        <div class="col-md-12">
-            <label for="year" class="form-label">Year</label>
-            <input type="text" class="form-control" id="year" required="">
+        <div class="col-md-12 py-1">
+            <select class="form-select" required name="year" aria-label="Choose year">
+                <option value="${requestScope.get("year")}">${requestScope.get("year")}</option>
+                <c:forEach var="index" begin="1990" end="2022">
+                    <option value="${index}">${index}</option>
+                </c:forEach>
+            </select>
         </div>
         <div class="row">
             <div class="col order-first">
