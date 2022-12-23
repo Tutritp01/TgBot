@@ -10,8 +10,9 @@
 </head>
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
-    <a href="/carTable" type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Warning"
-       data-bs-content="Do you really want to delete the car??" aria-describedby="popover892921">Delete</a>
+    <form action="/carDelete" method="post">
+        <button class="btn btn-lg btn-danger" name="id" value="${param.get("id")}">Delete</button>
+    </form>
     <a href="/carCard" class="btn btn-lg btn-success" type="button">Cancel</a>
 </div>
 </body>
