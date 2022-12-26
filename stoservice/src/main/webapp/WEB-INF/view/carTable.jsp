@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -6,13 +6,14 @@
 <head>
     <meta charset="UTF-8">
     <title>AllCars</title>
-    <jsp:include page="header.html"/>
+    <jsp:include page="/WEB-INF/view/header.jsp"/>
 </head>
 <body>
 <h1>All Cars</h1><br/>
-<button type="button" class="btn btn-primary">Add</button>
+<a href="/carForm" class="btn btn-primary" type="button">Add</a>
 <div class="table">
-    <table class="table table-light table-striped table-bordered border-primary">
+    <table class="table table-light table-striped table-hover">
+        <caption>All Cars</caption>
         <thead>
         <tr>
             <th scope="col">ID</th>
@@ -27,10 +28,10 @@
             <th scope="col">Year</th>
         </tr>
         </thead>
+        <tbody class="table-group-divider">
         <c:forEach var="car" items="${requestScope.cars}">
-            <tbody>
             <tr>
-                <td><c:out value="${car.id}"/>
+                <td><a href="/carCard"><c:out value="${car.id}"/></a>
                 <td><c:out value="${car.owner}"/>
                 <td><c:out value="${car.vin}"/>
                 <td><c:out value="${car.plateNumber}"/>
@@ -41,14 +42,18 @@
                 <td><c:out value="${car.engine}"/>
                 <td><c:out value="${car.year}"/>
                 <td>
-                    <div style="text-align: center">
-                        <button type="button" class="btn btn-primary">Edit</button>
-                        <button type="button" class="btn btn-primary">Delete</button>
+                    <div class="d-flex justify-content-around">
+                        <form action="/carForm" method="post">
+                            <button class="btn btn-primary" name="id" value="${car.id}">Edit</button>
+                        </form>
+                        <form action="/carDelete" method="get" name="id">
+                            <button type="submit" class="btn btn-danger" name="id" value="${car.id}">Delete</button>
+                        </form>
                     </div>
                 </td>
             </tr>
-            </tbody>
         </c:forEach>
+        </tbody>
     </table>
 </div>
 </body>

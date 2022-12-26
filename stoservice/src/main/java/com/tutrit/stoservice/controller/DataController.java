@@ -24,7 +24,11 @@ public class DataController implements CommandController {
     }
 
     public void doCommand(Request request, Response response) {
-        response.setResponse(String.format(this.loadedDataAsString()));
+        if (String.format(this.loadedDataAsString()).isEmpty()) {
+            response.setResponse("There is no data");
+        } else {
+            response.setResponse(String.format(this.loadedDataAsString()));
+        }
     }
 
     private String loadedDataAsString() {

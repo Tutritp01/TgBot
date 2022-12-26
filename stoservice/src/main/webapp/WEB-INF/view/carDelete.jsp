@@ -6,14 +6,14 @@
     <meta charset="UTF-8">
     <title>CarDelete</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <jsp:include page="header.html"/>
+    <jsp:include page="/WEB-INF/view/header.jsp"/>
 </head>
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
-    <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Warning"
-            data-bs-content="Do you really want to delete the car??" aria-describedby="popover892921">Delete
-    </button>
-    <button type="button" class="btn btn-lg btn-success">Cancel</button>
+    <form action="/carDelete" method="post">
+        <button class="btn btn-lg btn-danger" name="id" value="${param.get("id")}">Delete</button>
+    </form>
+    <a href="/carCard" class="btn btn-lg btn-success" type="button">Cancel</a>
 </div>
 </body>
 </html>

@@ -9,6 +9,7 @@ import static com.tutrit.stoservice.utils.GetCommand.getCommand;
 public class RequestDispatcher {
 
     public static final Logger logger = LoggerFactory.getLogger("Dispatcher");
+    private String resp;
 
     public void doDispatch(String userInput) {
         Request request = new Request(userInput);
@@ -26,6 +27,11 @@ public class RequestDispatcher {
             case NEW_ORDER, GET_ORDER -> get(OrderController.class).doCommand(request, response);
             default -> response.setResponse("Error, command not recognized");
         }
-        logger.info(response.getResponse());
+        resp = response.getResponse();
+        logger.info(resp);
+    }
+
+    public String getResp() {
+        return resp;
     }
 }

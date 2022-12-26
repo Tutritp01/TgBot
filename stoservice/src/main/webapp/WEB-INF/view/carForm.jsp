@@ -1,64 +1,71 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>CarForm</title>
-    <jsp:include page="/WEB-INF/view/header.html"/>
+    <jsp:include page="/WEB-INF/view/header.jsp"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
-    <form class="needs-validation was-validated" action="/carForm" method="POST" novalidate>
-        <div class="col-md-20">
-            <label for="id" class="form-label">Id</label>
-            <input type="text" class="form-control" id="id" required placeholder="id" value="${requestScope.id}">
+    <form class="was-validated" action="/carCard" method="post">
+        <div class="col-md-12">
+            <input type="text" class="form-control" name="id" required placeholder="id"
+                   value="${requestScope.get("id")}">
+        </div>
+        <div class="col-md-12 py-1">
+            <input type="text" class="form-control" name="owner" required placeholder="owner"
+                   value="${requestScope.get("owner")}">
         </div>
         <div class="col-md-12">
-            <label for="owner" class="form-label">Owner</label>
-            <input type="text" class="form-control" id="owner" required placeholder="owner" value="${requestScope.owner}">
+            <input type="text" class="form-control" name="vin" required placeholder="vin"
+                   value="${requestScope.get("vin")}">
+        </div>
+        <div class="col-md-12 py-1">
+            <input type="text" class="form-control" name="plateNumber" required placeholder="plate number"
+                   value="${requestScope.get("plateNumber")}">
         </div>
         <div class="col-md-12">
-            <label for="vin" class="form-label">Vin</label>
-            <input type="text" class="form-control" id="vin" required placeholder="vin" value="${requestScope.vin}">
+            <input type="text" class="form-control" name="brand" required placeholder="brand"
+                   value="${requestScope.get("brand")}">
+        </div>
+        <div class="col-md-12 py-1">
+            <input type="text" class="form-control" name="model" required placeholder="model"
+                   value="${requestScope.get("model")}">
         </div>
         <div class="col-md-12">
-            <label for="plateNumber" class="form-label">PlateNumber</label>
-            <input type="text" class="form-control" id="plateNumber" required placeholder="plate number" value="${requestScope.plateNumber}">
+            <input type="text" class="form-control" name="generation" required placeholder="generation"
+                   value="${requestScope.get("generation")}">
         </div>
-        <div class="col-md-12">
-            <label for="brand" class="form-label">Brand</label>
-            <input type="text" class="form-control" id="brand" required placeholder="brand" value="${requestScope.brand}">
+        <div class="col-md-12 py-1">
+            <input type="text" class="form-control" name="modification" required placeholder="modification"
+                   value="${requestScope.get("modification")}">
         </div>
-        <div class="col-md-12">
-            <label for="model" class="form-label">Model</label>
-            <input type="text" class="form-control" id="model" required placeholder="model" value="${requestScope.model}">
+        <div>
+            <input type="text" class="form-control" name="engine" required placeholder="engine"
+                   value="${requestScope.get("engine")}">
         </div>
-        <div class="col-md-12">
-            <label for="generation" class="form-label">Generation</label>
-            <input type="text" class="form-control" id="generation" required placeholder="generation" value="${requestScope.generation}">
-        </div>
-        <div class="col-md-12">
-            <label for="modification" class="form-label">Modification</label>
-            <input type="text" class="form-control" id="modification" required placeholder="modification" value="${requestScope.modification}">
-        </div>
-        <div class="col-md-12">
-            <label for="engine" class="form-label">Engine</label>
-            <input type="text" class="form-control" id="engine" required placeholder="engine" value="${requestScope.engine}">
-        </div>
-        <div class="col-md-12">
-            <label for="year" class="form-label">Year</label>
-            <select class="form-control form-select" id="year" aria-label="Choose year">
-                <option selected>Choose year</option>
+        <div class="col-md-12 py-1">
+            <select class="form-select" required name="year" aria-label="Choose year">
+                <option value="${requestScope.get("year")}">${requestScope.get("year")}</option>
                 <c:forEach var="index" begin="1990" end="2022">
-                    <option value="index">${index}</option>
+                    <option value="${index}">${index}</option>
                 </c:forEach>
             </select>
         </div>
-        <div class="col-12">
-            <button class="btn btn-primary" type="submit">Submit</button>
+        <div class="row">
+            <div class="col order-first">
+                <button class="btn btn-success" type="submit">Save</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-primary" type="reset">Clear</button>
+            </div>
+            <div class="col order-last">
+                <a href="/carTable" class="btn btn-danger" type="button">Cancel</a>
+            </div>
         </div>
     </form>
 </div>

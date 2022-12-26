@@ -5,12 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>CarCard</title>
-    <jsp:include page="header.html"/>
+    <jsp:include page="/WEB-INF/view/header.jsp"/>
 </head>
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
-    <button type="button" class="btn btn-lg btn-primary">Edit</button>
-    <button type="button" class="btn btn-lg btn-danger">Delete</button>
+    <a href="/carForm" class="btn btn-lg btn-primary" type="button">Edit</a>
+    <a href="/carDelete" class="btn btn-lg btn-danger" type="button">Delete</a>
 </div>
 </body>
 </html>
