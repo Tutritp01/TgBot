@@ -9,8 +9,8 @@
     <jsp:include page="/WEB-INF/view/header.jsp"/>
 </head>
 <body>
-<h1>All Customers</h1><br/>
-<a href="/customerForm" class="btn btn-primary" type="button">Add</a>
+<h1>View all customers</h1><br/>
+<a href="/customerForm" class="btn btn-primary" type="button">Add new customer</a>
 <div class="table">
     <table class="table table-light table-striped table-hover">
         <caption>All Customers</caption>
