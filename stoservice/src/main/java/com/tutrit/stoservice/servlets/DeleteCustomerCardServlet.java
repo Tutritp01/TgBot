@@ -21,7 +21,7 @@ public class DeleteCustomerCardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = String.valueOf(req.getParameter("id"));
         get(CustomerRepository.class).deleteById(id);
+        req.getRequestDispatcher("/WEB-INF/view/customerTable.jsp").forward(req, resp);
 
-        new CustomerTableServlet().doGet(req, resp);
     }
 }
