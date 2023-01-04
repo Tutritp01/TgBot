@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class InMemoryAuthenticationService {
 
-    private static Map<String, String> logins = Map.of("admin", "1234", "moderator", "qwer", "user", "asdf");
+    private static final Map<String, String> logins = Map.of("admin", "1234", "moderator", "qwer", "user", "asdf");
 
     public boolean login(String username, String password) {
         return Objects.equals(logins.get(username), password);
