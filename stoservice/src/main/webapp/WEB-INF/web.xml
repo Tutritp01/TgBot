@@ -61,4 +61,15 @@
         <servlet-name>CarDelete</servlet-name>
         <url-pattern>/carDelete</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderForm</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.OrderFormServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>OrderForm</servlet-name>
+        <url-pattern>/orderForm</url-pattern>
+    </servlet-mapping>
+
 </web-app>
