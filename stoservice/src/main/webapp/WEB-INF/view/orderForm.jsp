@@ -12,10 +12,7 @@
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
     <form class="needs-validation was-validated" action="/orderForm" method="POST" novalidate>
-        <div class="col-md-12">
-            <label for="id" class="form-label">Id</label>
-            <input type="text" class="form-control" id="id" required placeholder="id" value="${requestScope.id}">
-        </div>
+
         <div class="col-md-12">
             <label for="customer" class="form-label">Customer</label>
             <input type="text" class="form-control" id="customer" required placeholder="customer" value="${requestScope.customer}">
