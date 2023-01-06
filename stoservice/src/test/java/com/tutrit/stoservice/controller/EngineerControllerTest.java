@@ -71,9 +71,9 @@ class EngineerControllerTest {
         request = new Request("new engineer -d id=zero&lastName=One&firstName=Two&function=Three&category=Four&education=Five&experience=6&generalExperience=7");
         engineerController.doCommand(request, response);
         engineerController.doCommand(request, response);
-        request = new Request("get engineer -m -d id=123332");
+        request = new Request("get engineer -m -d lastName=One&firstName=Two&function=Three&category=Four&education=Five&experience=6&generalExperience=7");
         engineerController.doCommand(request, response);
-        assertEquals("Error 404: Engineer with 123332 not found", response.getResponse());
+        assertEquals("Incorrectly entered command, failed to find the ID", response.getResponse());
     }
 
     @Test
