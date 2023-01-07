@@ -1,28 +1,31 @@
-<%@ page import="com.tutrit.stoservice.bean.Engineer" %>
-<%@ page import="java.lang.reflect.Field" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Add Engineer</title>
 </head>
 <body>
-<%
-  Class car = new Engineer().getClass();
-  Field[] fieldsCar = car.getDeclaredFields();
-  out.println("<form method=\"post\">");
-  for (Field field: fieldsCar) {
-    String name = field.getName();
-    if (name.equals("id")) continue;
-    out.println("<label>" + name + ":</label><br>");
-    out.println("<input type=\"text\" id=\"" + name +"\" name=\"" + name + "\"><br>");
-  }
-  out.println("<button type=\"submit\">Create</button>");
-  out.println("</form>");
-%>
-<button onclick="location.href='/all-engineer'">All Engineer</button>
+<br>
+<form action="/add-engineer" method="POST">
+  <label for="firstName">firstName:</label><br>
+  <input type="text" id="firstName" name="firstName"><br>
+  <label for="lastName">lastName:</label><br>
+  <input type="text" id="lastName" name="lastName"><br>
+  <label for="function">function:</label><br>
+  <input type="text" id="function" name="function"><br>
+  <label for="category">category:</label><br>
+  <input type="text" id="category" name="category"><br>
+  <label for="education">education:</label><br>
+  <input type="text" id="education" name="education"><br>
+  <label for="experience">experience:</label><br>
+  <input type="text" id="experience" name="experience"><br>
+  <label for="generalExperience">generalExperience:</label><br>
+  <input type="text" id="generalExperience" name="generalExperience"><br>
+  <input type="submit" value="Create"><br>
+</form>
+<br>
 <div>
-  <button onclick="location.href='/index.html'">Back to main</button>
+  <button onclick="location.href='/index.jsp'">Back to main</button><br>
 </div>
+<br>
 </body>
 </html>
