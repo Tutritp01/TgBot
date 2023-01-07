@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>OrderForm</title>
-    <jsp:include page="/WEB-INF/view/header.html"/>
+    <jsp:include page="/WEB-INF/view/header.jsp"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -32,8 +32,9 @@
         <div class="col-md-12">
             <label for="orderStatus" class="form-label">OrderStatus</label>
             <input type="text" class="form-control" id="orderStatus" required placeholder="orderStatus" value="${requestScope.orderStatus}">
-        <div class="col-12">
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
         </div>
     </form>
 </div>
