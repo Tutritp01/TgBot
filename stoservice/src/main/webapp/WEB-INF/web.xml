@@ -69,5 +69,12 @@
     <servlet-mapping>
         <servlet-name>CustomerForm</servlet-name>
         <url-pattern>/customerForm</url-pattern>
+
+        <servlet-name>CustomerDelete</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.DeleteCustomerCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerDelete</servlet-name>
+        <url-pattern>/customerDelete</url-pattern>
     </servlet-mapping>
 </web-app>
