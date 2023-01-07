@@ -28,7 +28,7 @@ public class CustomerFormServlet extends HttpServlet {
             req.setAttribute("id", customer.getId());
             req.setAttribute("name", customer.getName());
             req.setAttribute("city", customer.getCity());
-            req.setAttribute("pphoneNumber", customer.getPhoneNumber());
+            req.setAttribute("phoneNumber", customer.getPhoneNumber());
             req.setAttribute("email", customer.getEmail());
         }
         req.getRequestDispatcher("/WEB-INF/view/customerForm.jsp").forward(req, resp);
