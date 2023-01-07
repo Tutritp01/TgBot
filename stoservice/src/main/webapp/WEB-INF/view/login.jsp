@@ -9,14 +9,15 @@
 </head>
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
-    <form class="px-4 py-3" action="" method="post">
+    <form class="px-4 py-3" action="/login" method="post">
         <div class="mb-3">
             <label for="login" class="form-label">Login</label>
-            <input type="login" class="form-control" id="login" placeholder="login">
+            <input type="login" class="form-control" id="login" name="login" placeholder="login"
+                   value="${requestScope.get("login")}">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="password">
         </div>
         <div class="mb-3">
             <div class="form-check">
