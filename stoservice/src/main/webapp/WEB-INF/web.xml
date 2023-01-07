@@ -71,6 +71,15 @@
         <url-pattern>/orderTable</url-pattern>
     </servlet-mapping>
 
+     <servlet>
+        <servlet-name>OrderForm</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.OrderFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderForm</servlet-name>
+        <url-pattern>/orderForm</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>CustomerForm</servlet-name>
         <servlet-class>com.tutrit.stoservice.servlets.CustomerFormServlet</servlet-class>
@@ -80,6 +89,7 @@
         <url-pattern>/customerForm</url-pattern>
     </servlet-mapping>
 
+    <servlet>
         <servlet-name>CustomerDelete</servlet-name>
         <servlet-class>com.tutrit.stoservice.servlets.DeleteCustomerCardServlet</servlet-class>
     </servlet>
