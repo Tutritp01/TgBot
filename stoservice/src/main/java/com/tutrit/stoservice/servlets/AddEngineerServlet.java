@@ -10,12 +10,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Field;
 
-@WebServlet(name = "AddEngineerServlet", value = "/add-engineer")
+@WebServlet(name = "AddEngineerServlet", value = "add-engineer")
 public class AddEngineerServlet extends HttpServlet {
     static {
         ApplicationContextLoader.run();
@@ -34,44 +34,37 @@ public class AddEngineerServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         var engineer = new Engineer();
-        String value;
-        int valueInt;
-        Class<? extends Engineer> engineerClass = engineer.getClass();
-        Field[] fields = engineer.getClass().getDeclaredFields();
-        for (Field field : fields) {
-            try {
-                Field engineerField = engineerClass.getDeclaredField(field.getName());
-                if (field.getName().equals("id")) continue;
-                engineerField.setAccessible(true);
-                if (field.getType().equals(String.class)) {
-                    value = request.getParameter(field.getName());
-                    engineerField.set(engineer, value);
-                }
-                if (isAnInt(field)) {
-                    valueInt = Integer.parseInt(request.getParameter(field.getName()));
-                    engineerField.setInt(engineer, valueInt);
-                }
-                engineerField.setAccessible(false);
+        HttpSession session = request.getSession();
 
-            } catch (NoSuchFieldException|IllegalAccessException e) {
+        if (!session.isNew()) {
+            engineer.setFirstName(request.getParameter("firstName"));
+            engineer.setLastName(request.getParameter("lastName"));
+            engineer.setFunction(request.getParameter("function"));
+            engineer.setCategory(request.getParameter("category"));
+            engineer.setEducation(request.getParameter("education"));
+            engineer.setExperience(Integer.parseInt(request.getParameter("experience")));
+            engineer.setGeneralExperience(Integer.parseInt(request.getParameter("generalExperience")));
+
+            var engineerInRepo = ApplicationContext.get(EngineerRepository.class).save(engineer);
+            response.setContentType("text/html");
+            PrintWriter writer;
+            try {
+                writer = response.getWriter();
+            } catch (IOException e) {
+                throw new RuntimeException("Exception in AddEngineerServlet.doPost " + e);
+            }
+            writer.println(engineerInRepo + " saved in repository");
+            writer.println("<br");
+            writer.println("<p><button onclick=\"location.href='/all-engineer'\">View list of engineers</button></p><br>");
+            writer.println("<p><button onclick=\"location.href='/index.html'\">Back to main</button></p>");
+            session.invalidate();
+        }   else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+            try {
+                requestDispatcher.forward(request, response);
+            } catch (ServletException|IOException e) {
                 throw new RuntimeException("Exception in AddEngineerServlet.doPost " + e);
             }
         }
-        var engineerInRepo = ApplicationContext.get(EngineerRepository.class).save(engineer);
-        response.setContentType("text/html");
-        PrintWriter writer;
-        try {
-            writer = response.getWriter();
-        } catch (IOException e) {
-            throw new RuntimeException("Exception in AddEngineerServlet.doPost " + e);
-        }
-        writer.println(engineerInRepo + " saved in repository");
-        writer.println("");
-        writer.println("<p><button onclick=\"location.href='/index.html'\">Back to main</button></p>");
-    }
-
-    private static boolean isAnInt(Field field) {
-        String name = field.getType().getName();
-        return name.equals("int");
     }
 }
