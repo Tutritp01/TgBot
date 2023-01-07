@@ -43,21 +43,17 @@ public class EngineerFormServlet extends HttpServlet {
 
             get(EngineerRepository.class).save(engineer);
             session.invalidate();
-
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/all-engineers");
             try {
-                requestDispatcher.forward(request, response);
-            } catch (ServletException|IOException e) {
+                response.sendRedirect("/all-engineers");
+            } catch (IOException e) {
                 throw new RuntimeException("Exception in AddEngineerServlet.doPost " + e);
             }
         }   else {
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/");
             try {
-                requestDispatcher.forward(request, response);
-            } catch (ServletException|IOException e) {
+                response.sendRedirect("/");
+            } catch (IOException e) {
                 throw new RuntimeException("Exception in AddEngineerServlet.doPost " + e);
             }
         }
     }
 }
-
