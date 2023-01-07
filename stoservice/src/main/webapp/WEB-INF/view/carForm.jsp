@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +50,14 @@
         </div>
         <div class="col-md-12 py-1">
             <select class="form-select" required name="year" aria-label="Choose year">
-                <option value="${requestScope.get("year")}">${requestScope.get("year")}</option>
+                <c:choose>
+                    <c:when test="${requestScope.get(param.year) ne null}">
+                        <option value="${requestScope.get("year")}">${requestScope.get("year")}</option>
+                    </c:when>
+                    <c:otherwise>
+                        <option value="">Choose year</option>
+                    </c:otherwise>
+                </c:choose>
                 <c:forEach var="index" begin="1990" end="2022">
                     <option value="${index}">${index}</option>
                 </c:forEach>
