@@ -14,12 +14,12 @@ import java.io.IOException;
 
 import static com.tutrit.stoservice.context.ApplicationContext.get;
 
-@WebServlet(name = "AddEngineerServlet", value = "add-engineer")
+@WebServlet(name = "AddEngineerServlet", value = "/add-engineer")
 public class EngineerFormServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/add-engineer.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/engineerForm.jsp");
         try {
             requestDispatcher.forward(request, response);
         } catch (ServletException|IOException e) {
