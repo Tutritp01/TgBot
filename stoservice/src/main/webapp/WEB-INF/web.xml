@@ -55,7 +55,7 @@
 
     <servlet>
         <servlet-name>CarDelete</servlet-name>
-        <servlet-class>com.tutrit.stoservice.servlets.DeleteCardServlet</servlet-class>
+        <servlet-class>com.tutrit.stoservice.servlets.DeleteCarServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CarDelete</servlet-name>
@@ -78,6 +78,24 @@
     <servlet-mapping>
         <servlet-name>OrderForm</servlet-name>
         <url-pattern>/orderForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderDelete</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.OrderDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderDelete</servlet-name>
+        <url-pattern>/orderDelete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderCard</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.OrderCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderCard</servlet-name>
+        <url-pattern>/orderCard</url-pattern>
     </servlet-mapping>
     
     <servlet>
