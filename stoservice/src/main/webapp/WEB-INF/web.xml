@@ -66,10 +66,17 @@
         <servlet-name>OrderForm</servlet-name>
         <servlet-class>com.tutrit.stoservice.servlets.OrderFormServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>OrderForm</servlet-name>
         <url-pattern>/orderForm</url-pattern>
     </servlet-mapping>
-
+    
+    <servlet>
+        <servlet-name>CustomerDelete</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.DeleteCustomerCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerDelete</servlet-name>
+        <url-pattern>/customerDelete</url-pattern>
+    </servlet-mapping>
 </web-app>

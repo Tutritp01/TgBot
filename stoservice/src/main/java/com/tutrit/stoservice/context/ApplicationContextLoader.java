@@ -59,5 +59,6 @@ public class ApplicationContextLoader {
         put(CustomerProvider.class, new CustomerProvider());
 
         put(RequestDispatcher.class, new RequestDispatcher());
+        put(InMemoryAuthenticationService.class, new InMemoryAuthenticationService());
     }
 }
