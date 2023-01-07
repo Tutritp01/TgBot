@@ -29,7 +29,7 @@
         <tbody class="table-group-divider">
         <c:forEach var="engineer" items="${requestScope.listEngineers}">
             <tr>
-                <td><a href="/engineerCard"><c:out value="${engineer.id}"/></a>
+                <td><a href="/engineerCard?id=${engineer.id}"><c:out value="${engineer.id}"/></a>
                 <td><c:out value="${engineer.firstName}"/>
                 <td><c:out value="${engineer.lastName}"/>
                 <td><c:out value="${engineer.function}"/>
