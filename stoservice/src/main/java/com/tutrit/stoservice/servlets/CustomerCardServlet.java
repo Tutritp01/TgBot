@@ -1,8 +1,6 @@
 package com.tutrit.stoservice.servlets;
 
-import com.tutrit.stoservice.bean.Car;
 import com.tutrit.stoservice.bean.Customer;
-import com.tutrit.stoservice.repository.CarRepository;
 import com.tutrit.stoservice.repository.CustomerRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

@@ -70,4 +70,32 @@
         <servlet-name>CustomerDelete</servlet-name>
         <url-pattern>/customerDelete</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomerTable</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CustomersTableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerTable</servlet-name>
+        <url-pattern>/customerTable</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomerCard</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CustomerCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerCard</servlet-name>
+        <url-pattern>/customerCard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomerForm</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CustomerFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerForm</servlet-name>
+        <url-pattern>/customerForm</url-pattern>
+    </servlet-mapping>
+
 </web-app>
