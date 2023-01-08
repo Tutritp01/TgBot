@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>View all order</h1><br/>
-<a href="/orderForm" class="btn btn-primary" type="button">Add</a>
+<a href="/orderForm" class="btn btn-primary" type="button">addOrder</a>
 <div class="table">
     <table class="table table-light table-striped table-hover">
         <caption>All order</caption>
@@ -31,6 +31,7 @@
                 <td><c:out value="${order.customer}"/>
                 <td><c:out value="${order.user}"/>
                 <td><c:out value="${order.car}"/>
+                <td><c:out value="${order.orderStatus}"/>
                 <td>
                     <div class="d-flex justify-content-around">
                         <form action="/orderForm" method="post">

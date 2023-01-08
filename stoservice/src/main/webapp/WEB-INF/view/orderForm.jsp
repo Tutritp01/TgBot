@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="position-absolute top-50 start-50 translate-middle">
-    <form class="needs-validation was-validated" action="/orderForm" method="POST" novalidate>
+    <form class="needs-validation was-validated" action="/orderCard" method="post" novalidate>
 
         <div class="col-md-12">
             <label for="customer" class="form-label">Customer</label>
@@ -29,12 +29,20 @@
             <label for="engineers" class="form-label">Engineers</label>
             <input type="text" class="form-control" id="engineers" required placeholder="engineers" value="${requestScope.engineers}">
         </div>
-        <div class="col-md-12">
-            <label for="orderStatus" class="form-label">OrderStatus</label>
-            <input type="text" class="form-control" id="orderStatus" required placeholder="orderStatus" value="${requestScope.orderStatus}">
-            <div class="col-12">
-                <button class="btn btn-primary" type="submit">Submit</button>
-            </div>
+        <div class="col-md-12 py-1">
+             <label for="orderStatus" class="form-label">OrderStatus</label>
+             <input type="text" class="form-control" name="orderStatus" required placeholder="orderStatus" value="${requestScope.get("orderStatus")}">
+        </div>
+        <div class="row">
+              <div class="col order-first">
+                  <button class="btn btn-success" type="submit">Save</button>
+              </div>
+              <div class="col">
+                  <button class="btn btn-primary" type="reset">Clear</button>
+              </div>
+              <div class="col order-last">
+                  <a href="/orderTable" class="btn btn-danger" type="button">Cancel</a>
+              </div>
         </div>
     </form>
 </div>
