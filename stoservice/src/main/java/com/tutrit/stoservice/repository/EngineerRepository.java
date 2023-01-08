@@ -76,9 +76,12 @@ public class EngineerRepository implements Repository<Engineer, String>, MyIdGen
     @Override
     public Engineer update(Engineer engineer) {
         if (find(engineer) != null) {
-            int i = Integer.parseInt(find(engineer).getId()) - 1;
-            engineers[i] = engineer;
-            return engineers[i];
+            for (int i = 0; i < engineers.length; i++) {
+                if (engineers[i].getId().equals(engineer.getId())) {
+                    engineers[i] = engineer;
+                    return engineers[i];
+                }
+            }
         }
         return null;
     }
