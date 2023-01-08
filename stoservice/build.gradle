@@ -5,6 +5,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'application'
 }
 
 repositories {
@@ -19,6 +20,10 @@ dependencies {
     api 'jakarta.platform:jakarta.jakartaee-api:9.1.0'
     api 'jakarta.servlet:jakarta.servlet-api:5.0.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.2'
+}
+
+application {
+    mainClass = 'com.tutrit.stoservice.StoserviceApplication'
 }
 
 group = 'com.tutrit'
