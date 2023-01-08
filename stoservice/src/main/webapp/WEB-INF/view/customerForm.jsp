@@ -31,12 +31,22 @@
             <input type="text" class="form-control" name="email" required placeholder="email"
                    value="${requestScope.get("email")}">
         </div>
+        <br><br>
         <div class="row">
             <div class="col order-first">
-                <button class="btn btn-success" type="submit">Save</button>
+                <form action="/customerCard" method="post">
+                    <button class="btn btn-danger" value="${param.get("id")}
+                     ${param.get("name")}
+                     ${param.get("phoneNumber")}
+                     ${param.get("city")}
+                     ${param.get("email")}"
+                    >Save
+                    </button>
+                </form>
             </div>
+
             <div class="col">
-                <button class="btn btn-primary" type="reset">Clear</button>
+                <a href="/customerForm" class="btn btn-danger" type="button">Clear</a>
             </div>
             <div class="col order-last">
                 <a href="/customerTable" class="btn btn-danger" type="button">Cancel</a>

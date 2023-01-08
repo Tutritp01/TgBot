@@ -63,12 +63,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>OrderTable</servlet-name>
-        <servlet-class>com.tutrit.stoservice.servlets.OrderTableServlet</servlet-class>
+        <servlet-name>CustomerDelete</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.DeleteCustomerCardServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>OrderTable</servlet-name>
-        <url-pattern>/orderTable</url-pattern>
+        <servlet-name>CustomerDelete</servlet-name>
+        <url-pattern>/customerDelete</url-pattern>
     </servlet-mapping>
 
      <servlet>
@@ -99,6 +99,24 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>CustomerTable</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CustomersTableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerTable</servlet-name>
+        <url-pattern>/customerTable</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomerCard</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CustomerCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerCard</servlet-name>
+        <url-pattern>/customerCard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>CustomerForm</servlet-name>
         <servlet-class>com.tutrit.stoservice.servlets.CustomerFormServlet</servlet-class>
     </servlet>
@@ -107,21 +125,4 @@
         <url-pattern>/customerForm</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>CustomerDelete</servlet-name>
-        <servlet-class>com.tutrit.stoservice.servlets.DeleteCustomerCardServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CustomerDelete</servlet-name>
-        <url-pattern>/customerDelete</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>CustomerTable</servlet-name>
-        <servlet-class>com.tutrit.stoservice.servlets.CustomersTableServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CustomerTable</servlet-name>
-        <url-pattern>/customerTable</url-pattern>
-    </servlet-mapping>
 </web-app>
