@@ -1,6 +1,7 @@
 package com.tutrit.stoservice.servlets;
 
 import com.tutrit.stoservice.bean.Car;
+import com.tutrit.stoservice.provider.CarProvider;
 import com.tutrit.stoservice.repository.CarRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -13,6 +14,12 @@ import java.util.List;
 import static com.tutrit.stoservice.context.ApplicationContext.get;
 
 public class CarTableServlet extends HttpServlet {
+
+    @Override
+    public void init() throws ServletException {
+        List<Car> carList = get(CarProvider.class).getCar();
+        get(CarRepository.class).saveAll(carList);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

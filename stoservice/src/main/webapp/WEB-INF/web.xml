@@ -55,10 +55,83 @@
 
     <servlet>
         <servlet-name>CarDelete</servlet-name>
-        <servlet-class>com.tutrit.stoservice.servlets.DeleteCardServlet</servlet-class>
+        <servlet-class>com.tutrit.stoservice.servlets.DeleteCarServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CarDelete</servlet-name>
         <url-pattern>/carDelete</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomerDelete</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.DeleteCustomerCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerDelete</servlet-name>
+        <url-pattern>/customerDelete</url-pattern>
+    </servlet-mapping>
+
+     <servlet>
+        <servlet-name>OrderForm</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.OrderFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderForm</servlet-name>
+        <url-pattern>/orderForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderDelete</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.OrderDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderDelete</servlet-name>
+        <url-pattern>/orderDelete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderTable</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.OrderTableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderTable</servlet-name>
+        <url-pattern>/orderTable</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderCard</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.OrderCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderCard</servlet-name>
+        <url-pattern>/orderCard</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>CustomerTable</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CustomersTableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerTable</servlet-name>
+        <url-pattern>/customerTable</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomerCard</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CustomerCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerCard</servlet-name>
+        <url-pattern>/customerCard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomerForm</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CustomerFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerForm</servlet-name>
+        <url-pattern>/customerForm</url-pattern>
+    </servlet-mapping>
+
 </web-app>
