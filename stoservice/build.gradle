@@ -31,7 +31,7 @@ application {
 group = 'com.tutrit'
 version = '0.0.1-SNAPSHOT'
 description = 'sto-service'
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_16
 
 publishing {
     publications {
