@@ -62,6 +62,15 @@ jacocoTestReport {
         html.outputLocation = layout.buildDirectory.dir("$buildDir/jacoco/test/html")
     }
 }
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.38
+            }
+        }
+    }
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
