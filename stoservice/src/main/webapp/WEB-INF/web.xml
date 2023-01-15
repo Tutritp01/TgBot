@@ -97,4 +97,13 @@
         <servlet-name>CustomerDelete</servlet-name>
         <url-pattern>/customerDelete</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomerTable</servlet-name>
+        <servlet-class>com.tutrit.stoservice.servlets.CustomersTableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerTable</servlet-name>
+        <url-pattern>/customerTable</url-pattern>
+    </servlet-mapping>
 </web-app>
