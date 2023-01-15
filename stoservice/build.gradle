@@ -45,6 +45,7 @@ publishing {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+    finalizedBy jacocoTestCoverageVerification
     testLogging {
         events "passed", "skipped", "failed"
     }
@@ -64,6 +65,7 @@ jacocoTestReport {
 }
 jacocoTestCoverageVerification {
     violationRules {
+        failOnViolation = true
         rule {
             limit {
                 minimum = 0.38
