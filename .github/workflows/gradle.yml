@@ -14,6 +14,10 @@ on:
 jobs:   
   gradle:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stoservice
+    
     steps:
     - name: Checkout project sources
       uses: actions/checkout@v3
@@ -21,7 +25,6 @@ jobs:
       uses: gradle/gradle-build-action@v2
     - name: Run build with Gradle wrapper
       run: ./gradlew build --scan
-      working-directory: stoservice
     - name: Upload build reports
       uses: actions/upload-artifact@v3
       with:
