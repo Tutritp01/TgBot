@@ -43,6 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         working-directory: ./stoservice
+        base-directory: ./stoservice
 
     steps:
       - name: Analyze with SonarCloud
