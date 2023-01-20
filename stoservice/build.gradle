@@ -6,6 +6,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'application'
+    id 'jacoco'
 }
 
 repositories {
@@ -43,8 +44,33 @@ publishing {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+    finalizedBy jacocoTestCoverageVerification
     testLogging {
         events "passed", "skipped", "failed"
+    }
+}
+
+
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = file("$buildDir/jacoco")
+}
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("$buildDir/jacoco/test/html")
+    }
+}
+jacocoTestCoverageVerification {
+    violationRules {
+        failOnViolation = true
+        rule {
+            limit {
+                minimum = 0.38
+            }
+        }
     }
 }
 
