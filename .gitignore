@@ -250,3 +250,12 @@ $RECYCLE.BIN/
 *.lnk
 
 */application.properties
+
+HELP.md
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
