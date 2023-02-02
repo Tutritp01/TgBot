@@ -11,12 +11,22 @@
 	<groupId>com.tutrit</groupId>
 	<artifactId>sto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sto</name>
+	<name>sto-multi-module</name>
 	<description>Workshop service</description>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>sto-core-m</module>
+	</modules>
+
 	<properties>
 		<java.version>17</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<spring-cloud.version>2022.0.1</spring-cloud.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -34,7 +44,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -57,6 +66,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
