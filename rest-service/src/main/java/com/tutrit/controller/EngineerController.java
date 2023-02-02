@@ -19,7 +19,7 @@ public class EngineerController {
     }
 
     @PostMapping("/engineers")
-    public Engineer post(@RequestBody Engineer engineer) {
+    public Engineer postNew(@RequestBody Engineer engineer) {
         return engineerService.save(engineer);
     }
 }
