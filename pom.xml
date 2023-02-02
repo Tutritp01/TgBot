@@ -16,7 +16,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>sto-core-m</module>
+		<module>sto-core</module>
 	</modules>
 
 	<properties>
