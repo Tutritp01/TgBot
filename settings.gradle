@@ -1,4 +1,4 @@
 rootProject.name = 'STO'
 include 'sto-core'
 include 'repo-in-memory'
-
+include 'rest-service'
