@@ -9,7 +9,7 @@ public interface EngineerPersistence {
 
     Iterable<Engineer> findAll();
 
-    Engineer update(Engineer engineer);
+    Engineer update(String idOld, Engineer newEngineer);
 
-    boolean delete(Engineer engineer);
+    boolean delete(String id);
 }
