@@ -17,6 +17,7 @@
 
 	<modules>
 		<module>sto-core</module>
+		<module>repo-in-memory</module>
 	</modules>
 
 	<properties>
