@@ -19,7 +19,8 @@
 		<module>sto-core</module>
 		<module>repo-in-memory</module>
 		<module>rest-service</module>
-	</modules>
+        <module>integration</module>
+    </modules>
 
 	<properties>
 		<java.version>17</java.version>
